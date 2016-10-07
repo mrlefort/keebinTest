@@ -27,40 +27,58 @@ sequelize.authenticate().then(function (err) {
     }
 }); // Authenticating connection to the MySQL database connection above
 
-function _newRole(RoleN)
-{
-    console.log("yolo");
-    var Rolefound = false;
-    var myrole = Role.find({where:{RoleName: RoleN}}).then(function (data, err) {
+function _newRole(RoleN) {
 
-        console.log("role here!" + data.RoleName)
-        Rolefound = true;
+    var RoleFound = false;
 
-    })
-
-   if(!Rolefound) {
-       return sequelize.transaction(function (t) {
-
-           // chain all your queries here. make sure you return them.
-           return Role.create({
-               RoleName: RoleN
+    var myCallback = function (data) {
+        console.log("myCallback is running. ")
+        Role.find({where: {RoleName: RoleN}}).then(function (data, err) {
+            console.log("role found " + data.RoleName)
+            RoleFound = true;
+        })
+    }
 
 
-           }, {transaction: t}) // kom her til
+    var usingItNow = function (callback) {
+        callback("inside UsingItNow.");
 
-       }).then(function (result) {
-           console.log("Transaction has been committed");
+        setTimeout(function () {
 
-           // Transaction has been committed
-           // result is whatever the result of the promise chain returned to the transaction callback
-       }).catch(function (err) {
-           console.log(err);
-           // Transaction has been rolled back
-           // err is whatever rejected the promise chain returned to the transaction callback
-       });
-   }
-    ;
+            if (RoleFound == false) {
+                return sequelize.transaction(function (t) {
+
+                    // chain all your queries here. make sure you return them.
+                    return Role.create({
+                        RoleName: RoleN
+
+
+                    }, {transaction: t}) // kom her til
+
+                }).then(function (result) {
+                    console.log("Transaction has been committed");
+
+                    // Transaction has been committed
+                    // result is whatever the result of the promise chain returned to the transaction callback
+                }).catch(function (err) {
+                    console.log(err);
+                    // Transaction has been rolled back
+                    // err is whatever rejected the promise chain returned to the transaction callback
+                });
+            } else {
+                console.log("couldn't create user.");
+            }
+            ;
+        }, 1000)
+
+
+    };
+
+    usingItNow(myCallback);
+
 }
+
+
 
 function _newUser(newUser)
 {
