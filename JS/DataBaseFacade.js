@@ -29,52 +29,61 @@ sequelize.authenticate().then(function (err) {
 
 function _newRole(RoleN) {
 
-    var RoleFound = false;
 
-    var myCallback = function (data) {
-        console.log("myCallback is running. ")
-        Role.find({where: {RoleName: RoleN}}).then(function (data, err) {
-            console.log("role found " + data.RoleName)
-            RoleFound = true;
-        })
+
+    var runIfRoleFoundFalse = function (doesRoleExist) {
+        // runIfRoleFoundFalse is the second function (the callback) - we feed RoleFound as a parameter and name is doesRoleExist
+        if (doesRoleExist == false) {
+            return sequelize.transaction(function (t) {
+
+                // chain all your queries here. make sure you return them.
+                return Role.create({
+                    RoleName: RoleN
+
+
+                }, {transaction: t}) // kom her til
+
+            }).then(function (result) {
+                console.log("Transaction has been committed");
+
+                // Transaction has been committed
+                // result is whatever the result of the promise chain returned to the transaction callback
+            }).catch(function (err) {
+                console.log(err);
+                // Transaction has been rolled back
+                // err is whatever rejected the promise chain returned to the transaction callback
+            });
+        } else {
+            console.log("couldn't create user " );
+        };
     }
 
 
-    var usingItNow = function (callback) {
-        callback("inside UsingItNow.");
+    var setRoleFound = function (callback) {
+        //setROleFound is the first function to run.
 
-        setTimeout(function () {
-
-            if (RoleFound == false) {
-                return sequelize.transaction(function (t) {
-
-                    // chain all your queries here. make sure you return them.
-                    return Role.create({
-                        RoleName: RoleN
-
-
-                    }, {transaction: t}) // kom her til
-
-                }).then(function (result) {
-                    console.log("Transaction has been committed");
-
-                    // Transaction has been committed
-                    // result is whatever the result of the promise chain returned to the transaction callback
-                }).catch(function (err) {
-                    console.log(err);
-                    // Transaction has been rolled back
-                    // err is whatever rejected the promise chain returned to the transaction callback
-                });
-            } else {
-                console.log("couldn't create user.");
+        console.log("setRoleFound is running. ")
+        Role.find({where: {RoleName: RoleN}}).then(function (data) { // we have run the callback inside the .then
+            var RoleFound;
+            if (data !== null){
+            console.log("role found " + data.RoleName)
+            RoleFound = true;} else {
+            RoleFound = false;
             }
-            ;
-        }, 1000)
+            //we give RoleFound to callback
+            callback(RoleFound);
+
+        })
+
+
+
+
 
 
     };
 
-    usingItNow(myCallback);
+    setRoleFound(runIfRoleFoundFalse);
+
 
 }
 
