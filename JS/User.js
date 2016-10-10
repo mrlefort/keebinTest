@@ -5,24 +5,22 @@
 
 
 var Sequelize = require('sequelize'); // Requires
-var FirstName = "";
-var LastName = "";
-var Email = "";
-var Role = "";
-var Date = "";
-var Birthday = "";
-var Sex = "";
+var firstName = "";
+var lastName = "";
+var email = "";
+var role = "";
+var birthday = "";
+var sex = "";
 var password = ""; // Variable Creation
 
-function _newUser(FirstName, LastName, Email, Date, Role, Birthday, Sex, password)
+function _newUser(FirstName, LastName, Email, Role, Birthday, Sex, password)
 {
-    this.FirstName = FirstName;
-    this.LastName = LastName;
-    this.Email = Email;
-    this.Date = Date;
-    this.Role = Role;
-    this.Birthday = Birthday;
-    this.Sex = Sex;
+    this.firstName = FirstName;
+    this.lastName = LastName;
+    this.email = Email;
+    this.role = Role;
+    this.birthday = Birthday;
+    this.sex = Sex;
     this.password = password;
 
 } // Export Functions

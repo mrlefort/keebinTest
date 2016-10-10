@@ -38,13 +38,13 @@ function _newRole(RoleN) {
 
                 // chain all your queries here. make sure you return them.
                 return Role.create({
-                    RoleName: RoleN
+                    roleName: RoleN
 
 
                 }, {transaction: t}) // kom her til
 
             }).then(function (result) {
-                console.log("Transaction has been committed");
+                console.log("Transaction has been committed - Role has been saved to the DB.");
 
                 // Transaction has been committed
                 // result is whatever the result of the promise chain returned to the transaction callback
@@ -54,7 +54,7 @@ function _newRole(RoleN) {
                 // err is whatever rejected the promise chain returned to the transaction callback
             });
         } else {
-            console.log("couldn't create user " );
+            console.log("couldn't create role " );
         };
     }
 
@@ -66,7 +66,7 @@ function _newRole(RoleN) {
         Role.find({where: {RoleName: RoleN}}).then(function (data) { // we have run the callback inside the .then
             var RoleFound;
             if (data !== null){
-            console.log("role found " + data.RoleName)
+            console.log("role found " + data.roleName)
             RoleFound = true;} else {
             RoleFound = false;
             }
@@ -92,44 +92,73 @@ function _newRole(RoleN) {
 function _newUser(newUser)
 {
 
+    var runIfUserFoundIsFalse = function (doesUserExist) {
+        // runIfUserFoundIsFalse is the second function (the callback) - we feed userFound as a parameter and name is doesUserExist
+        if (doesUserExist == false) {
+            return sequelize.transaction(function (t) {
+
+                // chain all your queries here. make sure you return them.
+                return User.create({
+                    firstName: newUser.firstName,
+                    lastName: newUser.lastName,
+                    email: newUser.email,
+                    roleId: newUser.role,
+                    birthday: newUser.birthday,
+                    sex: newUser.sex,
+                    password: newUser.password
+
+                }, {transaction: t})
+
+            }).then(function (result) {
+                console.log("Transaction has been committed - user has been saved to the DB");
+
+                // Transaction has been committed
+                // result is whatever the result of the promise chain returned to the transaction callback
+            }).catch(function (err) {
+                console.log(err);
+                // Transaction has been rolled back
+                // err is whatever rejected the promise chain returned to the transaction callback
+            });
+        } else {
+            console.log("couldn't create user" );
+        };
+    }
 
 
-    return sequelize.transaction(function (t) {
+    var setUserFound = function (callback) {
+        //setUserFound is the first function to run.
 
-        // chain all your queries here. make sure you return them.
+        console.log("setUserFound is running. ")
+        User.find({where: {Email: newUser.email}}).then(function (data) { // we have run the callback inside the .then
+            var userFound;
+            if (data !== null){
+                console.log("user found - email exists already - " + data.email)
+                userFound = true;} else {
+                userFound = false;
+            }
+            //we give RoleFound to callback
+            callback(userFound);
 
-        return User.create({
-            FirstName: newUser.FirstName,
-            LastName: newUser.LastName,
-            Email : newUser.Email,
-            Date : newUser.Date,
-            Birthday : newUser.Birthday,
-            Sex : newUser.Sex,
-            RoleId : newUser.Role
-
-
-        },    {transaction: t}) // kom her til
-
-    }).then(function (result) {
-        console.log("Transaction has been committed");
-
-        _newPass(newUser);
+        })
 
 
-        // Transaction has been committed
-        // result is whatever the result of the promise chain returned to the transaction callback
-    }).catch(function (err) {
-        console.log(err);
-        // Transaction has been rolled back
-        // err is whatever rejected the promise chain returned to the transaction callback
-    });
+
+
+
+
+    };
+
+    setUserFound(runIfUserFoundIsFalse);
+
+
+
 }
 
 function _newPass(newUser)
 {
     var finduserid = "";
     // finds a row in the user table with the email of newuser.email and then sets the finduserid to the user's id.
-    User.find({where:{Email: newUser.Email}}).then(function (data, err) {
+    User.find({where:{Email: newUser.email}}).then(function (data, err) {
         if (data) {
             finduserid = data.id;
         }
@@ -142,7 +171,7 @@ function _newPass(newUser)
 
         // chain all your queries here. make sure you return them.
         return Logins.create({
-            Password: newUser.password,
+            password: newUser.password,
             userId: finduserid
 
 
@@ -162,7 +191,7 @@ function _newPass(newUser)
     });
 } // Export Functions
 
-// User.find({where:{Email: larse.Email}}).then(function (data, err) {
+// user.find({where:{email: test2.email}}).then(function (data, err) {
 //
 //         console.log(data.id);
 //

@@ -3,7 +3,6 @@
  */
 
 
-
 var Sequelize = require('sequelize'); // Requires
 
 var sequelize = new Sequelize('keebin', 'keebin', '1234', {
@@ -20,8 +19,8 @@ sequelize.authenticate().then(function (err) {
     }
 });  // Authenticate Database connection
 
-var Role = sequelize.define('Roles', {
-    RoleName: {
+var role = sequelize.define('roles', {
+    roleName: {
         type: Sequelize.STRING,
         Validate : {notNull : true, unique : true}
     }
@@ -29,42 +28,38 @@ var Role = sequelize.define('Roles', {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
-});   // Role table setup
+});   // role table setup
 
-var User = sequelize.define('User', {
+var user = sequelize.define('user', {
 
-    FirstName: {
+    firstName: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         field: 'first_name', // Will result in an attribute that is firstName when user facing but first_name in the database
         Validate : {max : 40}
     },
-    LastName: {
+    lastName: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {max : 40}
     },
-    Email: {
+    email: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true, isEmail: true, unique : true}
     },
-    Date: {
+    birthday: {
         type: Sequelize.DATE, // here we decide parameters for this field in the table
         Validate : {isDate : true, notNull : false}
     },
-    Birthday: {
-        type: Sequelize.DATE, // here we decide parameters for this field in the table
-        Validate : {isDate : true, notNull : false}
-    },
-    Sex: {
+    sex: {
         type: Sequelize.STRING // here we decide parameters for this field in the table
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: true // fjerner timestamps med false denne option skal stå på tabellen
 
-});  // User table setup
+});  // user table setup
 
-var Logins = sequelize.define('Logins', {
-    Password: {
+var logins = sequelize.define('logins', {
+    password: {
         type: Sequelize.STRING,
         Validate : {notNull : true}
     }
@@ -74,12 +69,12 @@ var Logins = sequelize.define('Logins', {
 
 });  // passwords table setup
 
-var CoffeeBrand = sequelize.define('CoffeeBrand', {
-    BrandName: {
+var coffeeBrand = sequelize.define('coffeeBrand', {
+    brandName: {
         type: Sequelize.STRING,
         Validate : {notNull : true}
     },
-    NumberOfCoffeeNeeded: {
+    numberOfCoffeeNeeded: {
         type: Sequelize.INTEGER,
         Validate : {notNull : true}
     }
@@ -87,10 +82,10 @@ var CoffeeBrand = sequelize.define('CoffeeBrand', {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // CoffeeBrand table setup
+}); // coffeeBrand table setup
 
-var LoyaltyCards = sequelize.define('LoyaltyCards', {
-    NumberOfCoffeesBought: {
+var loyalityCards = sequelize.define('loyaltyCards', {
+    numberOfCoffeesBought: {
         type: Sequelize.INTEGER,
         Validate : {notNull : true},
     }
@@ -98,14 +93,14 @@ var LoyaltyCards = sequelize.define('LoyaltyCards', {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: true // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // LoyaltyCards table setup
+}); // loyalityCards table setup
 
-var CoffeeKind = sequelize.define('CoffeeKind', {
-    Price: {
+var coffeeKind = sequelize.define('coffeeKind', {
+    price: {
         type: Sequelize.DOUBLE,
         Validate : {notNull : true},
     },
-    CoffeeKindName: {
+    coffeeKindName: {
         type: Sequelize.STRING,
         Validate : {notNull : true},
     }
@@ -113,10 +108,10 @@ var CoffeeKind = sequelize.define('CoffeeKind', {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // CoffeeKind table setup
+}); // coffeeKind table setup
 
-var Order = sequelize.define('Order', {
-    Platform: {
+var order = sequelize.define('order', {
+    platform: {
         type: Sequelize.STRING,
         Validate : {notNull : true},
     }
@@ -124,18 +119,18 @@ var Order = sequelize.define('Order', {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: true // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // Order table setup
+}); // order table setup
 
-var CoffeeShop = sequelize.define('CoffeeShop', {
-    Email: {
+var coffeeShop = sequelize.define('coffeeShop', {
+    email: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true, isEmail: true, unique : true}
     },
-    Address: {
+    address: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true}
     },
-    Phone: {
+    phone: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true}
     }
@@ -143,18 +138,18 @@ var CoffeeShop = sequelize.define('CoffeeShop', {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // CoffeeShop table setup
+}); // coffeeShop table setup
 
-var CoffeeShopUsers = sequelize.define('CoffeeShopUsers', {
+var coffeeShopUsers = sequelize.define('coffeeShopUsers', {
 
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // CoffeeShopUsers table setup
+}); // coffeeShopUsers table setup
 
-var OrderItem = sequelize.define('OrderItem', {
-    Quantity: {
+var orderItem = sequelize.define('orderItem', {
+    quantity: {
         type: Sequelize.INTEGER, // here we decide parameters for this field in the table
         Validate : {notNull : true}
     }
@@ -162,97 +157,97 @@ var OrderItem = sequelize.define('OrderItem', {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // OrderItem table setup
+}); // orderItem table setup
 
-Role.hasMany(User);
-User.belongsTo(Role);
-User.hasOne(Logins, {foreignKey: 'Email'});
-Logins.belongsTo(User, {foreignKey: 'Email'});
-User.hasMany(LoyaltyCards);
-LoyaltyCards.belongsTo(User);
-CoffeeBrand.hasMany(LoyaltyCards, {foreignKey: 'BrandName'});
-LoyaltyCards.belongsTo(CoffeeBrand, {foreignKey: 'BrandName'});
-
-
-
-CoffeeShop.hasMany(CoffeeKind);
-CoffeeKind.belongsTo(CoffeeShop);
-
-User.hasMany(Order);
-Order.belongsTo(User);
-CoffeeShop.hasMany(Order);
-Order.belongsTo(CoffeeShop);
-User.hasMany(Order);
-Order.belongsTo(CoffeeKind);
-
-CoffeeShop.belongsTo(CoffeeBrand, {foreignKey: 'BrandName'})
+role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+user.hasOne(logins, {foreignKey: 'email'});
+logins.belongsTo(user, {foreignKey: 'email'});
+user.hasMany(loyalityCards);
+loyalityCards.belongsTo(user);
+coffeeBrand.hasMany(loyalityCards, {foreignKey: 'brandName'});
+loyalityCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
 
 
 
-Order.belongsToMany(CoffeeKind, {through: 'OrderItem', foreignKey: 'Order_ID'});
-CoffeeKind.belongsToMany(Order, {through: 'OrderItem', foreignKey: 'CoffeeKind_ID'}); // Working with  // associations
-CoffeeBrand.sync();
+coffeeShop.hasMany(coffeeKind);
+coffeeKind.belongsTo(coffeeShop);
+
+user.hasMany(order);
+order.belongsTo(user);
+coffeeShop.hasMany(order);
+order.belongsTo(coffeeShop);
+user.hasMany(order);
+order.belongsTo(coffeeKind);
+
+coffeeShop.belongsTo(coffeeBrand, {foreignKey: 'brandName'})
 
 
-Role.sync();
 
-User.sync(); // executes the command from above and inserts a new table into the database
-Logins.sync();
-LoyaltyCards.sync();
+order.belongsToMany(coffeeKind, {through: 'orderItem', foreignKey: 'Order_ID'});
+coffeeKind.belongsToMany(order, {through: 'orderItem', foreignKey: 'CoffeeKind_ID'}); // Working with  // associations
+coffeeBrand.sync();
 
-CoffeeKind.sync();
-Order.sync();
-CoffeeShop.sync();
-CoffeeShopUsers.sync();
-OrderItem.sync(); // Creating Tables
+
+role.sync();
+
+user.sync(); // executes the command from above and inserts a new table into the database
+logins.sync();
+loyalityCards.sync();
+
+coffeeKind.sync();
+order.sync();
+coffeeShop.sync();
+coffeeShopUsers.sync();
+orderItem.sync(); // Creating Tables
 function _Role()
 {
- return Role;
+ return role;
 }
 
 function _User()
 {
-return User;
+return user;
 }
 
 function _Logins()
 {
-return Logins;
+return logins;
 }
 
 function _CoffeeBrand()
 {
-    return CoffeeBrand;
+    return coffeeBrand;
 }
 
 function _LoyaltyCards()
 {
-    return LoyaltyCards;
+    return loyalityCards;
 }
 
 function _CoffeeKind()
 {
-    return CoffeeKind;
+    return coffeeKind;
 }
 
 function _Order()
 {
-    return Order;
+    return order;
 }
 
 function _CoffeeShop()
 {
-    return CoffeeShop;
+    return coffeeShop;
 }
 
 function _CoffeeShopUsers()
 {
-    return CoffeeShopUsers;
+    return coffeeShopUsers;
 }
 
 function _OrderItem()
 {
-    return OrderItem;
+    return orderItem;
 }
 
 function _connect()
