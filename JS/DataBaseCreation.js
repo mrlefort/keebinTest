@@ -90,12 +90,12 @@ var loyaltyCards = sequelize.define('loyaltyCards', {
         Validate : {notNull : true},
     },
     isValid: {
-        type: Sequelize.boolean,
-        Validate : {notNull : true},
+        type: Sequelize.BOOLEAN,
+        Validate : {notNull : true}
     },
     readyForFreeCoffee: {
-        type: Sequelize.boolean,
-        Validate : {notNull : true},
+        type: Sequelize.BOOLEAN,
+        Validate : {notNull : true}
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
