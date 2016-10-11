@@ -84,16 +84,24 @@ var coffeeBrand = sequelize.define('coffeeBrand', {
 
 }); // coffeeBrand table setup
 
-var loyalityCards = sequelize.define('loyaltyCards', {
+var loyaltyCards = sequelize.define('loyaltyCards', {
     numberOfCoffeesBought: {
         type: Sequelize.INTEGER,
+        Validate : {notNull : true},
+    },
+    isValid: {
+        type: Sequelize.boolean,
+        Validate : {notNull : true},
+    },
+    readyForFreeCoffee: {
+        type: Sequelize.boolean,
         Validate : {notNull : true},
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: true // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // loyalityCards table setup
+}); // loyaltyCards table setup
 
 var coffeeKind = sequelize.define('coffeeKind', {
     price: {
@@ -163,10 +171,10 @@ role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.hasOne(logins, {foreignKey: 'email'});
 logins.belongsTo(user, {foreignKey: 'email'});
-user.hasMany(loyalityCards);
-loyalityCards.belongsTo(user);
-coffeeBrand.hasMany(loyalityCards, {foreignKey: 'brandName'});
-loyalityCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
+user.hasMany(loyaltyCards);
+loyaltyCards.belongsTo(user);
+coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});
+loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
 
 
 
@@ -193,7 +201,7 @@ role.sync();
 
 user.sync(); // executes the command from above and inserts a new table into the database
 logins.sync();
-loyalityCards.sync();
+loyaltyCards.sync();
 
 coffeeKind.sync();
 order.sync();
@@ -222,7 +230,7 @@ function _CoffeeBrand()
 
 function _LoyaltyCards()
 {
-    return loyalityCards;
+    return loyaltyCards;
 }
 
 function _CoffeeKind()

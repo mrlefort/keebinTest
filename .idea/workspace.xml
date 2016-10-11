@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbe6b159-6525-4353-ac99-ef176ef3cc64" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/JS/LoyaltyCard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/DataBaseCreation.js" afterPath="$PROJECT_DIR$/JS/DataBaseCreation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/LoyaltyCard.js" afterPath="$PROJECT_DIR$/JS/LoyaltyCard.js" />
     </list>
     <ignored path="Keebin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +41,7 @@
       <file leaf-file-name="DataBaseFacade.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
+            <state relative-caret-position="153">
               <caret line="49" column="70" selection-start-line="49" selection-start-column="70" selection-end-line="49" selection-end-column="70" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataBaseCreation.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DataBaseCreation.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+            <state relative-caret-position="595">
+              <caret line="175" column="61" selection-start-line="175" selection-start-column="61" selection-end-line="175" selection-end-column="61" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
                 <element signature="e#153#216#0" expanded="false" />
@@ -77,24 +77,26 @@
                 <element signature="e#2378#2453#0" expanded="false" />
                 <element signature="e#2481#2557#0" expanded="false" />
                 <element signature="e#2561#2734#0" expanded="false" />
-                <element signature="e#2818#2926#0" expanded="false" />
-                <element signature="e#2847#2924#0" expanded="false" />
-                <element signature="e#2928#3100#0" expanded="false" />
-                <element signature="e#3181#3370#0" expanded="false" />
-                <element signature="e#3372#3545#0" expanded="false" />
-                <element signature="e#3613#3707#0" expanded="false" />
-                <element signature="e#3629#3705#0" expanded="false" />
-                <element signature="e#3709#3881#0" expanded="false" />
-                <element signature="e#3954#4423#0" expanded="false" />
-                <element signature="e#3967#4129#0" expanded="false" />
-                <element signature="e#4144#4276#0" expanded="false" />
-                <element signature="e#4289#4421#0" expanded="false" />
-                <element signature="e#4425#4598#0" expanded="false" />
-                <element signature="e#4686#4690#0" expanded="false" />
-                <element signature="e#4692#4865#0" expanded="false" />
-                <element signature="e#4946#5097#0" expanded="false" />
-                <element signature="e#4962#5095#0" expanded="false" />
-                <element signature="e#5099#5272#0" expanded="false" />
+                <element signature="e#2817#3120#0" expanded="false" />
+                <element signature="e#2846#2923#0" expanded="false" />
+                <element signature="e#2938#3015#0" expanded="false" />
+                <element signature="e#3041#3118#0" expanded="false" />
+                <element signature="e#3122#3294#0" expanded="false" />
+                <element signature="e#3374#3563#0" expanded="false" />
+                <element signature="e#3565#3738#0" expanded="false" />
+                <element signature="e#3806#3900#0" expanded="false" />
+                <element signature="e#3822#3898#0" expanded="false" />
+                <element signature="e#3902#4074#0" expanded="false" />
+                <element signature="e#4147#4616#0" expanded="false" />
+                <element signature="e#4160#4322#0" expanded="false" />
+                <element signature="e#4337#4469#0" expanded="false" />
+                <element signature="e#4482#4614#0" expanded="false" />
+                <element signature="e#4618#4791#0" expanded="false" />
+                <element signature="e#4879#4883#0" expanded="false" />
+                <element signature="e#4885#5058#0" expanded="false" />
+                <element signature="e#5139#5290#0" expanded="false" />
+                <element signature="e#5155#5288#0" expanded="false" />
+                <element signature="e#5292#5465#0" expanded="false" />
                 <element signature="n#!!block;n#_User#0" expanded="false" />
                 <element signature="n#!!block;n#_Logins#0" expanded="false" />
                 <element signature="n#!!block;n#_CoffeeBrand#0" expanded="false" />
@@ -120,11 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoyaltyCard.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoyaltyCard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/LoyaltyCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="63" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
+            <state relative-caret-position="425">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
               </folding>
@@ -149,11 +151,11 @@
       <list>
         <option value="$PROJECT_DIR$/JS/DatabaseCreation.js" />
         <option value="$PROJECT_DIR$/JS/a.js" />
-        <option value="$PROJECT_DIR$/JS/DataBaseCreation.js" />
         <option value="$PROJECT_DIR$/JS/Controller.js" />
         <option value="$PROJECT_DIR$/JS/DataBaseFacade.js" />
         <option value="$PROJECT_DIR$/JS/User.js" />
         <option value="$PROJECT_DIR$/JS/LoyaltyCard.js" />
+        <option value="$PROJECT_DIR$/JS/DataBaseCreation.js" />
       </list>
     </option>
   </component>
@@ -356,12 +358,12 @@
       <workItem from="1476013603698" duration="2177000" />
       <workItem from="1476084365443" duration="826000" />
       <workItem from="1476086491346" duration="5575000" />
-      <workItem from="1476189049466" duration="1341000" />
+      <workItem from="1476189049466" duration="2875000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57311000" />
+    <option name="totallyTimeSpent" value="58845000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -379,6 +381,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13696457" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3975085" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -391,7 +394,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -507,24 +509,26 @@
             <element signature="e#2378#2453#0" expanded="false" />
             <element signature="e#2481#2557#0" expanded="false" />
             <element signature="e#2561#2734#0" expanded="false" />
-            <element signature="e#2818#2926#0" expanded="false" />
-            <element signature="e#2847#2924#0" expanded="false" />
-            <element signature="e#2928#3100#0" expanded="false" />
-            <element signature="e#3181#3370#0" expanded="false" />
-            <element signature="e#3372#3545#0" expanded="false" />
-            <element signature="e#3613#3707#0" expanded="false" />
-            <element signature="e#3629#3705#0" expanded="false" />
-            <element signature="e#3709#3881#0" expanded="false" />
-            <element signature="e#3954#4423#0" expanded="false" />
-            <element signature="e#3967#4129#0" expanded="false" />
-            <element signature="e#4144#4276#0" expanded="false" />
-            <element signature="e#4289#4421#0" expanded="false" />
-            <element signature="e#4425#4598#0" expanded="false" />
-            <element signature="e#4686#4690#0" expanded="false" />
-            <element signature="e#4692#4865#0" expanded="false" />
-            <element signature="e#4946#5097#0" expanded="false" />
-            <element signature="e#4962#5095#0" expanded="false" />
-            <element signature="e#5099#5272#0" expanded="false" />
+            <element signature="e#2817#3120#0" expanded="false" />
+            <element signature="e#2846#2923#0" expanded="false" />
+            <element signature="e#2938#3015#0" expanded="false" />
+            <element signature="e#3041#3118#0" expanded="false" />
+            <element signature="e#3122#3294#0" expanded="false" />
+            <element signature="e#3374#3563#0" expanded="false" />
+            <element signature="e#3565#3738#0" expanded="false" />
+            <element signature="e#3806#3900#0" expanded="false" />
+            <element signature="e#3822#3898#0" expanded="false" />
+            <element signature="e#3902#4074#0" expanded="false" />
+            <element signature="e#4147#4616#0" expanded="false" />
+            <element signature="e#4160#4322#0" expanded="false" />
+            <element signature="e#4337#4469#0" expanded="false" />
+            <element signature="e#4482#4614#0" expanded="false" />
+            <element signature="e#4618#4791#0" expanded="false" />
+            <element signature="e#4879#4883#0" expanded="false" />
+            <element signature="e#4885#5058#0" expanded="false" />
+            <element signature="e#5139#5290#0" expanded="false" />
+            <element signature="e#5155#5288#0" expanded="false" />
+            <element signature="e#5292#5465#0" expanded="false" />
             <element signature="n#!!block;n#_User#0" expanded="false" />
             <element signature="n#!!block;n#_Logins#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeBrand#0" expanded="false" />
@@ -801,10 +805,49 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/a.js" />
+    <entry file="file://$PROJECT_DIR$/JS/Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="49" column="70" selection-start-line="49" selection-start-column="70" selection-end-line="49" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="n#!!block;n#_newPass#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/LoyaltyCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+        <state relative-caret-position="595">
+          <caret line="175" column="61" selection-start-line="175" selection-start-column="61" selection-end-line="175" selection-end-column="61" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
             <element signature="e#153#216#0" expanded="false" />
@@ -826,24 +869,26 @@
             <element signature="e#2378#2453#0" expanded="false" />
             <element signature="e#2481#2557#0" expanded="false" />
             <element signature="e#2561#2734#0" expanded="false" />
-            <element signature="e#2818#2926#0" expanded="false" />
-            <element signature="e#2847#2924#0" expanded="false" />
-            <element signature="e#2928#3100#0" expanded="false" />
-            <element signature="e#3181#3370#0" expanded="false" />
-            <element signature="e#3372#3545#0" expanded="false" />
-            <element signature="e#3613#3707#0" expanded="false" />
-            <element signature="e#3629#3705#0" expanded="false" />
-            <element signature="e#3709#3881#0" expanded="false" />
-            <element signature="e#3954#4423#0" expanded="false" />
-            <element signature="e#3967#4129#0" expanded="false" />
-            <element signature="e#4144#4276#0" expanded="false" />
-            <element signature="e#4289#4421#0" expanded="false" />
-            <element signature="e#4425#4598#0" expanded="false" />
-            <element signature="e#4686#4690#0" expanded="false" />
-            <element signature="e#4692#4865#0" expanded="false" />
-            <element signature="e#4946#5097#0" expanded="false" />
-            <element signature="e#4962#5095#0" expanded="false" />
-            <element signature="e#5099#5272#0" expanded="false" />
+            <element signature="e#2817#3120#0" expanded="false" />
+            <element signature="e#2846#2923#0" expanded="false" />
+            <element signature="e#2938#3015#0" expanded="false" />
+            <element signature="e#3041#3118#0" expanded="false" />
+            <element signature="e#3122#3294#0" expanded="false" />
+            <element signature="e#3374#3563#0" expanded="false" />
+            <element signature="e#3565#3738#0" expanded="false" />
+            <element signature="e#3806#3900#0" expanded="false" />
+            <element signature="e#3822#3898#0" expanded="false" />
+            <element signature="e#3902#4074#0" expanded="false" />
+            <element signature="e#4147#4616#0" expanded="false" />
+            <element signature="e#4160#4322#0" expanded="false" />
+            <element signature="e#4337#4469#0" expanded="false" />
+            <element signature="e#4482#4614#0" expanded="false" />
+            <element signature="e#4618#4791#0" expanded="false" />
+            <element signature="e#4879#4883#0" expanded="false" />
+            <element signature="e#4885#5058#0" expanded="false" />
+            <element signature="e#5139#5290#0" expanded="false" />
+            <element signature="e#5155#5288#0" expanded="false" />
+            <element signature="e#5292#5465#0" expanded="false" />
             <element signature="n#!!block;n#_User#0" expanded="false" />
             <element signature="n#!!block;n#_Logins#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeBrand#0" expanded="false" />
@@ -854,45 +899,6 @@
             <element signature="n#!!block;n#_CoffeeShopUsers#0" expanded="false" />
             <element signature="n#!!block;n#_OrderItem#0" expanded="false" />
             <element signature="n#!!block;n#_connect#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="49" column="70" selection-start-line="49" selection-start-column="70" selection-end-line="49" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-            <element signature="n#!!block;n#_newPass#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JS/Controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JS/User.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JS/LoyaltyCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="63" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>

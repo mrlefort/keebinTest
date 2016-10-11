@@ -8,7 +8,8 @@ var numberOfCoffeesBought;
 var brand = "";
 var userID = "";
 var coffeesNeededForThisBrand;
-
+var isValid;
+var readyForFreeCoffee;
 
 function _newLoyaltyCard(brandName, userID, coffeesNeededForThisBrand)
 {
@@ -16,6 +17,8 @@ function _newLoyaltyCard(brandName, userID, coffeesNeededForThisBrand)
     this.numberOfCoffeesBought = 1; //loyaltyCards bliver lavet når man første gang trykker "tilføj kop" til en branch.
     this.userID = userID;
     this.coffeesNeededForThisBrand = coffeesNeededForThisBrand;
+    this.isValid = true;
+    this.readyForFreeCoffee = false;
 
 }
 
