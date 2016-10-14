@@ -10,11 +10,12 @@ var brand = "";
 var userID = "";
 var coffeesNeededForThisBrand;
 var readyForFreeCoffee;
-var loyaltyCards =   db.LoyaltyCards();
+var loyaltyCards = db.LoyaltyCards();
 
 
 _newLoyaltyCard(1, 3, 3);
 // _deleteLoyaltyCard(4);
+// _EditLoyaltyCard(5, 1, 3, 5)
 
 
 
@@ -114,16 +115,28 @@ function _newLoyaltyCard(brandName, userID, numberOfCoffeesBought) {
 
 }
 
-var lt = _findLoyaltyCard(5);
+
+
+
+
+
+
+
+
+
+
+var s = _findLoyaltyCard(5);
 
 function _findLoyaltyCard(ID)
 {
     loyaltyCards.find({where: {Id: ID}}).then(function (data) { // we have run the callback inside the .then
-
+        console.log("running loyaltycards");
         if (data !== null) {
             console.log("User found -  " + data.userId)
-            return data
+            steffen(data)
+
         } else {
+            console.log("Fail");
             return false;
         }
 
@@ -133,7 +146,17 @@ function _findLoyaltyCard(ID)
 }
 
 
-_EditLoyaltyCard(5, 1, 3, 5)
+
+function steffen(data) {
+    console.log("vi er nu i steffen")
+    console.log(data.userId);
+    return data;
+}
+
+
+
+
+
 
 
 function _EditLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought) {
