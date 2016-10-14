@@ -8,7 +8,6 @@ var db = require('./DataBaseCreation.js');
 var Sequelize = require('sequelize'); // Requires
 var Role = db.Role();
 var User = db.User();
-var Logins = db.Logins();
 var CoffeeBrand = db.CoffeeBrand();
 var LoyaltyCards = db.LoyaltyCards();
 var CoffeeKind = db.CoffeeKind();
@@ -154,47 +153,5 @@ function _newUser(newUser)
 
 }
 
-function _newPass(newUser)
-{
-    var finduserid = "";
-    // finds a row in the user table with the email of newuser.email and then sets the finduserid to the user's id.
-    User.find({where:{Email: newUser.email}}).then(function (data, err) {
-        if (data) {
-            finduserid = data.id;
-        }
-    })
 
-
-
-
-    return sequelize.transaction(function (t) {
-
-        // chain all your queries here. make sure you return them.
-        return Logins.create({
-            password: newUser.password,
-            userId: finduserid
-
-
-        },    {transaction: t}) // kom her til
-
-    }).then(function (result) {
-        console.log("Transaction has been committed");
-
-
-
-        // Transaction has been committed
-        // result is whatever the result of the promise chain returned to the transaction callback
-    }).catch(function (err) {
-        console.log(err);
-        // Transaction has been rolled back
-        // err is whatever rejected the promise chain returned to the transaction callback
-    });
-} // Export Functions
-
-// user.find({where:{email: test2.email}}).then(function (data, err) {
-//
-//         console.log(data.id);
-//
-// })  // // Search Example
-
-module.exports = {newPass : _newPass, newUser : _newUser, newRole : _newRole}; // Export Module
+module.exports = {newUser : _newUser, newRole : _newRole}; // Export Module

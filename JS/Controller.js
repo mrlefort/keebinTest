@@ -11,8 +11,8 @@ var test = new userClass.newUser("test", "testEfternavn", "john@gmaile.com", 1, 
 var test2 = new userClass.newUser("test2", "testEfternavn2", "johna@gmailr.com", 2, "09/01/2010", "female", 2341);
 
 
-// db.newRole("Admin");
-// db.newRole("user");
+db.newRole("Admin");
+db.newRole("user");
 
 db.newUser(test);
 db.newUser(test2);
