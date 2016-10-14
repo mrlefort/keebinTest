@@ -85,16 +85,20 @@ function _newRole(RoleN) {
     setRoleFound(runIfRoleFoundFalse);
 
 
-}
+}  //create role if roleN does not exist already.
 
 
 
 function _newUser(newUser)
 {
-
+    var userCreated = false;
     var runIfUserFoundIsFalse = function (doesUserExist) {
+
         // runIfUserFoundIsFalse is the second function (the callback) - we feed userFound as a parameter and name is doesUserExist
         if (doesUserExist == false) {
+
+
+
             return sequelize.transaction(function (t) {
 
                 // chain all your queries here. make sure you return them.
@@ -111,11 +115,14 @@ function _newUser(newUser)
 
             }).then(function (result) {
                 console.log("Transaction has been committed - user has been saved to the DB");
+                userCreated = true;
+                return userCreated;
 
                 // Transaction has been committed
                 // result is whatever the result of the promise chain returned to the transaction callback
             }).catch(function (err) {
                 console.log(err);
+                return userCreated;
                 // Transaction has been rolled back
                 // err is whatever rejected the promise chain returned to the transaction callback
             });
@@ -153,6 +160,65 @@ function _newUser(newUser)
 
 
 }
+
+
+function _userPut(userEmail, editUser) {
+
+
+        console.log("userPutFind is running. Finding: " + userEmail);
+        User.find({where: {Email: userEmail}}).then(function (data, err) {
+            if (data !== null) {
+                console.log("user found - ready to edit")
+                userFoundPutBegins(data, editUser);
+            } else {
+                console.log(err);
+                console.log("could not find: " + editUser.email);
+            }
+
+
+        })
+
+
+    };
+
+    var userFoundPutBegins = function (data, editUser) {
+        var userUpdated = false;
+
+        return sequelize.transaction(function (t) {
+
+            // chain all your queries here. make sure you return them.
+            return data.updateAttributes({
+                firstName: editUser.firstName,
+                lastName: editUser.lastName,
+                email: editUser.email,
+                roleId: editUser.role,
+                birthday: editUser.birthday,
+                sex: editUser.sex,
+                password: editUser.password
+
+            }, {transaction: t})
+
+        }).then(function (result) {
+            console.log("Transaction has been committed - user with email: " + editUser.email + ", has been updated and saved to the DB");
+            userUpdated = true;
+            return userUpdated;
+
+            // Transaction has been committed
+            // result is whatever the result of the promise chain returned to the transaction callback
+        }).catch(function (err) {
+            console.log(err);
+            return userUpdated;
+            // Transaction has been rolled back
+            // err is whatever rejected the promise chain returned to the transaction callback
+        });
+
+    }
+
+
+
+
+
+
 
 function _newPass(newUser)
 {
@@ -197,4 +263,4 @@ function _newPass(newUser)
 //
 // })  // // Search Example
 
-module.exports = {newPass : _newPass, newUser : _newUser, newRole : _newRole}; // Export Module
+module.exports = {newPass : _newPass, newUser : _newUser, newRole : _newRole, userPut : _userPut}; // Export Module
