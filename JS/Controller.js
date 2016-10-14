@@ -24,3 +24,4 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 // db.userDelete("lars@gmail.com");
 
 
+db.userGet("lars2@gmail.com");

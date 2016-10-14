@@ -89,7 +89,7 @@ function _newRole(RoleN) {
 
 
 
-function _newUser(newUser)
+function _newUser(newUser) // this creates a user
 {
     var userCreated = false;
     var runIfUserFoundIsFalse = function (doesUserExist) {
@@ -207,7 +207,7 @@ function _userPut(userEmail, editUser) {
         })
 
 
-    };
+    }; // this edits user based on email.
 
 
 
@@ -258,6 +258,28 @@ function _userDelete(userEmail) {
     }
 
 
+
+
+};  //this one deletes user based on email.
+
+
+function _userGet(userEmail) {
+    var userFound = false;
+
+    console.log("_userGet is running. Finding: " + userEmail);
+    User.find({where: {Email: userEmail}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("user with email: " + userEmail + " found. Name is: " + data.firstName);
+            return data;
+
+        } else {
+            console.log(err);
+            console.log("could not find: " + userEmail);
+            return userFound;
+        }
+
+
+    })
 
 
 };
@@ -313,4 +335,4 @@ function _newPass(newUser)
 //
 // })  // // Search Example
 
-module.exports = {newPass : _newPass, newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete}; // Export Module
+module.exports = {newPass : _newPass, newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet}; // Export Module
