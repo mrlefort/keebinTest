@@ -163,13 +163,41 @@ function _newUser(newUser)
 
 
 function _userPut(userEmail, editUser) {
-
+    var userUpdated = false;
 
         console.log("userPutFind is running. Finding: " + userEmail);
         User.find({where: {Email: userEmail}}).then(function (data, err) {
             if (data !== null) {
-                console.log("user found - ready to edit")
-                userFoundPutBegins(data, editUser);
+                console.log("user found - ready to edit");
+
+
+                return sequelize.transaction(function (t) {
+
+                    // chain all your queries here. make sure you return them.
+                    return data.updateAttributes({
+                        firstName: editUser.firstName,
+                        lastName: editUser.lastName,
+                        email: editUser.email,
+                        roleId: editUser.role,
+                        birthday: editUser.birthday,
+                        sex: editUser.sex,
+                        password: editUser.password
+
+                    }, {transaction: t})
+
+                }).then(function () {
+                    console.log("Transaction has been committed - user with email: " + editUser.email + ", has been updated and saved to the DB");
+                    userUpdated = true;
+                    return userUpdated;
+
+                    // Transaction has been committed
+                    // result is whatever the result of the promise chain returned to the transaction callback
+                }).catch(function (err) {
+                    console.log(err);
+                    return userUpdated;
+                    // Transaction has been rolled back
+                    // err is whatever rejected the promise chain returned to the transaction callback
+                });
             } else {
                 console.log(err);
                 console.log("could not find: " + editUser.email);
@@ -181,38 +209,7 @@ function _userPut(userEmail, editUser) {
 
     };
 
-    var userFoundPutBegins = function (data, editUser) {
-        var userUpdated = false;
 
-        return sequelize.transaction(function (t) {
-
-            // chain all your queries here. make sure you return them.
-            return data.updateAttributes({
-                firstName: editUser.firstName,
-                lastName: editUser.lastName,
-                email: editUser.email,
-                roleId: editUser.role,
-                birthday: editUser.birthday,
-                sex: editUser.sex,
-                password: editUser.password
-
-            }, {transaction: t})
-
-        }).then(function (result) {
-            console.log("Transaction has been committed - user with email: " + editUser.email + ", has been updated and saved to the DB");
-            userUpdated = true;
-            return userUpdated;
-
-            // Transaction has been committed
-            // result is whatever the result of the promise chain returned to the transaction callback
-        }).catch(function (err) {
-            console.log(err);
-            return userUpdated;
-            // Transaction has been rolled back
-            // err is whatever rejected the promise chain returned to the transaction callback
-        });
-
-    }
 
 
 
