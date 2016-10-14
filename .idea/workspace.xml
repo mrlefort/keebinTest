@@ -29,8 +29,8 @@
       <file leaf-file-name="Controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JS/Controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -41,8 +41,8 @@
       <file leaf-file-name="DataBaseFacade.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-62">
-              <caret line="183" column="51" selection-start-line="183" selection-start-column="51" selection-end-line="183" selection-end-column="51" />
+            <state relative-caret-position="442">
+              <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
                 <element signature="n#!!block;n#_newRole#0" expanded="false" />
@@ -347,12 +347,12 @@
       <workItem from="1476084365443" duration="826000" />
       <workItem from="1476086491346" duration="4033000" />
       <workItem from="1476471569061" duration="2857000" />
-      <workItem from="1476476933202" duration="2860000" />
+      <workItem from="1476476933202" duration="4029000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60145000" />
+    <option name="totallyTimeSpent" value="61314000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -869,8 +869,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="183" column="51" selection-start-line="183" selection-start-column="51" selection-end-line="183" selection-end-column="51" />
+        <state relative-caret-position="442">
+          <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
             <element signature="n#!!block;n#_newRole#0" expanded="false" />
@@ -883,8 +883,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/Controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>

@@ -212,6 +212,59 @@ function _userPut(userEmail, editUser) {
 
 
 
+function _userDelete(userEmail) {
+    var userDeleted = false;
+
+    console.log("_userDelete is running. Finding: " + userEmail);
+    User.find({where: {Email: userEmail}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("user found - ready to DELETE");
+            deleteUser(data);
+
+
+        } else {
+            console.log(err);
+            console.log("could not find: " + userEmail);
+            return userDeleted;
+        }
+
+
+    })
+
+
+    var deleteUser = function (data) {
+
+
+        return sequelize.transaction(function (t) {
+
+            // chain all your queries here. make sure you return them.
+            return data.destroy({},
+                {transaction: t})
+
+        }).then(function () {
+            console.log("Transaction has been committed - user with email: " + userEmail + ", has been DELETED");
+            userDeleted = true;
+            return userDeleted;
+
+            // Transaction has been committed
+            // result is whatever the result of the promise chain returned to the transaction callback
+        }).catch(function (err) {
+            console.log(err);
+            return userDeleted;
+            // Transaction has been rolled back
+            // err is whatever rejected the promise chain returned to the transaction callback
+        });
+
+    }
+
+
+
+
+};
+
+
+
+
 
 
 
@@ -260,4 +313,4 @@ function _newPass(newUser)
 //
 // })  // // Search Example
 
-module.exports = {newPass : _newPass, newUser : _newUser, newRole : _newRole, userPut : _userPut}; // Export Module
+module.exports = {newPass : _newPass, newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete}; // Export Module
