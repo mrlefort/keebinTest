@@ -51,23 +51,18 @@ var user = sequelize.define('user', {
     },
     sex: {
         type: Sequelize.STRING // here we decide parameters for this field in the table
+    },
+    password: {
+        type: Sequelize.STRING,
+        Validate: {notNull : true}
     }
+
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: true // fjerner timestamps med false denne option skal stå på tabellen
 
 });  // user table setup
 
-var logins = sequelize.define('logins', {
-    password: {
-        type: Sequelize.STRING,
-        Validate : {notNull : true}
-    }
-}, {
-    freezeTableName: true, // Model tableName will be the same as the model name
-    timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
-
-});  // passwords table setup
 
 var coffeeBrand = sequelize.define('coffeeBrand', {
     brandName: {
@@ -169,8 +164,6 @@ var orderItem = sequelize.define('orderItem', {
 
 role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
-user.hasOne(logins, {foreignKey: 'email'});
-logins.belongsTo(user, {foreignKey: 'email'});
 user.hasMany(loyaltyCards);
 loyaltyCards.belongsTo(user);
 coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});
@@ -200,7 +193,6 @@ coffeeBrand.sync();
 role.sync();
 
 user.sync(); // executes the command from above and inserts a new table into the database
-logins.sync();
 loyaltyCards.sync();
 
 coffeeKind.sync();
@@ -218,10 +210,6 @@ function _User()
 return user;
 }
 
-function _Logins()
-{
-return logins;
-}
 
 function _CoffeeBrand()
 {
@@ -264,6 +252,6 @@ function _connect()
 }
 // Export Functions // Export Functions
 
-module.exports = {Role : _Role, User : _User, Logins : _Logins, CoffeeBrand : _CoffeeBrand,
+module.exports = {Role : _Role, User : _User, CoffeeBrand : _CoffeeBrand,
 LoyaltyCards : _LoyaltyCards, CoffeeKind : _CoffeeKind, Order : _Order, CoffeeShop : _CoffeeShop,
 CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect}; // Export Module
