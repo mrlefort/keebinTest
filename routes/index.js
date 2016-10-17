@@ -1,57 +1,86 @@
 var express = require('express');
 var router = express.Router();
 var facade = require("../JS/DataBaseFacade.js");
-var crypto = require('password-hash-and-salt');
+var bcrypt = require('bcryptjs');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
-/*
-JEG HAR BRUG FOR AT FACADEN GIVER EN RETURN VALUE, SÅ JEG KAN SE OM JEG SKAL RETURNE HTTPKODE 200 ELLER ERROR!!!!!
-
-Also User tabel skal updates til at indeholde PassWord!!!! But this shit twerks, hvis bare tabellen var rigtig :)))
- */
-router.post("/user/new", function(req, res, next)
-{
-
-  var pw;
-  crypto('mysecret').hash(function(error, hash)
-  {
-    if(error)
-      throw new Error('Something went wrong!');
-
-    // Store hash (incl. algorithm, iterations, and salt)
-    pw = hash;
-
-  //   // Verifying a hash
-  //   crypto('asdf').verifyAgainst(pw, function(error, verified)
-  //   {
-  //     if(error)
-  //       throw new Error('Something went wrong!');
-  //     if(!verified) {
-  //       console.log("Don't try! We got you!");
-  //     } else {
-  //       console.log("The secret is...");
-  //     }
-  //   });
-    console.log("her er pw: " +  pw);
-    var userToSave =
+//New User
+router.post("/user/new", function (req, res, next)
     {
-      "firstName": req.body.firstName,
-      "lastName": req.body.lastName,
-      "email":req.body.email,
-      "role" :req.body.role ,
-      "birthday" : new Date(req.body.birthday),
-      "sex": req.body.sex,
-      "password" :pw
+        var salt = bcrypt.genSaltSync(15);
+        var pw = bcrypt.hashSync(req.body.password, salt);
+        var userToSave =
+        {
+            "firstName": req.body.firstName,
+            "lastName": req.body.lastName,
+            "email": req.body.email,
+            "role": req.body.role,
+            "birthday": new Date(req.body.birthday),
+            "sex": req.body.sex,
+            "password": pw
+        }
+        facade.newUser(userToSave, function (status)
+            {
+                if (status === true)
+                {
+                    res.status(200).send();
+                }
+                else
+                {
+                    res.status(500).send();
+                }
+            }
+        );
     }
-    facade.newUser(userToSave);
-    res.status(200).send();
-  });
+);
 
+//Get user by ID
+router.get("/user/:id", function (req, res, next)
+    {
+        facade.getUser(req.params.id, function (data)
+            {
+                if (data != false)
+                {
+                    res.writeHead(200, {"Content-Type": "application/json"});
+                    res.end(JSON.stringify(data));
+                }
+                else
+                {
+                    res.status(500).send();
+                }
+            }
+        );
+    }
+);
 
-});
+//Edit a user expect the full input minus PW!
+router.put("/user/:id", function (req, res, next)
+    {
+        var salt = bcrypt.genSaltSync(10);
+        var pw = bcrypt.hashSync(req.body.password, salt);
+        var userToSave =
+        {
+            "firstName": req.body.firstName,
+            "lastName": req.body.lastName,
+            "email": req.body.email,
+            "role": req.body.role,
+            "birthday": new Date(req.body.birthday),
+            "sex": req.body.sex,
+        }
+        facade.newUser(userToSave, function (status)
+            {
+                if (status === true)
+                {
+                    res.status(200).send();
+                }
+                else
+                {
+                    res.status(500).send();
+                }
+            }
+        );
+
+    }
+);
 
 module.exports = router;
