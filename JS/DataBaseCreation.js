@@ -61,8 +61,8 @@ var user = sequelize.define('user', {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: true // fjerner timestamps med false denne option skal stå på tabellen
 
-});  // user table setup
 
+}); // user table setup
 
 var coffeeBrand = sequelize.define('coffeeBrand', {
     brandName: {
@@ -164,6 +164,9 @@ var orderItem = sequelize.define('orderItem', {
 
 role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+
+
+
 user.hasMany(loyaltyCards);
 loyaltyCards.belongsTo(user);
 coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});
@@ -193,6 +196,7 @@ coffeeBrand.sync();
 role.sync();
 
 user.sync(); // executes the command from above and inserts a new table into the database
+
 loyaltyCards.sync();
 
 coffeeKind.sync();
