@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs');
 
 
 //Deletes a user by email
-router.delete("user/:email", function(req, res)
+router.delete("/user/:email", function(req, res)
 {
     console.log("param: " + req.params.email)
     facade.userDelete(req.params.email, function(status)
