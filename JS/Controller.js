@@ -68,6 +68,8 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //
 // });
 
+
+
 // var c;
 //
 // db.newUser(test, function(data) {

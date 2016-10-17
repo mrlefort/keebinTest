@@ -1,22 +1,14 @@
-/**
-<<<<<<< HEAD
- * Created by teh one and only on 10/14/2016.
- */
+
+
 
 var db = require('./DataBaseCreation.js');
 var conn = db.connect();
-=======
- * Created by mrlef on 10/11/2016.
- */
-
-
->>>>>>> development
 
 var numberOfCoffeesBought;
 var brand = "";
 var userID = "";
 var coffeesNeededForThisBrand;
-<<<<<<< HEAD
+
 var readyForFreeCoffee;
 var loyaltyCards = db.LoyaltyCards();
 
@@ -117,25 +109,8 @@ function _newLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalcallb
         })
 
     }
-
-
    checkforduplicates(runIfUserAndCardFoundFalse);
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 function _findLoyaltyCard(ID, callback)
 {
@@ -243,23 +218,6 @@ lc.editLoyaltyCard(8, 1, 3, 7, function(models) {
 
 });
 
- */
-=======
-var isValid;
-var readyForFreeCoffee;
+*/
 
-function _newLoyaltyCard(brandName, userID, coffeesNeededForThisBrand)
-{
-    this.brandName = brandName;
-    this.numberOfCoffeesBought = 1; //loyaltyCards bliver lavet når man første gang trykker "tilføj kop" til en branch.
-    this.userID = userID;
-    this.coffeesNeededForThisBrand = coffeesNeededForThisBrand;
-    this.isValid = true;
-    this.readyForFreeCoffee = false;
 
-}
-
-// Export Functions
-
-module.exports = {newLoyaltyCard : _newLoyaltyCard}; // Export Module
->>>>>>> development
