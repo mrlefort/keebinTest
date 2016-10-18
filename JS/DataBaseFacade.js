@@ -239,7 +239,7 @@ function _userGet(userEmail, callback) {
 
 
 
-function _newCoffeeShop(newCoffeeShop, callback)
+function _createCoffeeShop(newCoffeeShop, callback) // this creates a new CoffeeShop
 {
     var coffeeShopCreated = false;
 
@@ -254,6 +254,7 @@ function _newCoffeeShop(newCoffeeShop, callback)
                 // chain all your queries here. make sure you return them.
                 return CoffeeShop.create({
                     email: newCoffeeShop.email,
+                    brandName: newCoffeeShop.brandName,
                     address: newCoffeeShop.address,
                     phone: newCoffeeShop.phone
 
@@ -278,6 +279,42 @@ function _newCoffeeShop(newCoffeeShop, callback)
 
 
 
+function _createOrder(newOrder, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
+{
+    var orderCreated = false;
+
+    console.log("newCoffeeShop is running.")
+    User.find({where: {id: newOrder.userId}}).then(function (data) { //we check if the CoffeeShop exists based on it's unique email.
+        if (data == null){
+            console.log("User not found");
+            callback(orderCreated);
+        } else {
+            return sequelize.transaction(function (t) {
+                console.log("User " + data.firstName + " found. Will place order.")
+                // chain all your queries here. make sure you return them.
+                return Order.create({
+                    userId: newOrder.userId,
+                    coffeeShopId: newOrder.coffeeShopId,
+                    platform: newOrder.platform
+
+                }, {transaction: t})
+
+            }).then(function (result) {
+                console.log("Transaction has been committed - Order has been saved to the DB - to user with ID: " + data.id);
+                orderCreated = true;
+                callback(orderCreated);
+
+                // Transaction has been committed
+                // result is whatever the result of the promise chain returned to the transaction callback
+            }).catch(function (err) {
+                console.log(err);
+                callback(orderCreated);
+                // Transaction has been rolled back
+                // err is whatever rejected the promise chain returned to the transaction callback
+            })
+        }
+    })
+}
 
 
 
@@ -287,6 +324,5 @@ function _newCoffeeShop(newCoffeeShop, callback)
 
 
 
-
-module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet, newCoffeeShop : _newCoffeeShop}; // Export Module
+module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet, createCoffeeShop: _createCoffeeShop, createOrder : _createOrder}; // Export Module
 

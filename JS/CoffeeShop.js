@@ -20,4 +20,4 @@ function _newCoffeeShop(email, brandName, address, phone)
 
 // Export Functions
 
-module.exports = { newCoffeeShop : _newCoffeeShop()}; // Export Module
+module.exports = { newCoffeeShop : _newCoffeeShop}; // Export Module
