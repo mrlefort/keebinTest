@@ -5,9 +5,10 @@
 
 var userClass = require('./User.js');
 var db = require('./DataBaseFacade.js');
+var coffeeShopClass = require('./CoffeeShop.js');
 
 
-
+//test data for users
 var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
 var test2 = new userClass.newUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341);
 var updateTest = new userClass.newUser("test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345);
@@ -15,6 +16,8 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 
 
 
+
+//test functions for userCRUD - start
 
 // var a;
 //
@@ -82,6 +85,16 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 // });
 
 
+//test functions for userCRUD - end
 
 
+//test data for CoffeeShop
+var testCoffeeShop = new coffeeShopClass.newCoffeeShop("coffeeShop@gmail.com", "Baresso", "Langelandsvej 1", 25417858);
 
+
+//test functions for CoffeeShop
+var i;
+db.newCoffeeShop(testCoffeeShop, function (data) {
+    i = data;
+    console.log("CoffeeShop created - " + i);
+});

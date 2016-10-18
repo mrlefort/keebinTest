@@ -129,6 +129,10 @@ var coffeeShop = sequelize.define('coffeeShop', {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true, isEmail: true, unique : true}
     },
+    brandName: {
+        type: Sequelize.STRING, // here we decide parameters for this field in the table
+        Validate : {notNull : true}
+    },
     address: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true}
@@ -137,6 +141,7 @@ var coffeeShop = sequelize.define('coffeeShop', {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true}
     }
+
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen

@@ -239,6 +239,42 @@ function _userGet(userEmail, callback) {
 
 
 
+function _newCoffeeShop(newCoffeeShop, callback)
+{
+    var coffeeShopCreated = false;
+
+    console.log("newCoffeeShop is running.")
+    CoffeeShop.find({where: {Email: newCoffeeShop.email}}).then(function (data) { //we check if the CoffeeShop exists based on it's unique email.
+        if (data !== null){
+            console.log("CoffeeShop found - email exists already - " + data.email)
+            callback(coffeeShopCreated);
+        } else {
+            return sequelize.transaction(function (t) {
+
+                // chain all your queries here. make sure you return them.
+                return CoffeeShop.create({
+                    email: newCoffeeShop.email,
+                    address: newCoffeeShop.address,
+                    phone: newCoffeeShop.phone
+
+                }, {transaction: t})
+
+            }).then(function (result) {
+                console.log("Transaction has been committed - CoffeeShop has been saved to the DB");
+                coffeeShopCreated = true;
+                callback(coffeeShopCreated);
+
+                // Transaction has been committed
+                // result is whatever the result of the promise chain returned to the transaction callback
+            }).catch(function (err) {
+                console.log(err);
+                callback(coffeeShopCreated);
+                // Transaction has been rolled back
+                // err is whatever rejected the promise chain returned to the transaction callback
+            })
+        }
+    })
+}
 
 
 
@@ -249,5 +285,8 @@ function _userGet(userEmail, callback) {
 
 
 
-module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet}; // Export Module
+
+
+
+module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet, newCoffeeShop : _newCoffeeShop}; // Export Module
 
