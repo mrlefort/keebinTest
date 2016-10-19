@@ -277,7 +277,48 @@ function _createCoffeeShop(newCoffeeShop, callback) // this creates a new Coffee
     })
 }
 
+function _deleteCoffeeShop(coffeeShopEmail, callback) {
+    var coffeeShopDeleted = false;
 
+    console.log("_deleteOrder is running. Finding: " + coffeeShopEmail);
+    CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("CoffeeShop found - ready to DELETE");
+            return sequelize.transaction(function (t) {
+
+                // chain all your queries here. make sure you return them.
+                return data.destroy({},
+                    {transaction: t})
+
+            }).then(function () {
+                console.log("Transaction has been committed - CoffeeShop with email: " + data.email + ", has been DELETED");
+                coffeeShopDeleted = true;
+                callback(coffeeShopDeleted);
+
+
+
+                // Transaction has been committed
+                // result is whatever the result of the promise chain returned to the transaction callback
+            }).catch(function (err) {
+                console.log(err);
+                callback(coffeeShopDeleted);
+
+                // Transaction has been rolled back
+                // err is whatever rejected the promise chain returned to the transaction callback
+            });
+
+
+        } else {
+            console.log(err);
+            console.log("could not find: " + coffeeShopEmail);
+            callback(orderDeleted);
+        }
+
+
+    })
+
+
+};  //this one deletes order based on id.
 
 function _createOrder(newOrder, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
@@ -316,6 +357,48 @@ function _createOrder(newOrder, callback) // This creates a new order - belongin
     })
 }
 
+function _deleteOrder(orderId, callback) {
+    var orderDeleted = false;
+
+    console.log("_deleteOrder is running. Finding: " + orderId);
+    Order.find({where: {id: orderId}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("Order found - ready to DELETE");
+            return sequelize.transaction(function (t) {
+
+                // chain all your queries here. make sure you return them.
+                return data.destroy({},
+                    {transaction: t})
+
+            }).then(function () {
+                console.log("Transaction has been committed - order with id: " + orderId + ", has been DELETED");
+                orderDeleted = true;
+                callback(orderDeleted);
+
+
+
+                // Transaction has been committed
+                // result is whatever the result of the promise chain returned to the transaction callback
+            }).catch(function (err) {
+                console.log(err);
+                callback(orderDeleted);
+
+                // Transaction has been rolled back
+                // err is whatever rejected the promise chain returned to the transaction callback
+            });
+
+
+        } else {
+            console.log(err);
+            console.log("could not find: " + orderId);
+            callback(orderDeleted);
+        }
+
+
+    })
+
+
+};  //this one deletes order based on id.
 
 
 function _createOrderItem(newOrderItem, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
@@ -355,10 +438,30 @@ function _createOrderItem(newOrderItem, callback) // This creates a new order - 
     })
 }
 
+function _orderGet(orderId, callback) {
+    var orderFound = false;
+
+    console.log("_orderGet is running. Finding order with ID: " + orderId);
+    Order.find({where: {id: orderId}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("Order with id: " + orderId + " found.");
+            callback(data);
+
+        } else {
+            console.log(err);
+            console.log("could not find: " + orderId);
+            callback(orderFound);
+
+        }
+
+
+    })
+
+
+}; // this one "gets" an order based on orderId.
 
 
 
-
-module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet, createCoffeeShop: _createCoffeeShop, createOrder : _createOrder,
-createOrderItem : _createOrderItem}; // Export Module
+module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet, createCoffeeShop: _createCoffeeShop,
+deleteCoffeeShop : _deleteCoffeeShop, createOrder : _createOrder, createOrderItem : _createOrderItem, deleteOrder : _deleteOrder, orderGet: _orderGet}; // Export Module
 

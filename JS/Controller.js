@@ -124,3 +124,17 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //     k = data;
 //     console.log("OrderItem created - " + k);
 // });
+
+
+// db.deleteCoffeeShop('coffeeShop@gmail.com', function (data) {
+//     console.log("coffeeShop Deleted - " + data);
+// })
+
+
+// var l;
+// db.deleteOrder(2, function (data){
+//     l = data;
+//     console.log("Order deleted - " + l);
+// })
+
+
