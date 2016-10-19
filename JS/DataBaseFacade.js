@@ -240,6 +240,90 @@ function _userGet(userEmail, callback) {
 
 
 
+//COFFEESHOPUSER STARTS HERE
+function _addCoffeShopUser(userEmail, coffeeShopEmail, callback)
+{
+    var status = false;
+    var theCoffeShopUser;
+    var theCoffeeShop;
+    _userGet(userEmail, function(data)
+    {
+        if(data !== false)
+        {
+            theCoffeShopUser = data;
+            CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function(data, err)
+            {
+                if(data)
+                {
+                    theCoffeeShop = data;
+                    return sequelize.transaction(function (t) {
+
+                        // chain all your queries here. make sure you return them.
+                        return CoffeeShopUsers.create({
+
+                            userId : theCoffeShopUser.id,
+                            coffeeShopId: theCoffeeShop.id
+
+                        }, {transaction: t})
+
+                    }).then(function (result) {
+                        console.log("Transaction has been committed - coffeeShopUser has been saved to the DB");
+                        status = true;
+                        callback(status);
+
+                        // Transaction has been committed
+                        // result is whatever the result of the promise chain returned to the transaction callback
+                    }).catch(function (err) {
+                        console.log(err);
+                        callback(status);
+                        // Transaction has been rolled back
+                        // err is whatever rejected the promise chain returned to the transaction callback
+                    })
+                }
+                else
+                {
+                    callback(status);
+                }
+            });
+        }
+        else
+        {
+            callback(status);
+        }
+    });
+};
+
+
+
+
+
+
+//Virker ikke giver blot antal of fieldNames
+function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
+{
+    var usersFound = false;
+    CoffeeShopUsers.findAll({
+        where: {
+            coffeeShopId: coffeeShopId
+        }
+    }).then(function(data, err)
+    {
+           // console.log(data.get());
+        if(data)
+        {
+            callback(data);
+        }
+        if(err)
+        {
+            console.log("fejl i find all!");
+            callback(usersFound);
+        }
+    });
+};
+
+
+
+//COFFEESHOPUSER ENDS HERE
 
 
 
@@ -249,5 +333,7 @@ function _userGet(userEmail, callback) {
 
 
 
-module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet}; // Export Module
+
+
+module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet, addCoffeeShopUser : _addCoffeShopUser, coffeeShopUserGetAll : _getAllCoffeeShopUserByCoffeeShop}; // Export Module
 
