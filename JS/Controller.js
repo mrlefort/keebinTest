@@ -7,6 +7,7 @@ var userClass = require('./User.js');
 var db = require('./DataBaseFacade.js');
 var coffeeShopClass = require('./CoffeeShop.js');
 var orderClass = require('./Order.js');
+var orderItemClass = require('./OrderItem.js');
 
 
 //test data for users
@@ -90,7 +91,6 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 
 
 //test data for CoffeeShop
-
 // var testCoffeeShop = new coffeeShopClass.newCoffeeShop("coffeeShop@gmail.com", 1, "Langelandsvej 1", 25417858);
 //
 //
@@ -101,12 +101,26 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //     console.log("CoffeeShop created - " + i);
 // });
 
-var testOrder = new orderClass.newOrder(2, 1, "Android");
+
+//test data for Order
+// var testOrder = new orderClass.newOrder(2, 1, "Android");
+//
+//
+// //test functions for CoffeeShop
+// var j;
+// db.createOrder(testOrder, function (data) {
+//     j = data;
+//     console.log("Order created - " + j);
+// });
 
 
-//test functions for CoffeeShop
-var j;
-db.createOrder(testOrder, function (data) {
-    j = data;
-    console.log("Order created - " + j);
-});
+//test data for OrderItem
+// var testOrderItem = new orderItemClass.newOrderItem(2, 1, 3);
+//
+//
+// //test functions for CoffeeShop
+// var k;
+// db.createOrderItem(testOrderItem, function (data) {
+//     k = data;
+//     console.log("OrderItem created - " + k);
+// });
