@@ -91,18 +91,18 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 
 
                  //test data for CoffeeShop
-// var testCoffeeShop = new coffeeShopClass.newCoffeeShop("coffeeShop@gmail.com", 1, "Langelandsvej 1", 25417858);
-//
-//
-// //test functions for CoffeeShop
-// var i;
-// db.createCoffeeShop(testCoffeeShop, function (data) {
-//     i = data;
-//     console.log("CoffeeShop created - " + i);
-// });
+var testCoffeeShop = new coffeeShopClass.newCoffeeShop("coffeeShop@gmail.com", 1, "Langelandsvej 1", 25417858);
 
 
-                 //test data for Order
+//test functions for CoffeeShop
+var i;
+db.createCoffeeShop(testCoffeeShop, function (data) {
+    i = data;
+    console.log("CoffeeShop created - " + i);
+});
+
+
+                 // test data for Order
 // var testOrder = new orderClass.newOrder(2, 1, "Android");
 //
 //

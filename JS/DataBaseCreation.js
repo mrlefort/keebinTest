@@ -179,8 +179,8 @@ order.belongsTo(coffeeShop);
 user.hasMany(order);
 
 
-coffeeBrand.hasMany(coffeeShop, {foreignKey: 'brandName'});
-coffeeShop.belongsTo(coffeeBrand, {foreignKey: 'brandName'})
+coffeeBrand.hasMany(coffeeShop, {foreignKey: "brandName"});
+coffeeShop.belongsTo(coffeeBrand, {foreignKey: "brandName"});
 
 
 

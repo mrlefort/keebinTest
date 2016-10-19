@@ -5,7 +5,6 @@
 var email;
 var address;
 var phone;
-var coffeeKinds = [];
 var brandName;
 
 function _newCoffeeShop(email, brandName, address, phone)
