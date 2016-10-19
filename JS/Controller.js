@@ -10,7 +10,7 @@ var orderClass = require('./Order.js');
 var orderItemClass = require('./OrderItem.js');
 
 
-//test data for users
+               //test data for users
 var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
 var test2 = new userClass.newUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341);
 var updateTest = new userClass.newUser("test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345);
@@ -19,7 +19,7 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 
 
 
-//test functions for userCRUD - start
+             //test functions for userCRUD - start
 
 // var a;
 //
@@ -87,10 +87,10 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 // });
 
 
-//test functions for userCRUD - end
+                 //test functions for userCRUD - end
 
 
-//test data for CoffeeShop
+                 //test data for CoffeeShop
 // var testCoffeeShop = new coffeeShopClass.newCoffeeShop("coffeeShop@gmail.com", 1, "Langelandsvej 1", 25417858);
 //
 //
@@ -102,7 +102,7 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 // });
 
 
-//test data for Order
+                 //test data for Order
 // var testOrder = new orderClass.newOrder(2, 1, "Android");
 //
 //
@@ -114,7 +114,7 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 // });
 
 
-//test data for OrderItem
+                 //test data for OrderItem
 // var testOrderItem = new orderItemClass.newOrderItem(2, 1, 3);
 //
 //
