@@ -5,9 +5,8 @@
 
 var platform;
 
-function _newOrder(userId, coffeeShopId, platform)
+function _newOrder(coffeeShopId, platform)
 {
-    this.userId = userId;
     this.coffeeShopId = coffeeShopId;
     this.platform = platform;
 

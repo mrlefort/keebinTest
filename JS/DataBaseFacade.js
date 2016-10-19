@@ -320,41 +320,135 @@ function _deleteCoffeeShop(coffeeShopEmail, callback) {
 
 };  //this one deletes order based on id.
 
-function _createOrder(newOrder, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
-{
-    var orderCreated = false;
+function _getCoffeeShop(coffeeShopEmail, callback) {
+    var coffeeShopFound = false;
 
-    console.log("newCoffeeShop is running.")
-    User.find({where: {id: newOrder.userId}}).then(function (data) { //we check if the CoffeeShop exists based on it's unique email.
-        if (data == null){
-            console.log("User not found");
-            callback(orderCreated);
+    console.log("_getCoffeeShop is running. Finding coffeeShop with email: " + coffeeShopEmail);
+    CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("CoffeeShop with email: " + data.email + " found.");
+            callback(data);
+
         } else {
+            console.log(err);
+            console.log("could not find: " + coffeeShopEmail);
+            callback(coffeeShopFound);
+
+        }
+
+
+    })
+
+
+};  // this one "gets" a CoffeeSHop based on CoffeeShop Email.
+
+
+function _getAllCoffeeShops(callback) {
+    var allCoffeeShopsFound = [];
+
+    var log = function(inst)
+    {
+
+        allCoffeeShopsFound.push(inst.get());
+    }
+
+    console.log("getAllCoffeeShops is running.");
+    CoffeeShop.findAll().then(function (data, err) {
+        if (data !== null) {
+            console.log("her er data: " + data)
+            console.log("CoffeeShops found.");
+            data.forEach(log);
+            callback(allCoffeeShopsFound);
+
+        } else {
+            console.log(err);
+            allCoffeeShopsFound = false;
+            console.log("could not find any CoffeeShops");
+            callback(false);
+
+        }
+
+
+    })
+
+
+};  // this one "gets" all CoffeeShops.
+
+function _coffeeShopPut(coffeeShopEmail, editCoffeeShop, callback) {
+    var coffeeShopUpdated = false;
+
+    console.log("_coffeeShopPut is running. Finding: " + coffeeShopEmail);
+    CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("CoffeeShop found - ready to edit");
+
+
             return sequelize.transaction(function (t) {
-                console.log("User " + data.firstName + " found. Will place order.")
+
                 // chain all your queries here. make sure you return them.
-                return Order.create({
-                    userId: newOrder.userId,
-                    coffeeShopId: newOrder.coffeeShopId,
-                    platform: newOrder.platform
+                return data.updateAttributes({
+                    email: editCoffeeShop.email,
+                    brandName: editCoffeeShop.brandName,
+                    address: editCoffeeShop.address,
+                    phone: editCoffeeShop.phone
 
                 }, {transaction: t})
 
-            }).then(function (result) {
-                console.log("Transaction has been committed - Order has been saved to the DB - to user with ID: " + data.id);
-                orderCreated = true;
-                callback(orderCreated);
+            }).then(function () {
+                console.log("Transaction has been committed - CoffeeShop with email: " + editCoffeeShop.email + ", has been updated and saved to the DB");
+                coffeeShopUpdated = true;
+                callback(coffeeShopUpdated);
 
                 // Transaction has been committed
                 // result is whatever the result of the promise chain returned to the transaction callback
             }).catch(function (err) {
                 console.log(err);
-                callback(orderCreated);
+                callback(coffeeShopUpdated);
                 // Transaction has been rolled back
                 // err is whatever rejected the promise chain returned to the transaction callback
-            })
+            });
+        } else {
+            console.log(err);
+            console.log("could not find: " + editCoffeeShop.email);
+            callback(coffeeShopUpdated);
         }
+
+
     })
+
+
+}; // this edits CoffeeShop based on email.
+
+function _createOrder(currentUser, newOrder, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
+{
+        var orderCreated = false;
+        console.log("_createOrder is running.")
+
+                return sequelize.transaction(function (t) {
+                    // chain all your queries here. make sure you return them.
+                    return Order.create({
+                        userId: currentUser.id,
+                        coffeeShopId: newOrder.coffeeShopId,
+                        platform: newOrder.platform
+
+                    }, {transaction: t})
+
+                }).then(function (result) {
+                    console.log("Transaction has been committed - Order has been saved to the DB - to user with ID: " + currentUser.id);
+                    orderCreated = true;
+                    callback(orderCreated);
+
+                    // Transaction has been committed
+                    // result is whatever the result of the promise chain returned to the transaction callback
+                }).catch(function (err) {
+                    console.log(err);
+                    callback(orderCreated);
+                    // Transaction has been rolled back
+                    // err is whatever rejected the promise chain returned to the transaction callback
+                })
+
+
+
 }
 
 function _deleteOrder(orderId, callback) {
@@ -400,6 +494,61 @@ function _deleteOrder(orderId, callback) {
 
 };  //this one deletes order based on id.
 
+function _getOrder(orderId, callback) {
+    var orderFound = false;
+
+    console.log("_getOrder is running. Finding order with ID: " + orderId);
+    Order.find({where: {id: orderId}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("Order with id: " + orderId + " found.");
+            callback(data);
+
+        } else {
+            console.log(err);
+            console.log("could not find: " + orderId);
+            callback(orderFound);
+
+        }
+
+
+    })
+
+
+}; // this one "gets" an order based on orderId.
+
+function _getAllOrdersByUser(userEmail, callback) {
+    var allOrdersByUser = [];
+
+    _userGet(userEmail, function (data) {
+        var log = function(inst)
+        {
+            allOrdersByUser.push(inst.get());
+        }
+
+        console.log("_getAllOrdersByUser is running.");
+        console.log(" her er users email " + data.email + " og her er hans id: " + data.id);
+        Order.findAll({where: {userId: data.id}}).then(function (data, err) {
+            if (data !== null) {
+                console.log("Orders found - her er orders: " + data);
+                data.forEach(log);
+                callback(allOrdersByUser);
+
+            } else {
+                console.log(err);
+                console.log("could not find any Orders");
+                callback(false);
+
+            }
+
+
+        })
+
+
+
+    })
+
+
+};  // this one "gets" all CoffeeShops.
 
 function _createOrderItem(newOrderItem, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
@@ -438,30 +587,11 @@ function _createOrderItem(newOrderItem, callback) // This creates a new order - 
     })
 }
 
-function _orderGet(orderId, callback) {
-    var orderFound = false;
 
-    console.log("_orderGet is running. Finding order with ID: " + orderId);
-    Order.find({where: {id: orderId}}).then(function (data, err) {
-        if (data !== null) {
-            console.log("Order with id: " + orderId + " found.");
-            callback(data);
-
-        } else {
-            console.log(err);
-            console.log("could not find: " + orderId);
-            callback(orderFound);
-
-        }
-
-
-    })
-
-
-}; // this one "gets" an order based on orderId.
 
 
 
 module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet, createCoffeeShop: _createCoffeeShop,
-deleteCoffeeShop : _deleteCoffeeShop, createOrder : _createOrder, createOrderItem : _createOrderItem, deleteOrder : _deleteOrder, orderGet: _orderGet}; // Export Module
+deleteCoffeeShop : _deleteCoffeeShop, createOrder : _createOrder, createOrderItem : _createOrderItem, deleteOrder : _deleteOrder, orderGet: _getOrder,
+getCoffeeShop : _getCoffeeShop, coffeeShopPut : _coffeeShopPut, getAllCoffeeShops : _getAllCoffeeShops, getAllOrdersByUser : _getAllOrdersByUser}; // Export Module
 
