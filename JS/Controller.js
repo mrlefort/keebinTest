@@ -8,8 +8,10 @@ var db = require('./DataBaseFacade.js');
 var lc = require('./LoyaltyCard.js');
 
 
+
 // the functions under this needs to be moved to db so calling db.new db.newLoyaltyCard('1', '3', '3') will result the same.
 // lc.newLoyaltyCard('1', '1', '3', function(models) {
+
 //     if(models == false)
 //     {
 //         console.log("if false.... ! " + models);
@@ -43,6 +45,7 @@ var lc = require('./LoyaltyCard.js');
 //     console.log("User has been updated = " + models);
 //
 // });
+
 
 
 var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
@@ -151,7 +154,6 @@ db.addCoffeeShopUser("lars3@gmail.com", 1, function(status)
 //     console.log("Found user - " + h.firstName);
 //
 // });
-
 
 
 
