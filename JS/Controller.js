@@ -3,14 +3,8 @@
  */
 
 
-var userClass = require('./User.js');
+
 var db = require('./DataBaseFacade.js');
-
-var coffeeShopClass = require('./CoffeeShop.js');
-var orderClass = require('./Order.js');
-var orderItemClass = require('./OrderItem.js');
-
-var lc = require('./LoyaltyCard.js');
 
 
 
@@ -54,21 +48,21 @@ var lc = require('./LoyaltyCard.js');
 
                //test data for users
 
-
-var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
-var test2 = new userClass.newUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341);
-var test3 = new userClass.newUser("test3", "testEfternavn3", "lars3@gmail.com", 3, "09/09/2010", "male", 12345);
-
-var updateTest = new userClass.newUser("test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345);
-var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.com", 1, "09/09/2010", "male", 12345);
-
+//
+// var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
+// var test2 = new userClass.newUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341);
+// var test3 = new userClass.newUser("test3", "testEfternavn3", "lars3@gmail.com", 3, "09/09/2010", "male", 12345);
+//
+// var updateTest = new userClass.newUser("test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345);
+// var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.com", 1, "09/09/2010", "male", 12345);
+//
 
 
 
              //test functions for userCRUD - start
 
 
-// db.addCoffeeShopUser("lars3@gmail.com", 1, function(status)
+// db.createCoffeeShopUser("lars3@gmail.com", 1, function(status)
 // {
 //     console.log("her er status: " +status);
 // });
@@ -78,13 +72,14 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //   john.push(inst.get());
 // };
 //
-// db.coffeeShopUserGetAll(1, function(data)
+
+// db.getAllCoffeeShops( function(data)
 // {
 //     if(data !== false)
 //     {
 //         data.forEach(log);
 //
-//         console.log("her er john: " + john[0].userId)
+//         console.log("her er john: " + john[0].id)
 //         // var keys = Object.keys(data[0]);
 //         // console.log("keys: " +keys);
 //         console.log("data er ikke falsk : " + data);
@@ -211,7 +206,6 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 
 
 
-                 //test data for OrderItem
 // var testOrderItem = new orderItemClass.newOrderItem(2, 1, 3);
 //
 //
@@ -228,11 +222,20 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 // })
 
 
+
+
 // var l;
 // db.deleteOrder(2, function (data){
 //     l = data;
 //     console.log("Order deleted - " + l);
 // })
+
+// var l;
+// db.createRole("yoloo", function (data){
+//     l = data;
+//     console.log("Order created - " + l);
+// })
+
 
 
 // db.getAllCoffeeShops( function(data) {
@@ -250,4 +253,15 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //         console.log(data[i]);
 //     }
 // })
+//
+// db.createCoffeeShop('lars1@gmail.com', function(data) {
+//     console.log("her er full order data: " + data);
+//         for(i = 0; i < data.length; i++)
+//     {
+//         console.log(data[i]);
+//     }
+// })
+
+
+
 
