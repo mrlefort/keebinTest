@@ -90,6 +90,8 @@ router.put("/user/:email", function (req, res, next)
             {
                 if (status === true)
                 {
+                    delete userToSave.password;
+                    res.write(JSON.stringify(userToSave));
                     res.status(200).send();
                 }
                 else
@@ -101,6 +103,72 @@ router.put("/user/:email", function (req, res, next)
 
     }
 );
+
+//creates a new link between the given customers email and the coffeshops email (can do it with full user
+// and coffeShop objects too, but this info will be available in client, and will save network traffic
+/*
+Example JSON:
+ {
+    "userEmail" : "lars1@gmail.com",
+    "coffeeShopEmail" : "a@a.dk"
+ }
+ */
+router.post("/coffeeshopuser/new", function(req,res,next)
+{
+    var coffeeShopUser = req.body.userEmail;
+    var coffeeShop = req.body.coffeeShopEmail;
+
+    facade.addCoffeeShopUser(coffeeShopUser, coffeeShop, function(status)
+    {
+        if(status !== false)
+        {
+            res.status(200).send();
+        }
+        else
+        {
+            res.status(500).send();
+        }
+    })
+});
+
+
+
+var returner  = function(res, returnString)
+{
+    console.log("her fra returner: " + returnString);
+    res.writeHead(200, {'Content-Type': 'application/json','Content-Length':returnString.length+''});
+    res.write(returnString);
+    res.end();
+}
+
+
+//Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!
+router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
+{
+    facade.coffeeShopUserGetAll(req.params.coffeshopid, function(data)
+    {
+        if(data !== false)
+        {
+            var returnString = "";
+            for(var i = 0; i < data.length; i++)
+            {
+                // console.log("i loop ite number: " + i);
+                returnString += JSON.stringify(data[i]) + ",";
+            }
+                // console.log("abekat!!!!!!!!!!!!!!!!!!!!!!!");
+                console.log("final string: " + returnString);
+                // res.writeHead(200, {'Content-Type': 'application/json','Content-Length':returnString.length+''});
+                // res.write(returnString);
+                res.end(JSON.stringify(data));
+        }
+        else
+        {
+            console.log("i else delen!")
+            res.status(500).send();
+        }
+    });
+});
+
 
 
 module.exports = router;

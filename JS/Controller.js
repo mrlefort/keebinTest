@@ -7,6 +7,7 @@ var userClass = require('./User.js');
 var db = require('./DataBaseFacade.js');
 var lc = require('./LoyaltyCard.js');
 
+
 // the functions under this needs to be moved to db so calling db.new db.newLoyaltyCard('1', '3', '3') will result the same.
 // lc.newLoyaltyCard('1', '1', '3', function(models) {
 //     if(models == false)
@@ -46,12 +47,44 @@ var lc = require('./LoyaltyCard.js');
 
 var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
 var test2 = new userClass.newUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341);
+var test3 = new userClass.newUser("test3", "testEfternavn3", "lars3@gmail.com", 3, "09/09/2010", "male", 12345);
+
 var updateTest = new userClass.newUser("test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345);
 var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.com", 1, "09/09/2010", "male", 12345);
 
 
 
 
+
+db.addCoffeeShopUser("lars3@gmail.com", 1, function(status)
+{
+    console.log("her er status: " +status);
+});
+// var john = [];
+// var log = function(inst)
+// {
+//   john.push(inst.get());
+// };
+//
+// db.coffeeShopUserGetAll(1, function(data)
+// {
+//     if(data !== false)
+//     {
+//         data.forEach(log);
+//
+//         console.log("her er john: " + john[0].userId)
+//         // var keys = Object.keys(data[0]);
+//         // console.log("keys: " +keys);
+//         console.log("data er ikke falsk : " + data);
+//     }
+//     else
+//     {
+//         console.log("fejl!");
+//     }
+// });
+
+
+//
 // var a;
 //
 // db.newRole("Admin", function(data) {
@@ -69,7 +102,7 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 // });
 
 
-
+//
 // var c;
 //
 // db.newUser(test, function(data) {
@@ -80,7 +113,7 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //
 // var d;
 //
-// db.newUser(test2, function(data) {
+// db.newUser(test3, function(data) {
 //     d = data;
 //     console.log("User created and saved to the DB - " + d);
 //
