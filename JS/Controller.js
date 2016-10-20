@@ -13,7 +13,7 @@ var orderItemClass = require('./OrderItem.js');
                //test data for users
 var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
 var test2 = new userClass.newUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341);
-var updateTest = new userClass.newUser("test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345);
+var updateTest = new userClass.newUser("test3", "testEfternavn", "larsUpdated@gmail.com", 1, "09/09/2010", "male", 12345);
 var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.com", 1, "09/09/2010", "male", 12345);
 
 
@@ -53,12 +53,13 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //
 // });
 
-// var e;
-//
-// db.userPut("lars@gmaile.com", updateTest, function(data){
-//     e = data;
-//     console.log("User updated - " + e);
-// });
+var e;
+
+db.userPut("lars1@gmail.com", updateTest, function(data){
+    e = data;
+    console.log("User updated - " + e.email);
+
+});
 
 // var f;
 //

@@ -143,10 +143,9 @@ function _userPut(userEmail, editUser, callback) {
 
                     }, {transaction: t})
 
-                }).then(function () {
-                    console.log("Transaction has been committed - user with email: " + editUser.email + ", has been updated and saved to the DB");
-                    userUpdated = true;
-                    callback(userUpdated);
+                }).then(function (result) {
+                    console.log("Transaction has been committed - user with email: " + result.email + ", has been updated and saved to the DB");
+                    callback(result);
 
                     // Transaction has been committed
                     // result is whatever the result of the promise chain returned to the transaction callback
