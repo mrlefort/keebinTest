@@ -336,24 +336,24 @@ function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
 
             data.forEach(log);
 
-            for(i = 0; i < returnUsersIds.length; i++)
+            for(var i = 0; i < returnUsersIds.length; i++)
             {
+                console.log("on ite no: " + i)
                 _userGetById(returnUsersIds[i], function(data)
                 {
                     console.log("pushing :" + data.firstName + " to the array!")
+                    delete data.password;
                     returnUsers.push(data);
+                    if(i === returnUsersIds.length)
+                    {
+                        console.log("her er RUsrs: " + returnUsers);
+                        callback(returnUsers);
+                    }
 
                 });
-                if(i === returnUsersIds.length-1)
-                {
-                    console.log("her er RUsrs: " + returnUsers);
-                    callback(returnUsers);
-                }
+
             }
-
-
-
-        }
+  }
         if(err)
         {
             console.log("fejl i find all!");

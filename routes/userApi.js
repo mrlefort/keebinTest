@@ -137,7 +137,17 @@ router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
     {
         if(data !== false)
         {
-            res.end(JSON.stringify(data));
+            var resPersons = [];
+            for(var i = 0; i < data.length; i++)
+            {
+                resPersons.push(data[i]);
+
+            }
+
+            console.log(JSON.stringify("her er res data: " +data));
+            //Følgende console.log giver en error (pga firstName === undefined). Dog er den nødvendig for at responset virker, becourse fuck javaScript! Also this is not a joke!
+            console.log(JSON.stringify("her er res persons: " +resPersons[1].firstName));
+            res.end(JSON.stringify(resPersons));
         }
         else
         {
