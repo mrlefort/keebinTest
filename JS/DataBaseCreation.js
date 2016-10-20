@@ -51,23 +51,18 @@ var user = sequelize.define('user', {
     },
     sex: {
         type: Sequelize.STRING // here we decide parameters for this field in the table
+    },
+    password: {
+        type: Sequelize.STRING,
+        Validate: {notNull : true}
     }
+
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: true // fjerner timestamps med false denne option skal stå på tabellen
 
-});  // user table setup
 
-var logins = sequelize.define('logins', {
-    password: {
-        type: Sequelize.STRING,
-        Validate : {notNull : true}
-    }
-}, {
-    freezeTableName: true, // Model tableName will be the same as the model name
-    timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
-
-});  // passwords table setup
+}); // user table setup
 
 var coffeeBrand = sequelize.define('coffeeBrand', {
     brandName: {
@@ -84,16 +79,24 @@ var coffeeBrand = sequelize.define('coffeeBrand', {
 
 }); // coffeeBrand table setup
 
-var loyalityCards = sequelize.define('loyaltyCards', {
+var loyaltyCards = sequelize.define('loyaltyCards', {
     numberOfCoffeesBought: {
         type: Sequelize.INTEGER,
         Validate : {notNull : true},
+    },
+    isValid: {
+        type: Sequelize.BOOLEAN,
+        Validate : {notNull : true}
+    },
+    readyForFreeCoffee: {
+        type: Sequelize.BOOLEAN,
+        Validate : {notNull : true}
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
     timestamps: true // fjerner timestamps med false denne option skal stå på tabellen
 
-}); // loyalityCards table setup
+}); // loyaltyCards table setup
 
 var coffeeKind = sequelize.define('coffeeKind', {
     price: {
@@ -141,6 +144,16 @@ var coffeeShop = sequelize.define('coffeeShop', {
 }); // coffeeShop table setup
 
 var coffeeShopUsers = sequelize.define('coffeeShopUsers', {
+    // userEmail :
+    // {
+    //     type: Sequelize.STRING, // here we decide parameters for this field in the table
+    //     Validate : {notNull : true, isEmail: true}
+    // },
+    // coffeeShopEmail :
+    // {
+    //     type: Sequelize.STRING, // here we decide parameters for this field in the table
+    //     Validate : {notNull : true, isEmail: true}
+    // }
 
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -161,17 +174,22 @@ var orderItem = sequelize.define('orderItem', {
 
 role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
-user.hasOne(logins, {foreignKey: 'email'});
-logins.belongsTo(user, {foreignKey: 'email'});
-user.hasMany(loyalityCards);
-loyalityCards.belongsTo(user);
-coffeeBrand.hasMany(loyalityCards, {foreignKey: 'brandName'});
-loyalityCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
+
+
+
+user.hasMany(loyaltyCards);
+loyaltyCards.belongsTo(user);
+coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});
+loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
 
 
 
 coffeeShop.hasMany(coffeeKind);
 coffeeKind.belongsTo(coffeeShop);
+
+coffeeShopUsers.belongsTo(user);
+coffeeShop.hasMany(coffeeShopUsers);
+coffeeShopUsers.belongsTo(coffeeShop);
 
 user.hasMany(order);
 order.belongsTo(user);
@@ -192,8 +210,8 @@ coffeeBrand.sync();
 role.sync();
 
 user.sync(); // executes the command from above and inserts a new table into the database
-logins.sync();
-loyalityCards.sync();
+
+loyaltyCards.sync();
 
 coffeeKind.sync();
 order.sync();
@@ -210,10 +228,6 @@ function _User()
 return user;
 }
 
-function _Logins()
-{
-return logins;
-}
 
 function _CoffeeBrand()
 {
@@ -222,7 +236,7 @@ function _CoffeeBrand()
 
 function _LoyaltyCards()
 {
-    return loyalityCards;
+    return loyaltyCards;
 }
 
 function _CoffeeKind()
@@ -256,6 +270,6 @@ function _connect()
 }
 // Export Functions // Export Functions
 
-module.exports = {Role : _Role, User : _User, Logins : _Logins, CoffeeBrand : _CoffeeBrand,
+module.exports = {Role : _Role, User : _User, CoffeeBrand : _CoffeeBrand,
 LoyaltyCards : _LoyaltyCards, CoffeeKind : _CoffeeKind, Order : _Order, CoffeeShop : _CoffeeShop,
 CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect}; // Export Module

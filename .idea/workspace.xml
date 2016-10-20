@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <list default="true" id="cbe6b159-6525-4353-ac99-ef176ef3cc64" name="Default" comment="" />
+=======
     <list default="true" id="cbe6b159-6525-4353-ac99-ef176ef3cc64" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/CoffeeBrand.js" afterPath="$PROJECT_DIR$/JS/CoffeeBrand.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/LoyaltyCard.js" afterPath="$PROJECT_DIR$/JS/LoyaltyCard.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/Role.js" afterPath="$PROJECT_DIR$/JS/Role.js" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/Controller.js" afterPath="$PROJECT_DIR$/JS/Controller.js" />
+<<<<<<< HEAD
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/LoyaltyCard.js" afterPath="$PROJECT_DIR$/JS/LoyaltyCard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/DataBaseCreation.js" afterPath="$PROJECT_DIR$/JS/DataBaseCreation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/DataBaseFacade.js" afterPath="$PROJECT_DIR$/JS/DataBaseFacade.js" />
+>>>>>>> development
+>>>>>>> development
     </list>
+>>>>>>> Stashed changes
+=======
+    <list default="true" id="cbe6b159-6525-4353-ac99-ef176ef3cc64" name="Default" comment="" />
+>>>>>>> userCRUD
     <ignored path="Keebin.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,10 +50,71 @@
       <file leaf-file-name="Controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JS/Controller.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="476">
               <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="116">
+              <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+=======
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+            <state relative-caret-position="323">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+=======
+            <state relative-caret-position="306">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+>>>>>>> Stashed changes
+>>>>>>> development
+>>>>>>> development
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
+              </folding>
+=======
+            <state relative-caret-position="153">
+              <caret line="18" column="2" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
+              <folding />
+>>>>>>> userCRUD
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file leaf-file-name="DataBaseCreation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="102">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+=======
+            <state relative-caret-position="606">
+              <caret line="247" column="21" selection-start-line="247" selection-start-column="21" selection-end-line="247" selection-end-column="21" />
+=======
+      <file leaf-file-name="DataBaseFacade.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+            <state relative-caret-position="-1620">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+=======
+            <state relative-caret-position="-1636">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+>>>>>>> Stashed changes
+              <folding>
+                <element signature="e#0#41#0" expanded="false" />
+=======
+            <state relative-caret-position="375">
+              <caret line="122" column="49" selection-start-line="122" selection-start-column="49" selection-end-line="122" selection-end-column="49" />
+              <folding>
+                <element signature="e#637#796#0" expanded="false" />
+                <element signature="e#1014#2188#0" expanded="false" />
+                <element signature="n#!!block;n#_newUser#0" expanded="false" />
+                <element signature="n#!!block;n#_userPut#0" expanded="false" />
+                <element signature="n#!!block;n#_userDelete#0" expanded="false" />
+                <element signature="n#!!block;n#_userGet#0" expanded="false" />
+>>>>>>> userCRUD
               </folding>
             </state>
           </provider>
@@ -43,8 +123,16 @@
       <file leaf-file-name="DataBaseCreation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+            <state relative-caret-position="612">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+=======
+            <state relative-caret-position="221">
+              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+>>>>>>> Stashed changes
+>>>>>>> development
+>>>>>>> development
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
                 <element signature="e#153#216#0" expanded="false" />
@@ -53,11 +141,13 @@
                 <element signature="e#416#492#0" expanded="false" />
                 <element signature="e#572#680#0" expanded="false" />
                 <element signature="e#682#855#0" expanded="false" />
-                <element signature="e#917#1774#0" expanded="false" />
+                <element signature="e#917#1865#0" expanded="false" />
                 <element signature="e#935#1187#0" expanded="false" />
                 <element signature="e#1203#1329#0" expanded="false" />
+                <element signature="e#1342#1504#0" expanded="false" />
                 <element signature="e#1520#1666#0" expanded="false" />
                 <element signature="e#1677#1772#0" expanded="false" />
+<<<<<<< HEAD
                 <element signature="e#1776#1948#0" expanded="false" />
                 <element signature="e#2013#2106#0" expanded="false" />
                 <element signature="e#2029#2104#0" expanded="false" />
@@ -80,8 +170,36 @@
                 <element signature="e#4946#5097#0" expanded="false" />
                 <element signature="e#4962#5095#0" expanded="false" />
                 <element signature="e#5099#5272#0" expanded="false" />
+=======
+<<<<<<< Updated upstream
+=======
+                <element signature="e#1788#1862#0" expanded="false" />
+                <element signature="e#1867#2039#0" expanded="false" />
+                <element signature="e#2115#2313#0" expanded="false" />
+                <element signature="e#2132#2207#0" expanded="false" />
+                <element signature="e#2235#2311#0" expanded="false" />
+                <element signature="e#2315#2488#0" expanded="false" />
+                <element signature="e#2572#2680#0" expanded="false" />
+                <element signature="e#2601#2678#0" expanded="false" />
+                <element signature="e#2682#2854#0" expanded="false" />
+                <element signature="e#2935#3124#0" expanded="false" />
+                <element signature="e#3126#3299#0" expanded="false" />
+                <element signature="e#3367#3461#0" expanded="false" />
+                <element signature="e#3383#3459#0" expanded="false" />
+                <element signature="e#3463#3635#0" expanded="false" />
+                <element signature="e#3708#4177#0" expanded="false" />
+                <element signature="e#3721#3883#0" expanded="false" />
+                <element signature="e#3898#4030#0" expanded="false" />
+                <element signature="e#4043#4175#0" expanded="false" />
+                <element signature="e#4179#4352#0" expanded="false" />
+                <element signature="e#4440#4444#0" expanded="false" />
+                <element signature="e#4446#4619#0" expanded="false" />
+                <element signature="e#4700#4851#0" expanded="false" />
+                <element signature="e#4716#4849#0" expanded="false" />
+                <element signature="e#4853#5026#0" expanded="false" />
+                <element signature="n#!!block;n#_Role#0" expanded="false" />
+>>>>>>> development
                 <element signature="n#!!block;n#_User#0" expanded="false" />
-                <element signature="n#!!block;n#_Logins#0" expanded="false" />
                 <element signature="n#!!block;n#_CoffeeBrand#0" expanded="false" />
                 <element signature="n#!!block;n#_LoyaltyCards#0" expanded="false" />
                 <element signature="n#!!block;n#_CoffeeKind#0" expanded="false" />
@@ -89,7 +207,12 @@
                 <element signature="n#!!block;n#_CoffeeShop#0" expanded="false" />
                 <element signature="n#!!block;n#_CoffeeShopUsers#0" expanded="false" />
                 <element signature="n#!!block;n#_OrderItem#0" expanded="false" />
+<<<<<<< HEAD
                 <marker date="1476968794255" expanded="true" signature="2737:2763" ph="..." />
+=======
+<<<<<<< HEAD
+                <marker date="1476465398501" expanded="true" signature="2737:2763" ph="..." />
+>>>>>>> development
               </folding>
             </state>
           </provider>
@@ -134,7 +257,16 @@
                 <element signature="n#!!block;n#_newUser#0" expanded="false" />
                 <element signature="n#!!block;n#_newPass#0" expanded="false" />
                 <element signature="e#5723#5793#0" expanded="false" />
+=======
+                <element signature="n#!!block;n#_connect#0" expanded="false" />
+>>>>>>> Stashed changes
+>>>>>>> development
               </folding>
+=======
+            <state relative-caret-position="154">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="19" />
+              <folding />
+>>>>>>> userCRUD
             </state>
           </provider>
         </entry>
@@ -176,8 +308,8 @@
       <file leaf-file-name="User.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/User.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+            <state relative-caret-position="459">
+              <caret line="27" column="36" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -200,13 +332,35 @@
       <list>
         <option value="$PROJECT_DIR$/JS/DatabaseCreation.js" />
         <option value="$PROJECT_DIR$/JS/a.js" />
+<<<<<<< Updated upstream
+        <option value="$PROJECT_DIR$/JS/Controller.js" />
+        <option value="$PROJECT_DIR$/JS/DataBaseFacade.js" />
         <option value="$PROJECT_DIR$/JS/User.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/JS/DataBaseFacade.js" />
         <option value="$PROJECT_DIR$/JS/DataBaseCreation.js" />
         <option value="$PROJECT_DIR$/JS/Controller.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/JS/Role.js" />
         <option value="$PROJECT_DIR$/JS/LoyaltyCard.js" />
         <option value="$PROJECT_DIR$/JS/CoffeeBrand.js" />
+=======
+=======
+        <option value="$PROJECT_DIR$/JS/LoyaltyCard.js" />
+=======
+        <option value="$PROJECT_DIR$/JS/User.js" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/JS/Controller.js" />
+        <option value="$PROJECT_DIR$/JS/DataBaseFacade.js" />
+>>>>>>> Stashed changes
+        <option value="$PROJECT_DIR$/JS/DataBaseCreation.js" />
+=======
+        <option value="$PROJECT_DIR$/JS/DataBaseCreation.js" />
+        <option value="$PROJECT_DIR$/JS/DataBaseFacade.js" />
+        <option value="$PROJECT_DIR$/JS/Controller.js" />
+>>>>>>> userCRUD
+>>>>>>> development
+>>>>>>> development
       </list>
     </option>
   </component>
@@ -252,8 +406,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scratches" />
       <pane id="Scope" />
+=======
+<<<<<<< HEAD
+      <pane id="Scope" />
+=======
+>>>>>>> userCRUD
+>>>>>>> development
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -288,6 +449,14 @@
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="Scratches" />
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+>>>>>>> userCRUD
+>>>>>>> development
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -300,7 +469,14 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Node.js.Controller.js">
+=======
+  <component name="RunManager" selected="Node.js.DataBaseCreation.js">
+    <configuration default="false" name="User.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="User.js" working-dir="$PROJECT_DIR$/JS">
+      <method />
+    </configuration>
+>>>>>>> development
     <configuration default="false" name="Controller.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="Controller.js" working-dir="$PROJECT_DIR$/JS">
       <method />
     </configuration>
@@ -379,11 +555,26 @@
     </list>
     <recent_temporary>
       <list size="5">
+<<<<<<< HEAD
         <item index="0" class="java.lang.String" itemvalue="Node.js.Controller.js" />
+<<<<<<< HEAD
         <item index="1" class="java.lang.String" itemvalue="Node.js.DataBaseFacade.js" />
         <item index="2" class="java.lang.String" itemvalue="Node.js.CoffeeBrand.js" />
         <item index="3" class="java.lang.String" itemvalue="Node.js.app.js" />
         <item index="4" class="java.lang.String" itemvalue="Node.js.LoyaltyCard.js" />
+=======
+        <item index="1" class="java.lang.String" itemvalue="Node.js.app.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.LoyaltyCard.js" />
+        <item index="3" class="java.lang.String" itemvalue="Node.js.DataBaseCreation.js" />
+        <item index="4" class="java.lang.String" itemvalue="Node.js.DataBaseFacade.js" />
+=======
+        <item index="0" class="java.lang.String" itemvalue="Node.js.DataBaseCreation.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.Controller.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.DataBaseFacade.js" />
+        <item index="3" class="java.lang.String" itemvalue="Node.js.app.js" />
+        <item index="4" class="java.lang.String" itemvalue="Node.js.User.js" />
+>>>>>>> development
+>>>>>>> development
       </list>
     </recent_temporary>
   </component>
@@ -408,17 +599,54 @@
       <workItem from="1475871151295" duration="76000" />
       <workItem from="1476013603698" duration="2177000" />
       <workItem from="1476084365443" duration="826000" />
+<<<<<<< Updated upstream
+      <workItem from="1476086491346" duration="5575000" />
+      <workItem from="1476189049466" duration="3506000" />
+=======
       <workItem from="1476086491346" duration="4033000" />
+<<<<<<< HEAD
       <workItem from="1476390094723" duration="1488000" />
       <workItem from="1476465518958" duration="10477000" />
+<<<<<<< HEAD
       <workItem from="1476709520125" duration="8267000" />
       <workItem from="1476869513530" duration="3987000" />
       <workItem from="1476968640910" duration="3282000" />
+=======
+      <workItem from="1476709520125" duration="6692000" />
+=======
+<<<<<<< HEAD
+      <workItem from="1476467383797" duration="2166000" />
+>>>>>>> Stashed changes
+=======
+      <workItem from="1476471569061" duration="2857000" />
+      <workItem from="1476476933202" duration="6021000" />
+      <workItem from="1476709384186" duration="2700000" />
+      <workItem from="1476713554948" duration="1453000" />
+      <workItem from="1476727839964" duration="3194000" />
+>>>>>>> userCRUD
+>>>>>>> development
+>>>>>>> development
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="81929000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="73085000" />
+=======
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <option name="totallyTimeSpent" value="59482000" />
+=======
+    <option name="totallyTimeSpent" value="56594000" />
+>>>>>>> Stashed changes
+=======
+    <option name="totallyTimeSpent" value="70653000" />
+>>>>>>> userCRUD
+>>>>>>> development
+>>>>>>> development
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -433,16 +661,37 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13804004" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41386783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39869988" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13689218" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3975085" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31823328" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> userCRUD
+>>>>>>> development
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997735" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> development
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -465,17 +714,52 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+<<<<<<< HEAD
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/JS/DataBaseFacade.js</url>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
+<<<<<<< HEAD
       <option name="time" value="28" />
+=======
+      <option name="time" value="27" />
+=======
+      <option name="time" value="26" />
+>>>>>>> development
+>>>>>>> development
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> development
+    <entry file="file://$PROJECT_DIR$/views/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> development
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -501,9 +785,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="12" column="18" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -512,9 +794,25 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            <element signature="e#0#41#0" expanded="false" />
+<<<<<<< HEAD
+>>>>>>> development
             <element signature="n#!!block;n#_newUser#0" expanded="false" />
             <element signature="n#!!block;n#_newPass#0" expanded="false" />
             <element signature="e#5723#5793#0" expanded="false" />
+=======
+=======
+            <element signature="e#637#796#0" expanded="false" />
+            <element signature="e#1014#2188#0" expanded="false" />
+            <element signature="n#!!block;n#_newUser#0" expanded="false" />
+            <element signature="n#!!block;n#_userPut#0" expanded="false" />
+            <element signature="n#!!block;n#_userDelete#0" expanded="false" />
+            <element signature="n#!!block;n#_userGet#0" expanded="false" />
+>>>>>>> userCRUD
+>>>>>>> development
           </folding>
         </state>
       </provider>
@@ -523,6 +821,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+<<<<<<< HEAD
           <folding>
             <element signature="e#0#41#0" expanded="false" />
             <element signature="e#153#216#0" expanded="false" />
@@ -531,11 +830,13 @@
             <element signature="e#416#492#0" expanded="false" />
             <element signature="e#572#680#0" expanded="false" />
             <element signature="e#682#855#0" expanded="false" />
-            <element signature="e#917#1774#0" expanded="false" />
+            <element signature="e#917#1865#0" expanded="false" />
             <element signature="e#935#1187#0" expanded="false" />
             <element signature="e#1203#1329#0" expanded="false" />
+            <element signature="e#1342#1504#0" expanded="false" />
             <element signature="e#1520#1666#0" expanded="false" />
             <element signature="e#1677#1772#0" expanded="false" />
+<<<<<<< HEAD
             <element signature="e#1776#1948#0" expanded="false" />
             <element signature="e#2013#2106#0" expanded="false" />
             <element signature="e#2029#2104#0" expanded="false" />
@@ -558,8 +859,36 @@
             <element signature="e#4946#5097#0" expanded="false" />
             <element signature="e#4962#5095#0" expanded="false" />
             <element signature="e#5099#5272#0" expanded="false" />
+=======
+<<<<<<< Updated upstream
+=======
+            <element signature="e#1788#1862#0" expanded="false" />
+            <element signature="e#1867#2039#0" expanded="false" />
+            <element signature="e#2115#2313#0" expanded="false" />
+            <element signature="e#2132#2207#0" expanded="false" />
+            <element signature="e#2235#2311#0" expanded="false" />
+            <element signature="e#2315#2488#0" expanded="false" />
+            <element signature="e#2572#2680#0" expanded="false" />
+            <element signature="e#2601#2678#0" expanded="false" />
+            <element signature="e#2682#2854#0" expanded="false" />
+            <element signature="e#2935#3124#0" expanded="false" />
+            <element signature="e#3126#3299#0" expanded="false" />
+            <element signature="e#3367#3461#0" expanded="false" />
+            <element signature="e#3383#3459#0" expanded="false" />
+            <element signature="e#3463#3635#0" expanded="false" />
+            <element signature="e#3708#4177#0" expanded="false" />
+            <element signature="e#3721#3883#0" expanded="false" />
+            <element signature="e#3898#4030#0" expanded="false" />
+            <element signature="e#4043#4175#0" expanded="false" />
+            <element signature="e#4179#4352#0" expanded="false" />
+            <element signature="e#4440#4444#0" expanded="false" />
+            <element signature="e#4446#4619#0" expanded="false" />
+            <element signature="e#4700#4851#0" expanded="false" />
+            <element signature="e#4716#4849#0" expanded="false" />
+            <element signature="e#4853#5026#0" expanded="false" />
+            <element signature="n#!!block;n#_Role#0" expanded="false" />
+>>>>>>> development
             <element signature="n#!!block;n#_User#0" expanded="false" />
-            <element signature="n#!!block;n#_Logins#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeBrand#0" expanded="false" />
             <element signature="n#!!block;n#_LoyaltyCards#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeKind#0" expanded="false" />
@@ -567,8 +896,20 @@
             <element signature="n#!!block;n#_CoffeeShop#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeShopUsers#0" expanded="false" />
             <element signature="n#!!block;n#_OrderItem#0" expanded="false" />
+<<<<<<< HEAD
             <marker date="1476968794255" expanded="true" signature="2737:2763" ph="..." />
+=======
+<<<<<<< HEAD
+            <marker date="1476465398501" expanded="true" signature="2737:2763" ph="..." />
+=======
+            <element signature="n#!!block;n#_connect#0" expanded="false" />
+>>>>>>> Stashed changes
+>>>>>>> development
+>>>>>>> development
           </folding>
+=======
+          <folding />
+>>>>>>> userCRUD
         </state>
       </provider>
     </entry>
@@ -632,9 +973,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -698,9 +1037,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -764,9 +1101,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -845,10 +1180,82 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="n#!!block;n#_newUser#0" expanded="false" />
+            <element signature="n#!!block;n#_newPass#0" expanded="false" />
+            <element signature="e#5723#5793#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/JS/a.js" />
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/JS/Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> development
+    <entry file="file://$PROJECT_DIR$/JS/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1620">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/LoyaltyCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="606">
+          <caret line="247" column="21" selection-start-line="247" selection-start-column="21" selection-end-line="247" selection-end-column="21" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="221">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+>>>>>>> Stashed changes
+>>>>>>> development
+>>>>>>> development
           <folding>
             <element signature="e#0#41#0" expanded="false" />
             <element signature="e#153#216#0" expanded="false" />
@@ -857,11 +1264,13 @@
             <element signature="e#416#492#0" expanded="false" />
             <element signature="e#572#680#0" expanded="false" />
             <element signature="e#682#855#0" expanded="false" />
-            <element signature="e#917#1774#0" expanded="false" />
+            <element signature="e#917#1865#0" expanded="false" />
             <element signature="e#935#1187#0" expanded="false" />
             <element signature="e#1203#1329#0" expanded="false" />
+            <element signature="e#1342#1504#0" expanded="false" />
             <element signature="e#1520#1666#0" expanded="false" />
             <element signature="e#1677#1772#0" expanded="false" />
+<<<<<<< HEAD
             <element signature="e#1776#1948#0" expanded="false" />
             <element signature="e#2013#2106#0" expanded="false" />
             <element signature="e#2029#2104#0" expanded="false" />
@@ -884,8 +1293,36 @@
             <element signature="e#4946#5097#0" expanded="false" />
             <element signature="e#4962#5095#0" expanded="false" />
             <element signature="e#5099#5272#0" expanded="false" />
+=======
+<<<<<<< Updated upstream
+=======
+            <element signature="e#1788#1862#0" expanded="false" />
+            <element signature="e#1867#2039#0" expanded="false" />
+            <element signature="e#2115#2313#0" expanded="false" />
+            <element signature="e#2132#2207#0" expanded="false" />
+            <element signature="e#2235#2311#0" expanded="false" />
+            <element signature="e#2315#2488#0" expanded="false" />
+            <element signature="e#2572#2680#0" expanded="false" />
+            <element signature="e#2601#2678#0" expanded="false" />
+            <element signature="e#2682#2854#0" expanded="false" />
+            <element signature="e#2935#3124#0" expanded="false" />
+            <element signature="e#3126#3299#0" expanded="false" />
+            <element signature="e#3367#3461#0" expanded="false" />
+            <element signature="e#3383#3459#0" expanded="false" />
+            <element signature="e#3463#3635#0" expanded="false" />
+            <element signature="e#3708#4177#0" expanded="false" />
+            <element signature="e#3721#3883#0" expanded="false" />
+            <element signature="e#3898#4030#0" expanded="false" />
+            <element signature="e#4043#4175#0" expanded="false" />
+            <element signature="e#4179#4352#0" expanded="false" />
+            <element signature="e#4440#4444#0" expanded="false" />
+            <element signature="e#4446#4619#0" expanded="false" />
+            <element signature="e#4700#4851#0" expanded="false" />
+            <element signature="e#4716#4849#0" expanded="false" />
+            <element signature="e#4853#5026#0" expanded="false" />
+            <element signature="n#!!block;n#_Role#0" expanded="false" />
+>>>>>>> development
             <element signature="n#!!block;n#_User#0" expanded="false" />
-            <element signature="n#!!block;n#_Logins#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeBrand#0" expanded="false" />
             <element signature="n#!!block;n#_LoyaltyCards#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeKind#0" expanded="false" />
@@ -898,6 +1335,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/JS/User.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -922,17 +1360,77 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="789">
           <caret line="144" column="12" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="17" />
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/JS/Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+=======
+    <entry file="file://$PROJECT_DIR$/JS/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1636">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+>>>>>>> development
+>>>>>>> development
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
+=======
+        <state relative-caret-position="154">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/LoyaltyCard.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-924">
           <caret line="179" column="15" selection-start-line="179" selection-start-column="9" selection-end-line="179" selection-end-column="24" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="3188">
+          <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="235" selection-end-column="3" />
+>>>>>>> development
           <folding />
+=======
+        <state relative-caret-position="153">
+          <caret line="18" column="2" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
+          <folding />
+>>>>>>> userCRUD
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="306">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+>>>>>>> Stashed changes
+=======
+        <state relative-caret-position="375">
+          <caret line="122" column="49" selection-start-line="122" selection-start-column="49" selection-end-line="122" selection-end-column="49" />
+          <folding>
+            <element signature="e#637#796#0" expanded="false" />
+            <element signature="e#1014#2188#0" expanded="false" />
+            <element signature="n#!!block;n#_newUser#0" expanded="false" />
+            <element signature="n#!!block;n#_userPut#0" expanded="false" />
+            <element signature="n#!!block;n#_userDelete#0" expanded="false" />
+            <element signature="n#!!block;n#_userGet#0" expanded="false" />
+>>>>>>> userCRUD
+          </folding>
+>>>>>>> development
         </state>
       </provider>
     </entry>

@@ -1,12 +1,12 @@
-/**
- * Created by teh one and only on 10/14/2016.
- */
+
+
 
 var db = require('./DataBaseCreation.js');
 var conn = db.connect();
 
 var numberOfCoffeesBought;
 var userID = "";
+
 var readyForFreeCoffee;
 var loyaltyCards = db.LoyaltyCards();
 
@@ -99,6 +99,7 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
     }
 
 
+
    checkforduplicates(runIfLoyaltyCardFoundFalse);
 
 
@@ -118,6 +119,7 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
 
 
 function _getLoyaltyCard(ID, callback)
+
 {
     loyaltyCards.find({where: {Id: ID}}).then(function (data) { // we have run the callback inside the .then
         if (data !== null) {
@@ -251,4 +253,6 @@ lc.editLoyaltyCard(8, 1, 3, 7, function(models) {
 
 });
 
- */
+*/
+
+
