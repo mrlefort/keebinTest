@@ -237,6 +237,23 @@ function _userGet(userEmail, callback) {
 
 }; // this one "gets" a user based on email.
 
+function _userGetById(userId, callback) {
+    var userFound3 = false;
+
+    console.log("_userGet is running. Finding: " + userId);
+    User.find({where: {id: userId}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("user with email: " + userId + " found. Name is: " + data.firstName);
+            callback(data);
+
+        } else {
+            console.log(err);
+            console.log("could not find: " + userId);
+            callback(userFound3);
+        }
+    })
+};
+
 
 
 
@@ -297,7 +314,6 @@ function _addCoffeShopUser(userEmail, coffeeShopEmail, callback)
 
 
 
-
 //Virker ikke giver blot antal of fieldNames
 function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
 {
@@ -311,7 +327,32 @@ function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
            // console.log(data.get());
         if(data)
         {
-            callback(data);
+            var returnUsersIds = [];
+            var returnUsers = [];
+            var log = function(inst)
+            {
+                returnUsersIds.push(inst.get().userId);
+            };
+
+            data.forEach(log);
+
+            for(i = 0; i < returnUsersIds.length; i++)
+            {
+                _userGetById(returnUsersIds[i], function(data)
+                {
+                    console.log("pushing :" + data.firstName + " to the array!")
+                    returnUsers.push(data);
+
+                });
+                if(i === returnUsersIds.length-1)
+                {
+                    console.log("her er RUsrs: " + returnUsers);
+                    callback(returnUsers);
+                }
+            }
+
+
+
         }
         if(err)
         {

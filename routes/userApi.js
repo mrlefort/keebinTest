@@ -102,5 +102,50 @@ router.put("/user/:email", function (req, res, next)
     }
 );
 
+//creates a new link between the given customers email and the coffeshops email (can do it with full user
+// and coffeShop objects too, but this info will be available in client, and will save network traffic
+/*
+Example JSON:
+ {
+    "userEmail" : "lars1@gmail.com",
+    "coffeeShopEmail" : "a@a.dk"
+ }
+ */
+router.post("/coffeeshopuser/new", function(req,res,next)
+{
+    var coffeeShopUser = req.body.userEmail;
+    var coffeeShop = req.body.coffeeShopEmail;
+
+    facade.addCoffeeShopUser(coffeeShopUser, coffeeShop, function(status)
+    {
+        if(status !== false)
+        {
+            res.status(200).send();
+        }
+        else
+        {
+            res.status(500).send();
+        }
+    })
+});
+
+
+//Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!
+router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
+{
+    facade.coffeeShopUserGetAll(req.params.coffeshopid, function(data)
+    {
+        if(data !== false)
+        {
+            res.end(JSON.stringify(data));
+        }
+        else
+        {
+            res.status(500).send();
+        }
+    });
+});
+
+
 
 module.exports = router;
