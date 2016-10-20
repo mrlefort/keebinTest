@@ -28,7 +28,7 @@ sequelize.authenticate().then(function (err) {
     }
 }); // Authenticating connection to the MySQL database connection above
 
-function _newRole(RoleN, callback) {
+function _createRole(RoleN, callback) {
 
     console.log("setRoleFound is running. ")
     Role.find({where: {RoleName: RoleN}}).then(function (data) { // we have run the callback inside the .then
@@ -71,11 +71,11 @@ function _newRole(RoleN, callback) {
 
 
 
-function _newUser(newUser, callback) // this creates a user
+function _createUser(newUser, callback) // this creates a user
 {
     var userCreated = false;
 
-    console.log("newUser is running. ")
+    console.log("createUser is running. ")
     User.find({where: {Email: newUser.email}}).then(function (data) { // we have run the callback inside the .then
         if (data !== null){
             console.log("user found - email exists already - " + data.email)
@@ -120,7 +120,7 @@ function _newUser(newUser, callback) // this creates a user
 }
 
 
-function _userPut(userEmail, editUser, callback) {
+function _putUser(userEmail, editUser, callback) {
     var userUpdated = false;
 
         console.log("userPutFind is running. Finding: " + userEmail);
@@ -170,10 +170,10 @@ function _userPut(userEmail, editUser, callback) {
 
 
 
-function _userDelete(userEmail, callback) {
+function _deleteUser(userEmail, callback) {
     var userDeleted = false;
 
-    console.log("_userDelete is running. Finding: " + userEmail);
+    console.log("_deleteUser is running. Finding: " + userEmail);
     User.find({where: {Email: userEmail}}).then(function (data, err) {
         if (data !== null) {
             console.log("user found - ready to DELETE");
@@ -214,10 +214,10 @@ function _userDelete(userEmail, callback) {
 };  //this one deletes user based on email.
 
 
-function _userGet(userEmail, callback) {
+function _getUser(userEmail, callback) {
     var userFound3 = false;
 
-    console.log("_userGet is running. Finding: " + userEmail);
+    console.log("_getUser is running. Finding: " + userEmail);
     User.find({where: {Email: userEmail}}).then(function (data, err) {
         if (data !== null) {
             console.log("user with email: " + userEmail + " found. Name is: " + data.firstName);
@@ -236,6 +236,34 @@ function _userGet(userEmail, callback) {
 
 }; // this one "gets" a user based on email.
 
+function _getAllUsers(callback) {
+    var allUsers = [];
+
+    var log = function(inst)
+    {
+
+        allUsers.push(inst.get());
+    }
+
+    console.log("getAllUsers is running.");
+    User.findAll().then(function (data, err) {
+        if (data !== null) {
+            console.log("her er Users: " + data)
+            data.forEach(log);
+            callback(allUsers);
+
+        } else {
+            console.log(err);
+            console.log("could not find any Users");
+            callback(false);
+
+        }
+
+
+    })
+
+
+};  // this one "gets" all CoffeeShops.
 
 
 function _createCoffeeShop(newCoffeeShop, callback) // this creates a new CoffeeShop
@@ -373,10 +401,10 @@ function _getAllCoffeeShops(callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-function _coffeeShopPut(coffeeShopEmail, editCoffeeShop, callback) {
+function _putCoffeeShop(coffeeShopEmail, editCoffeeShop, callback) {
     var coffeeShopUpdated = false;
 
-    console.log("_coffeeShopPut is running. Finding: " + coffeeShopEmail);
+    console.log("_putCoffeeShop is running. Finding: " + coffeeShopEmail);
     CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err) {
         if (data !== null) {
             console.log("CoffeeShop found - ready to edit");
@@ -518,7 +546,7 @@ function _getOrder(orderId, callback) {
 function _getAllOrdersByUser(userEmail, callback) {
     var allOrdersByUser = [];
 
-    _userGet(userEmail, function (data) {
+    _getUser(userEmail, function (data) {
         var log = function(inst)
         {
             allOrdersByUser.push(inst.get());
@@ -590,7 +618,8 @@ function _createOrderItem(newOrderItem, callback) // This creates a new order - 
 
 
 
-module.exports = {newUser : _newUser, newRole : _newRole, userPut : _userPut, userDelete : _userDelete, userGet : _userGet, createCoffeeShop: _createCoffeeShop,
-deleteCoffeeShop : _deleteCoffeeShop, createOrder : _createOrder, createOrderItem : _createOrderItem, deleteOrder : _deleteOrder, orderGet: _getOrder,
-getCoffeeShop : _getCoffeeShop, coffeeShopPut : _coffeeShopPut, getAllCoffeeShops : _getAllCoffeeShops, getAllOrdersByUser : _getAllOrdersByUser}; // Export Module
+module.exports = {createUser : _createUser, createRole : _createRole, putUser : _putUser, deleteUser : _deleteUser, getUser : _getUser, createCoffeeShop: _createCoffeeShop,
+deleteCoffeeShop : _deleteCoffeeShop, createOrder : _createOrder, createOrderItem : _createOrderItem, deleteOrder : _deleteOrder, getOrder: _getOrder,
+getCoffeeShop : _getCoffeeShop, putCoffeeShop : _putCoffeeShop, getAllCoffeeShops : _getAllCoffeeShops, getAllOrdersByUser : _getAllOrdersByUser,
+getAllUsers : _getAllUsers}; // Export Module
 
