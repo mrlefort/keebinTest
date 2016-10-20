@@ -25,7 +25,7 @@ function _newUser(FirstName, LastName, Email, Role, Birthday, Sex, password)
 
 } // Export Functions
 
-module.exports = {newUser : _newUser}; // Export Module
+module.exports = {createUser : _newUser}; // Export Module
 
 
 
