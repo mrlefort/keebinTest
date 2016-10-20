@@ -40,7 +40,7 @@ function _deleteLoyaltyCard(ID, callback)
 
 }
 
-function _newLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalcallback) {
+function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalcallback) {
     this.brandName = brandName;
     this.numberOfCoffeesBought = numberOfCoffeesBought; //loyaltyCards bliver lavet når man første gang trykker "tilføj kop" til en branch.
     this.userID = userID;
@@ -117,7 +117,7 @@ function _newLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalcallb
 
 
 
-function _findLoyaltyCard(ID, callback)
+function _getLoyaltyCard(ID, callback)
 {
     loyaltyCards.find({where: {Id: ID}}).then(function (data) { // we have run the callback inside the .then
         if (data !== null) {
@@ -143,12 +143,41 @@ function steffen(data) {
 }
 
 
+function _getAllloyaltyCards(callback) {
+    var allloyaltyCards = [];
+
+    var log = function(inst)
+    {
+
+        allloyaltyCards.push(inst.get());
+    }
+
+    console.log("CoffeBrands is running.");
+    loyaltyCards.findAll().then(function (data, err) {
+        if (data !== null) {
+            console.log("her er data: " + data)
+            console.log("CoffeBrands found.");
+            data.forEach(log);
+            callback(allloyaltyCards);
+
+        } else {
+            console.log(err);
+            allloyaltyCards = false;
+            console.log("could not find any CoffeBrands");
+            callback(false);
+
+        }
+
+
+    })
+
+
+};  // this one "gets" all CoffeeShops.
 
 
 
 
-
-function _EditLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought, callback) {
+function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought, callback) {
     loyaltyCards.find({where:{Id:LoyaltyCardID}}).then(function (data, err) {
         if(err){
 
@@ -163,9 +192,9 @@ function _EditLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBough
             data.updateAttributes({
                 numberOfCoffeesBought: numberOfCoffeesBought,
                 userId: userID, brandName: brandName
-            }).then(function (data1) {
+            }).then(function (result) {
                 console.log("LoyaltyCard " + LoyaltyCardID + " has been updated!");
-                callback(true);
+                callback(result);
             })
         }
     });
@@ -182,7 +211,7 @@ function _a (ID, callback) {
 
 // Export Functions
 
-module.exports = {newLoyaltyCard : _newLoyaltyCard, deleteLoyaltyCard : _deleteLoyaltyCard, findLoyaltyCard : _findLoyaltyCard, editLoyaltyCard : _EditLoyaltyCard}; // Export Module/**
+module.exports = {getAllloyaltyCards : _getAllloyaltyCards, createLoyaltyCard : _createLoyaltyCard, deleteLoyaltyCard : _deleteLoyaltyCard, getLoyaltyCard : _getLoyaltyCard, putLoyaltyCard : _putLoyaltyCard}; // Export Module/**
 
 
 // below is a useage of loyality cards in etc Controller.

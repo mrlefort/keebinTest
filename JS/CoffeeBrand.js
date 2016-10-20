@@ -5,7 +5,7 @@ var db = require('./DataBaseCreation.js');
 var conn = db.connect();
 var CoffeeBrand = db.CoffeeBrand();
 
-function _newCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
+function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
 
 
 
@@ -94,9 +94,9 @@ function _deleteCoffeeBrand(CoffeeBrandID, callback)
 }
 
 
-function _findCoffeeBrand(CoffeeBrandID, callback)
+function _getCoffeeBrand(CoffeeBrandID, callback)
 {
-    CoffeBrand.find({where: {Id: CoffeeBrandID}}).then(function (data) { // we have run the callback inside the .then
+    CoffeeBrand.find({where: {Id: CoffeeBrandID}}).then(function (data) { // we have run the callback inside the .then
         console.log("running loyaltycards");
         if (data !== null) {
             console.log("CoffeeBrand found -  " + data.brandName)
@@ -113,7 +113,39 @@ function _findCoffeeBrand(CoffeeBrandID, callback)
 }
 
 
-function _EditCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback) {
+function _getAllCoffeeBrand(callback) {
+    var allCoffeeCoffeeBrands = [];
+
+    var log = function(inst)
+    {
+
+        allCoffeeCoffeeBrands.push(inst.get());
+    }
+
+    console.log("CoffeBrands is running.");
+    CoffeeBrand.findAll().then(function (data, err) {
+        if (data !== null) {
+            console.log("her er data: " + data)
+            console.log("CoffeBrands found.");
+            data.forEach(log);
+            callback(allCoffeeCoffeeBrands);
+
+        } else {
+            console.log(err);
+            allCoffeeCoffeeBrands = false;
+            console.log("could not find any CoffeBrands");
+            callback(false);
+
+        }
+
+
+    })
+
+
+};  // this one "gets" all CoffeeShops.
+
+
+function _putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback) {
     CoffeeBrand.find({where:{id:CoffeeBrandID}}).then(function (data, err) {
         if(err){
 
@@ -126,12 +158,12 @@ function _EditCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, 
 
             data.updateAttributes({
                 brandName: CoffeeBrandName, numberOfCoffeeNeeded : numberOfCoffeeNeeded
-            }).then(function (data1) {
+            }).then(function (result) {
                 console.log(CoffeeBrandName + " has been updated!");
-                callback(true);
+                callback(result);
             })
         }
     });
 }
-
-module.exports = {newCoffeeBrand : _newCoffeeBrand, deleteCoffeeBrand: _deleteCoffeeBrand, findCoffeeBrand : _findCoffeeBrand, editCoffeeBrand : _EditCoffeeBrand};
+// put delete get create
+module.exports = {getAllCoffeeBrands : _getAllCoffeeBrand, createCoffeeBrand : _createCoffeeBrand, deleteCoffeeBrand: _deleteCoffeeBrand, getCoffeeBrand : _getCoffeeBrand, putCoffeeBrand : _putCoffeeBrand};

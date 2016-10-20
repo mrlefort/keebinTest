@@ -7,7 +7,7 @@ var db = require('./DataBaseCreation.js');
 var conn = db.connect();
 var Role = db.Role();
 
-function _newRole(RoleName, callback) {
+function _createRole(RoleName, callback) {
 
 
 
@@ -111,8 +111,38 @@ function _findRole(ID, callback)
 
 }
 
+function _getAllRoles(callback) {
+    var allRoles = [];
 
-function _EditRole(RoleID, RoleName, callback) {
+    var log = function(inst)
+    {
+
+        allRoles.push(inst.get());
+    }
+
+    console.log("Roles is running.");
+    Role.findAll().then(function (data, err) {
+        if (data !== null) {
+            console.log("her er data: " + data)
+            console.log("Roles found.");
+            data.forEach(log);
+            callback(allRoles);
+
+        } else {
+            console.log(err);
+            allRoles = false;
+            console.log("could not find any Roles");
+            callback(false);
+
+        }
+
+
+    })
+
+
+};  // this one "gets" all CoffeeShops.
+
+function _putRole(RoleID, RoleName, callback) {
     Role.find({where:{Id:RoleID}}).then(function (data, err) {
         if(err){
 
@@ -124,12 +154,12 @@ function _EditRole(RoleID, RoleName, callback) {
             console.log("Trying to update Role - " + RoleName)
             data.updateAttributes({
                 roleName: RoleName
-            }).then(function (data1) {
+            }).then(function (result) {
                 console.log("Role - " + RoleName + " has been successfully updated!");
-                callback(true);
+                callback(result);
             })
         }
     });
 }
 
-module.exports = {newRole : _newRole, deleteRole: _deleteRole, findRole : _findRole, editRole : _EditRole};
+module.exports = {getAllRoles : _getAllRoles, createRole : _createRole, deleteRole: _deleteRole, getRole : _findRole, putRole : _putRole};

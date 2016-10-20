@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbe6b159-6525-4353-ac99-ef176ef3cc64" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/JS/Role.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/Controller.js" afterPath="$PROJECT_DIR$/JS/Controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/CoffeeBrand.js" afterPath="$PROJECT_DIR$/JS/CoffeeBrand.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/LoyaltyCard.js" afterPath="$PROJECT_DIR$/JS/LoyaltyCard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JS/Role.js" afterPath="$PROJECT_DIR$/JS/Role.js" />
     </list>
     <ignored path="Keebin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +31,8 @@
       <file leaf-file-name="Controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JS/Controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+            <state relative-caret-position="476">
+              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -43,8 +43,8 @@
       <file leaf-file-name="DataBaseCreation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="247" column="21" selection-start-line="247" selection-start-column="21" selection-end-line="247" selection-end-column="21" />
+            <state relative-caret-position="102">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
                 <element signature="e#153#216#0" expanded="false" />
@@ -89,7 +89,7 @@
                 <element signature="n#!!block;n#_CoffeeShop#0" expanded="false" />
                 <element signature="n#!!block;n#_CoffeeShopUsers#0" expanded="false" />
                 <element signature="n#!!block;n#_OrderItem#0" expanded="false" />
-                <marker date="1476465398501" expanded="true" signature="2737:2763" ph="..." />
+                <marker date="1476968794255" expanded="true" signature="2737:2763" ph="..." />
               </folding>
             </state>
           </provider>
@@ -128,10 +128,9 @@
       <file leaf-file-name="DataBaseFacade.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1388">
-              <caret line="87" column="1" selection-start-line="29" selection-start-column="0" selection-end-line="87" selection-end-column="1" />
+            <state relative-caret-position="-932">
+              <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
               <folding>
-                <element signature="e#0#41#0" expanded="false" />
                 <element signature="n#!!block;n#_newUser#0" expanded="false" />
                 <element signature="n#!!block;n#_newPass#0" expanded="false" />
                 <element signature="e#5723#5793#0" expanded="false" />
@@ -143,8 +142,8 @@
       <file leaf-file-name="LoyaltyCard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/LoyaltyCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3762">
-              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state relative-caret-position="-924">
+              <caret line="179" column="15" selection-start-line="179" selection-start-column="9" selection-end-line="179" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -153,8 +152,8 @@
       <file leaf-file-name="CoffeeBrand.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/CoffeeBrand.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="2914">
+              <caret line="96" column="15" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -165,8 +164,8 @@
       <file leaf-file-name="Role.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/Role.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-896">
-              <caret line="97" column="55" selection-start-line="97" selection-start-column="55" selection-end-line="97" selection-end-column="55" />
+            <state relative-caret-position="789">
+              <caret line="144" column="12" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="17" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -204,10 +203,10 @@
         <option value="$PROJECT_DIR$/JS/User.js" />
         <option value="$PROJECT_DIR$/JS/DataBaseFacade.js" />
         <option value="$PROJECT_DIR$/JS/DataBaseCreation.js" />
-        <option value="$PROJECT_DIR$/JS/LoyaltyCard.js" />
-        <option value="$PROJECT_DIR$/JS/Role.js" />
-        <option value="$PROJECT_DIR$/JS/CoffeeBrand.js" />
         <option value="$PROJECT_DIR$/JS/Controller.js" />
+        <option value="$PROJECT_DIR$/JS/Role.js" />
+        <option value="$PROJECT_DIR$/JS/LoyaltyCard.js" />
+        <option value="$PROJECT_DIR$/JS/CoffeeBrand.js" />
       </list>
     </option>
   </component>
@@ -253,8 +252,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -308,13 +307,13 @@
     <configuration default="false" name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
       <method />
     </configuration>
-    <configuration default="false" name="DataBaseCreation.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="DataBaseCreation.js" working-dir="$PROJECT_DIR$/JS">
+    <configuration default="false" name="LoyaltyCard.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="LoyaltyCard.js" working-dir="$PROJECT_DIR$/JS">
+      <method />
+    </configuration>
+    <configuration default="false" name="CoffeeBrand.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="CoffeeBrand.js" working-dir="$PROJECT_DIR$/JS">
       <method />
     </configuration>
     <configuration default="false" name="DataBaseFacade.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="DataBaseFacade.js" working-dir="$PROJECT_DIR$/JS">
-      <method />
-    </configuration>
-    <configuration default="false" name="LoyaltyCard.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="LoyaltyCard.js" working-dir="$PROJECT_DIR$/JS">
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -374,17 +373,17 @@
       <item index="0" class="java.lang.String" itemvalue="Node.js.bin\www" />
       <item index="1" class="java.lang.String" itemvalue="Node.js.Controller.js" />
       <item index="2" class="java.lang.String" itemvalue="Node.js.app.js" />
-      <item index="3" class="java.lang.String" itemvalue="Node.js.DataBaseCreation.js" />
-      <item index="4" class="java.lang.String" itemvalue="Node.js.DataBaseFacade.js" />
-      <item index="5" class="java.lang.String" itemvalue="Node.js.LoyaltyCard.js" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.LoyaltyCard.js" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.CoffeeBrand.js" />
+      <item index="5" class="java.lang.String" itemvalue="Node.js.DataBaseFacade.js" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Node.js.Controller.js" />
-        <item index="1" class="java.lang.String" itemvalue="Node.js.app.js" />
-        <item index="2" class="java.lang.String" itemvalue="Node.js.LoyaltyCard.js" />
-        <item index="3" class="java.lang.String" itemvalue="Node.js.DataBaseCreation.js" />
-        <item index="4" class="java.lang.String" itemvalue="Node.js.DataBaseFacade.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.DataBaseFacade.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.CoffeeBrand.js" />
+        <item index="3" class="java.lang.String" itemvalue="Node.js.app.js" />
+        <item index="4" class="java.lang.String" itemvalue="Node.js.LoyaltyCard.js" />
       </list>
     </recent_temporary>
   </component>
@@ -413,12 +412,13 @@
       <workItem from="1476390094723" duration="1488000" />
       <workItem from="1476465518958" duration="10477000" />
       <workItem from="1476709520125" duration="8267000" />
-      <workItem from="1476869513530" duration="3336000" />
+      <workItem from="1476869513530" duration="3987000" />
+      <workItem from="1476968640910" duration="3282000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77996000" />
+    <option name="totallyTimeSpent" value="81929000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -442,7 +442,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -471,7 +471,7 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="27" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -512,7 +512,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#41#0" expanded="false" />
             <element signature="n#!!block;n#_newUser#0" expanded="false" />
             <element signature="n#!!block;n#_newPass#0" expanded="false" />
             <element signature="e#5723#5793#0" expanded="false" />
@@ -568,7 +567,7 @@
             <element signature="n#!!block;n#_CoffeeShop#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeShopUsers#0" expanded="false" />
             <element signature="n#!!block;n#_OrderItem#0" expanded="false" />
-            <marker date="1476465398501" expanded="true" signature="2737:2763" ph="..." />
+            <marker date="1476968794255" expanded="true" signature="2737:2763" ph="..." />
           </folding>
         </state>
       </provider>
@@ -811,7 +810,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -849,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/DataBaseCreation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="247" column="21" selection-start-line="247" selection-start-column="21" selection-end-line="247" selection-end-column="21" />
+        <state relative-caret-position="102">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
             <element signature="e#153#216#0" expanded="false" />
@@ -895,20 +893,7 @@
             <element signature="n#!!block;n#_CoffeeShop#0" expanded="false" />
             <element signature="n#!!block;n#_CoffeeShopUsers#0" expanded="false" />
             <element signature="n#!!block;n#_OrderItem#0" expanded="false" />
-            <marker date="1476465398501" expanded="true" signature="2737:2763" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1388">
-          <caret line="87" column="1" selection-start-line="29" selection-start-column="0" selection-end-line="87" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-            <element signature="n#!!block;n#_newUser#0" expanded="false" />
-            <element signature="n#!!block;n#_newPass#0" expanded="false" />
-            <element signature="e#5723#5793#0" expanded="false" />
+            <marker date="1476968794255" expanded="true" signature="2737:2763" ph="..." />
           </folding>
         </state>
       </provider>
@@ -921,28 +906,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JS/LoyaltyCard.js">
+    <entry file="file://$PROJECT_DIR$/JS/DataBaseFacade.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3762">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-932">
+          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+          <folding>
+            <element signature="n#!!block;n#_newUser#0" expanded="false" />
+            <element signature="n#!!block;n#_newPass#0" expanded="false" />
+            <element signature="e#5723#5793#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/Role.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-896">
-          <caret line="97" column="55" selection-start-line="97" selection-start-column="55" selection-end-line="97" selection-end-column="55" />
+        <state relative-caret-position="789">
+          <caret line="144" column="12" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="17" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/JS/LoyaltyCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-924">
+          <caret line="179" column="15" selection-start-line="179" selection-start-column="9" selection-end-line="179" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JS/CoffeeBrand.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="2914">
+          <caret line="96" column="15" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
@@ -951,8 +948,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/Controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+        <state relative-caret-position="476">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
