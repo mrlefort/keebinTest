@@ -139,6 +139,16 @@ var coffeeShop = sequelize.define('coffeeShop', {
 }); // coffeeShop table setup
 
 var coffeeShopUsers = sequelize.define('coffeeShopUsers', {
+    // userEmail :
+    // {
+    //     type: Sequelize.STRING, // here we decide parameters for this field in the table
+    //     Validate : {notNull : true, isEmail: true}
+    // },
+    // coffeeShopEmail :
+    // {
+    //     type: Sequelize.STRING, // here we decide parameters for this field in the table
+    //     Validate : {notNull : true, isEmail: true}
+    // }
 
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -171,6 +181,10 @@ loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
 
 coffeeShop.hasMany(coffeeKind);
 coffeeKind.belongsTo(coffeeShop);
+
+coffeeShopUsers.belongsTo(user);
+coffeeShop.hasMany(coffeeShopUsers);
+coffeeShopUsers.belongsTo(coffeeShop);
 
 user.hasMany(order);
 order.belongsTo(user);

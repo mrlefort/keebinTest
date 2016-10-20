@@ -17,57 +17,73 @@ var CoffeeShopUsers = db.CoffeeShopUsers();
 var OrderItem = db.OrderItem(); //Setting up the requires
 
 
+var sequelize = db.connect(); // Establishing connection to the MySQL database schema called keebin
 
- var sequelize = db.connect(); // Establishing connection to the MySQL database schema called keebin
-
-sequelize.authenticate().then(function (err) {
-    if (err) {
-        console.log('There is connection in ERROR');
-    } else {
-        console.log('Connection has been established successfully');
+sequelize.authenticate().then(function (err)
+    {
+        if (err)
+        {
+            console.log('There is connection in ERROR');
+        } else
+        {
+            console.log('Connection has been established successfully');
+        }
     }
-}); // Authenticating connection to the MySQL database connection above
+); // Authenticating connection to the MySQL database connection above
+
 
 function _createRole(RoleN, callback) {
 
+
     console.log("setRoleFound is running. ")
-    Role.find({where: {RoleName: RoleN}}).then(function (data) { // we have run the callback inside the .then
-        var roleCreated = true;
-        if (data !== null){
-            console.log("role found " + data.roleName)
-            roleCreated = false;
-            callback(roleCreated);
-
-        } else {
-            return sequelize.transaction(function (t) {
-
-
-                // chain all your queries here. make sure you return them.
-                return Role.create({
-                    roleName: RoleN
-
-
-                }, {transaction: t}) // kom her til
-
-            }).then(function (result) {
-                roleCreated = true;
-                console.log("Transaction has been committed - Role has been saved to the DB.");
+    Role.find({where: {RoleName: RoleN}}).then(function (data)
+        { // we have run the callback inside the .then
+            var roleCreated = true;
+            if (data !== null)
+            {
+                console.log("role found " + data.roleName)
+                roleCreated = false;
                 callback(roleCreated);
 
-                // Transaction has been committed
-                // result is whatever the result of the promise chain returned to the transaction callback
-            }).catch(function (err) {
-                console.log(err);
-                callback(roleCreated);
-                // Transaction has been rolled back
-                // err is whatever rejected the promise chain returned to the transaction callback
-            });
+            } else
+            {
+                return sequelize.transaction(function (t)
+                    {
+
+
+                        // chain all your queries here. make sure you return them.
+                        return Role.create({
+                                roleName: RoleN
+
+
+                            }, {transaction: t}
+                        ) // kom her til
+
+                    }
+                ).then(function (result)
+                    {
+                        roleCreated = true;
+                        console.log("Transaction has been committed - Role has been saved to the DB.");
+                        callback(roleCreated);
+
+                        // Transaction has been committed
+                        // result is whatever the result of the promise chain returned to the transaction callback
+                    }
+                ).catch(function (err)
+                    {
+                        console.log(err);
+                        callback(roleCreated);
+                        // Transaction has been rolled back
+                        // err is whatever rejected the promise chain returned to the transaction callback
+                    }
+                );
+            }
+
+
         }
-
-
-
-    })
+    )
 };  //create role if roleN does not exist already.
+
 
 
 
@@ -77,7 +93,7 @@ function _createUser(newUser, callback) // this creates a user
 
     console.log("createUser is running. ")
     User.find({where: {Email: newUser.email}}).then(function (data) { // we have run the callback inside the .then
-        if (data !== null){
+        if (data !== null) {
             console.log("user found - email exists already - " + data.email)
             callback(userCreated);
         } else {
@@ -109,24 +125,26 @@ function _createUser(newUser, callback) // this creates a user
                 // err is whatever rejected the promise chain returned to the transaction callback
             })
         }
-        })
-
-
-
-
-
-
-
+    })
 }
 
 
+
+
+
+
+
 function _putUser(userEmail, editUser, callback) {
+
     var userUpdated = false;
 
-        console.log("userPutFind is running. Finding: " + userEmail);
-        User.find({where: {Email: userEmail}}).then(function (data, err) {
-            if (data !== null) {
+    console.log("userPutFind is running. Finding: " + userEmail);
+    User.find({where: {Email: userEmail}}).then(function (data, err)
+        {
+            if (data !== null)
+            {
                 console.log("user found - ready to edit");
+
 
 
                 return sequelize.transaction(function (t) {
@@ -156,17 +174,18 @@ function _putUser(userEmail, editUser, callback) {
                     // err is whatever rejected the promise chain returned to the transaction callback
                 });
             } else {
+
                 console.log(err);
                 console.log("could not find: " + editUser.email);
                 callback(userUpdated);
             }
 
 
-        })
+        }
+    )
 
 
-    }; // this edits user based on email.
-
+}; // this edits user based on email.
 
 
 
@@ -211,7 +230,8 @@ function _deleteUser(userEmail, callback) {
     })
 
 
-};  //this one deletes user based on email.
+}; //this one deletes user based on email.
+
 
 
 function _getUser(userEmail, callback) {
@@ -228,13 +248,16 @@ function _getUser(userEmail, callback) {
             console.log("could not find: " + userEmail);
             callback(userFound3);
 
+
+            }
+
+
         }
-
-
-    })
+    )
 
 
 }; // this one "gets" a user based on email.
+
 
 function _getAllUsers(callback) {
     var allUsers = [];
@@ -345,7 +368,31 @@ function _deleteCoffeeShop(coffeeShopEmail, callback) {
     })
 
 
-};  //this one deletes order based on id.
+}; //this one deletes order based on id.
+
+
+
+function _getUserById(userId, callback)
+{
+                var userFound3 = false;
+
+                console.log("_userGet is running. Finding: " + userId);
+                User.find({where: {id: userId}}).then(function (data, err)
+                    {
+                        if (data !== null)
+                        {
+                            console.log("user with email: " + userId + " found. Name is: " + data.firstName);
+                            callback(data);
+
+                        } else
+                        {
+                            console.log(err);
+                            console.log("could not find: " + userId);
+                            callback(userFound3);
+                        }
+                    }
+                )
+}; //get one user from the DB by ID.
 
 function _getCoffeeShop(coffeeShopEmail, callback) {
     var coffeeShopFound = false;
@@ -616,10 +663,138 @@ function _createOrderItem(newOrderItem, callback) // This creates a new order - 
 
 
 
+//COFFEESHOPUSER STARTS HERE
+function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
+{
+    var status = false;
+    var theCoffeShopUser;
+    var theCoffeeShop;
+    _userGet(userEmail, function (data)
+        {
+            if (data !== false)
+            {
+                theCoffeShopUser = data;
+                CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err)
+                    {
+                        if (data)
+                        {
+                            theCoffeeShop = data;
+                            return sequelize.transaction(function (t)
+                                {
+
+                                    // chain all your queries here. make sure you return them.
+                                    return CoffeeShopUsers.create({
+
+                                            userId: theCoffeShopUser.id,
+                                            coffeeShopId: theCoffeeShop.id
+
+                                        }, {transaction: t}
+                                    )
+
+                                }
+                            ).then(function (result)
+                                {
+                                    console.log("Transaction has been committed - coffeeShopUser has been saved to the DB");
+                                    status = true;
+                                    callback(status);
+
+                                    // Transaction has been committed
+                                    // result is whatever the result of the promise chain returned to the transaction callback
+                                }
+                            ).catch(function (err)
+                                {
+                                    console.log(err);
+                                    callback(status);
+                                    // Transaction has been rolled back
+                                    // err is whatever rejected the promise chain returned to the transaction callback
+                                }
+                            )
+                        }
+                        else
+                        {
+                            callback(status);
+                        }
+                    }
+                );
+            }
+            else
+            {
+                callback(status);
+            }
+        }
+    );
+};
+
+
+function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
+{
+    var usersFound = false;
+    CoffeeShopUsers.findAll({
+            where: {
+                coffeeShopId: coffeeShopId
+            }
+        }
+    ).then(function (data, err)
+        {
+            // console.logId(data.get());
+            if (data)
+            {
+                var returnUsersIds = [];
+                var returnUsers = [];
+                var logId = function (inst)
+                {
+
+                    returnUsersIds.push(inst.get().userId);
+                };
+                var logPers = function (inst)
+                {
+                    delete inst.get().password;
+                    returnUsers.push(inst.get());
+                };
+
+                data.forEach(logId);
+
+                console.log("her er rusrids: "+returnUsersIds);
+
+                User.findAll({
+                    where:
+                    {
+                        id: returnUsersIds
+                    }
+                }).then(function(data, err)
+                {
+                    if(data)
+                    {
+                        console.log("her er find all usrs data: " + data);
+                        callback(data);
+                    }
+                    if(err)
+                    {
+                        console.log("her er err: " + err)
+                        callback(false);
+                    }
+                });
+
+            }
+            if (err)
+            {
+                console.log("fejl i find all!");
+                callback(usersFound);
+            }
+        }
+    );
+};
+
+
+
+//COFFEESHOPUSER ENDS HERE
+
 
 
 module.exports = {createUser : _createUser, createRole : _createRole, putUser : _putUser, deleteUser : _deleteUser, getUser : _getUser, createCoffeeShop: _createCoffeeShop,
 deleteCoffeeShop : _deleteCoffeeShop, createOrder : _createOrder, createOrderItem : _createOrderItem, deleteOrder : _deleteOrder, getOrder: _getOrder,
 getCoffeeShop : _getCoffeeShop, putCoffeeShop : _putCoffeeShop, getAllCoffeeShops : _getAllCoffeeShops, getAllOrdersByUser : _getAllOrdersByUser,
-getAllUsers : _getAllUsers}; // Export Module
+getAllUsers : _getAllUsers, addCoffeeShopUser: _createCoffeeShopUser, coffeeShopUserGetAll: _getAllCoffeeShopUserByCoffeeShop, getUserById : _getUserById}; // Export Module
+
+
 
