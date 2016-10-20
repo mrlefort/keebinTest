@@ -130,6 +130,16 @@ router.post("/coffeeshopuser/new", function(req,res,next)
 });
 
 
+
+var returner  = function(res, returnString)
+{
+    console.log("her fra returner: " + returnString);
+    res.writeHead(200, {'Content-Type': 'application/json','Content-Length':returnString.length+''});
+    res.write(returnString);
+    res.end();
+}
+
+
 //Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!
 router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
 {
@@ -137,20 +147,21 @@ router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
     {
         if(data !== false)
         {
-            var resPersons = [];
+            var returnString = "";
             for(var i = 0; i < data.length; i++)
             {
-                resPersons.push(data[i]);
-
+                // console.log("i loop ite number: " + i);
+                returnString += JSON.stringify(data[i]) + ",";
             }
-
-            console.log(JSON.stringify("her er res data: " +data));
-            //Følgende console.log giver en error (pga firstName === undefined). Dog er den nødvendig for at responset virker, becourse fuck javaScript! Also this is not a joke!
-            console.log(JSON.stringify("her er res persons: " +resPersons[1].firstName));
-            res.end(JSON.stringify(resPersons));
+                // console.log("abekat!!!!!!!!!!!!!!!!!!!!!!!");
+                console.log("final string: " + returnString);
+                // res.writeHead(200, {'Content-Type': 'application/json','Content-Length':returnString.length+''});
+                // res.write(returnString);
+                res.end(JSON.stringify(data));
         }
         else
         {
+            console.log("i else delen!")
             res.status(500).send();
         }
     });
