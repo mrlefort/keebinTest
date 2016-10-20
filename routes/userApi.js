@@ -90,6 +90,8 @@ router.put("/user/:email", function (req, res, next)
             {
                 if (status === true)
                 {
+                    delete userToSave.password;
+                    res.write(JSON.stringify(userToSave));
                     res.status(200).send();
                 }
                 else
