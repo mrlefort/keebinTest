@@ -16,7 +16,7 @@ function _newOrder(coffeeShopId, platform)
 
 }
 
-function _createOrder(currentUser, newOrder, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
+function _createOrder(currentUser, coffeeShopId, platform, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
     var orderCreated = false;
     console.log("_createOrder is running.")
@@ -25,8 +25,8 @@ function _createOrder(currentUser, newOrder, callback) // This creates a new ord
         // chain all your queries here. make sure you return them.
         return Order.create({
             userId: currentUser.id,
-            coffeeShopId: newOrder.coffeeShopId,
-            platform: newOrder.platform
+            coffeeShopId: coffeeShopId,
+            platform: platform
 
         }, {transaction: t})
 

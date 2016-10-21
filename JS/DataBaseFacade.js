@@ -115,17 +115,10 @@ function _createRole(RoleN, callback) {
 
 
 
-function _createUser(newUser, callback) // this creates a user
+function _createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback) // this creates a user
 {
 
-User.createUser(newUser, callback)
-
-}
-
-function _createNewUserObject(FirstName, LastName, Email, Role, Birthday, Sex, password, callback) // this creates a user
-{
-
-    User.createNewUserObject(FirstName, LastName, Email, Role, Birthday, Sex, password)
+User.createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback)
 
 }
 
@@ -133,9 +126,11 @@ function _createNewUserObject(FirstName, LastName, Email, Role, Birthday, Sex, p
 
 
 
-function _putUser(userEmail, editUser, callback) {
 
- User.putUser(userEmail, editUser, callback);
+
+function _putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback) {
+
+ User.putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback);
 
 }; // this edits user based on email.
 
@@ -169,9 +164,9 @@ function _getUserById(userId, callback)
 
 }; //get one user from the DB by ID.
 
-function _createCoffeeShop(newCoffeeShop, callback) // this creates a new CoffeeShop
+function _createCoffeeShop(email, brandName, address, phone, callback) // this creates a new CoffeeShop
 {
-    CoffeeShop.createCoffeeShop(newCoffeeShop, callback)
+    CoffeeShop.createCoffeeShop(email, brandName, address, phone, callback)
 }
 
 function _deleteCoffeeShop(coffeeShopEmail, callback) {
@@ -194,31 +189,21 @@ function _getAllCoffeeShops(callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-function _putCoffeeShop(coffeeShopEmail, editCoffeeShop, callback) {
+function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callback) {
 
-    CoffeeShop.putCoffeeShop(coffeeShopEmail, editCoffeeShop, callback)
+    CoffeeShop.putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callback)
 
 }; // this edits CoffeeShop based on email.
 
 
-function _newOrderItemObject(orderId, coffeeKindId, quantity)
+
+
+
+
+function _createOrder(currentUser, coffeeShopId, platform, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
 
-    OrderItem.createOrderItem(orderId, coffeeKindId, quantity);
-
-}
-
-function _newOrderObject(coffeeShopId, platform)
-{
-
-    Order.newOrder(coffeeShopId, platform)
-
-}
-
-function _createOrder(currentUser, newOrder, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
-{
-
-    Order.createOrder(currentUser, newOrder, callback)
+    Order.createOrder(currentUser, coffeeShopId, platform, callback)
 
 }
 
@@ -241,10 +226,10 @@ function _getAllOrdersByUser(userEmail, callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-function _createOrderItem(newOrderItem, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
+function _createOrderItem(orderId, coffeeKindId, quantity, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
 
-    OrderItem.createOrderItem(newOrderItem, callback)
+    OrderItem.createOrderItem(orderId, coffeeKindId, quantity, callback)
 
 }
 
@@ -285,9 +270,7 @@ getAllUsers : _getAllUsers, createCoffeeShopUser: _createCoffeeShopUser,
 , deleteLoyaltyCard : _deleteLoyaltyCard, createLoyaltyCard : _createLoyaltyCard, getLoyaltyCard : _getLoyaltyCard,
     getAllloyaltyCards : _getAllloyaltyCards, putLoyaltyCard : _putLoyaltyCard,
     createCoffeeBrand : _createCoffeeBrand, putCoffeeBrand : _putCoffeeBrand, getAllCoffeeBrand : _getAllCoffeeBrand,
-    getCoffeeBrand : _getCoffeeBrand, deleteCoffeeBrand : _deleteCoffeeBrand, createNewUserObject : _createNewUserObject,
-    createOrderItemObject : _newOrderItemObject, createOrderObject : _newOrderObject
-}; // Export Module
+    getCoffeeBrand : _getCoffeeBrand, deleteCoffeeBrand : _deleteCoffeeBrand}; // Export Module
 
 
 

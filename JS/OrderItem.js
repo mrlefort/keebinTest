@@ -20,7 +20,7 @@ function _newOrderItem(orderId, coffeeKindId, quantity)
 
 // Export Functions
 
-function _createOrderItem(newOrderItem, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
+function _createOrderItem(orderId, coffeeKindId, quantity, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
     var orderItemCreated = false;
 
@@ -34,9 +34,9 @@ function _createOrderItem(newOrderItem, callback) // This creates a new order - 
                 console.log("Order with ID " + data.id + " found. Will insert orderItem.")
                 // chain all your queries here. make sure you return them.
                 return OrderItem.create({
-                    Order_ID: newOrderItem.orderId,
-                    CoffeeKind_ID: newOrderItem.coffeeKindId,
-                    quantity: newOrderItem.quantity
+                    Order_ID: orderId,
+                    CoffeeKind_ID: coffeeKindId,
+                    quantity: quantity
 
                 }, {transaction: t})
 

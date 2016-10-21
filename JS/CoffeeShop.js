@@ -19,12 +19,12 @@ function _newCoffeeShop(email, brandName, address, phone)
 
 }
 
-function _createCoffeeShop(newCoffeeShop, callback) // this creates a new CoffeeShop
+function _createCoffeeShop(email, brandName, address, phone, callback) // this creates a new CoffeeShop
 {
     var coffeeShopCreated = false;
 
     console.log("newCoffeeShop is running.")
-    CoffeeShop.find({where: {Email: newCoffeeShop.email}}).then(function (data) { //we check if the CoffeeShop exists based on it's unique email.
+    CoffeeShop.find({where: {Email: email}}).then(function (data) { //we check if the CoffeeShop exists based on it's unique email.
         if (data !== null){
             console.log("CoffeeShop found - email exists already - " + data.email)
             callback(coffeeShopCreated);
@@ -33,10 +33,10 @@ function _createCoffeeShop(newCoffeeShop, callback) // this creates a new Coffee
 
                 // chain all your queries here. make sure you return them.
                 return CoffeeShop.create({
-                    email: newCoffeeShop.email,
-                    brandName: newCoffeeShop.brandName,
-                    address: newCoffeeShop.address,
-                    phone: newCoffeeShop.phone
+                    email: email,
+                    brandName: brandName,
+                    address: address,
+                    phone: phone
 
                 }, {transaction: t})
 
@@ -158,7 +158,7 @@ function _getAllCoffeeShops(callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-function _putCoffeeShop(coffeeShopEmail, editCoffeeShop, callback) {
+function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callback) {
     var coffeeShopUpdated = false;
 
     console.log("_putCoffeeShop is running. Finding: " + coffeeShopEmail);
@@ -171,17 +171,16 @@ function _putCoffeeShop(coffeeShopEmail, editCoffeeShop, callback) {
 
                 // chain all your queries here. make sure you return them.
                 return data.updateAttributes({
-                    email: editCoffeeShop.email,
-                    brandName: editCoffeeShop.brandName,
-                    address: editCoffeeShop.address,
-                    phone: editCoffeeShop.phone
+                    email: email,
+                    brandName: brandName,
+                    address: address,
+                    phone: phone
 
                 }, {transaction: t})
 
-            }).then(function () {
-                console.log("Transaction has been committed - CoffeeShop with email: " + editCoffeeShop.email + ", has been updated and saved to the DB");
-                coffeeShopUpdated = true;
-                callback(coffeeShopUpdated);
+            }).then(function (result) {
+                console.log("Transaction has been committed - CoffeeShop with email: " + result.email + ", has been updated and saved to the DB");
+                callback(result);
 
                 // Transaction has been committed
                 // result is whatever the result of the promise chain returned to the transaction callback
@@ -193,7 +192,7 @@ function _putCoffeeShop(coffeeShopEmail, editCoffeeShop, callback) {
             });
         } else {
             console.log(err);
-            console.log("could not find: " + editCoffeeShop.email);
+            console.log("could not find: " + email);
             callback(coffeeShopUpdated);
         }
 

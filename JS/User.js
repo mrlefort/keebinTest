@@ -15,25 +15,25 @@ var birthday = "";
 var sex = "";
 var password = ""; // Variable Creation
 
-function _newUser(FirstName, LastName, Email, Role, Birthday, Sex, password)
+function _newUser(firstName, lastName, email, role, birthday, sex, password)
 {
-    this.firstName = FirstName;
-    this.lastName = LastName;
-    this.email = Email;
-    this.role = Role;
-    this.birthday = Birthday;
-    this.sex = Sex;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.role = role;
+    this.birthday = birthday;
+    this.sex = sex;
     this.password = password;
 
 } // Export Functions
 
 
-function _createUser(newUser, callback) // this creates a user
+function _createUser(firstName, lastName, email, role, birthday, sex, password, callback) // this creates a user
 {
     var userCreated = false;
 
     console.log("createUser is running. ")
-    User.find({where: {Email: newUser.email}}).then(function (data) { // we have run the callback inside the .then
+    User.find({where: {Email: email}}).then(function (data) { // we have run the callback inside the .then
         if (data !== null) {
             console.log("user found - email exists already - " + data.email)
             callback(userCreated);
@@ -42,13 +42,13 @@ function _createUser(newUser, callback) // this creates a user
 
                 // chain all your queries here. make sure you return them.
                 return User.create({
-                    firstName: newUser.firstName,
-                    lastName: newUser.lastName,
-                    email: newUser.email,
-                    roleId: newUser.role,
-                    birthday: newUser.birthday,
-                    sex: newUser.sex,
-                    password: newUser.password
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    roleId: role,
+                    birthday: birthday,
+                    sex: sex,
+                    password: password
 
                 }, {transaction: t})
 
@@ -75,7 +75,7 @@ function _createUser(newUser, callback) // this creates a user
 
 
 
-function _putUser(userEmail, editUser, callback) {
+function _putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback) {
 
     var userUpdated = false;
 
@@ -92,13 +92,13 @@ function _putUser(userEmail, editUser, callback) {
 
                     // chain all your queries here. make sure you return them.
                     return data.updateAttributes({
-                        firstName: editUser.firstName,
-                        lastName: editUser.lastName,
-                        email: editUser.email,
-                        roleId: editUser.role,
-                        birthday: editUser.birthday,
-                        sex: editUser.sex,
-                        password: editUser.password
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        roleId: role,
+                        birthday: birthday,
+                        sex: sex,
+                        password: password
 
                     }, {transaction: t})
 
