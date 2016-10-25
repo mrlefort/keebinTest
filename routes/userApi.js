@@ -186,7 +186,7 @@ router.post("/user/login", function (req, res)
                     {
 
                      console.log("Found token - " + data);
-                     res.status(200).send();
+                     res.status(200).send(data);
 
                     })
 
