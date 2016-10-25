@@ -7,7 +7,6 @@
 var db = require('./DataBaseFacade.js');
 
 
-
 // the functions under this needs to be moved to db so calling db.new db.newLoyaltyCard('1', '3', '3') will result the same.
 // lc.newLoyaltyCard('1', '1', '3', function(models) {
 
@@ -46,7 +45,7 @@ var db = require('./DataBaseFacade.js');
 //
 // });
 
-               //test data for users
+//test data for users
 
 
 // var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
@@ -58,19 +57,39 @@ var db = require('./DataBaseFacade.js');
 //
 
 
+//test functions for userCRUD - start
 
-             //test functions for userCRUD - start
 
-
-// db.createCoffeeShopUser("lars3@gmail.com", 1, function(status)
+// db.createCoffeeShopUser("lars2@gmail.com", "coffeeShop1@gmail.com", function(status)
 // {
 //     console.log("her er status: " +status);
 // });
 // var john = [];
-// var log = function(inst)
+// var log = function (inst)
 // {
-//   john.push(inst.get());
+//     john.push(inst.get());
 // };
+//
+// db.getAllcoffeeShopUser(1, function (data)
+// {
+//     if (data)
+//     {
+//         console.log("der er coffeUsers");
+//
+//         data.forEach(log);
+//         // var keys = Object.keys(john);
+//         // console.log("keys: " + keys);
+//         console.log(john);
+//         // for(var i = 0; i< john.length; i++)
+//         // {
+//         //     console.log(john.firstName);
+//         // }
+//     }
+//     else
+//     {
+//         console.log("data er falsk");
+//     }
+// });
 
 
 // db.getAllCoffeeShops( function(data)
@@ -91,7 +110,7 @@ var db = require('./DataBaseFacade.js');
 // });
 
 
-
+//
 // var a;
 //
 // db.createRole("Admin", function(data) {
@@ -107,31 +126,29 @@ var db = require('./DataBaseFacade.js');
 //     console.log("Created role in DB - " + b);
 //
 // });
-
-
-
+//
+//
 
 
 // db.createUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345, function(data) {
 //     console.log("User created and saved to the DB - " + data);
 //
 // });
-
-
-
-// db.createUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341, function(data) {
+//
+//
+//
+// db.createUser("test3", "testEfternavn3", "lars3@gmail.com", 2, "09/01/2010", "female", 2341, function(data) {
 //
 //     console.log("User created and saved to the DB - " + data);
 //
 // });
 
 
-// db.putUser("lars1@gmail.com", "test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345, function(data){
+
+// db.putUser("lars3@gmail.com", "test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345, function(data){
 //     console.log("User updated - " + data.email);
-//
+
 // });
-
-
 
 
 // var g;
@@ -160,18 +177,13 @@ var db = require('./DataBaseFacade.js');
 // })
 
 
-
-                 //test functions for userCRUD - end
-
-
-                 //test data for CoffeeShop
+//test functions for userCRUD - end
 
 
+//test data for CoffeeShop
 
 
-
-
-                 // test data for Order
+// test data for Order
 // var user;
 // var testOrder = new orderClass.newOrder(1, "Android");
 // db.getUser("lars1@gmail.com", function (data) {
@@ -211,16 +223,11 @@ var db = require('./DataBaseFacade.js');
 // })
 
 
-
-
 // var l;
 // db.deleteOrder(2, function (data){
 //     l = data;
 //     console.log("Order deleted - " + l);
 // })
-
-
-
 
 
 // db.getAllCoffeeShops( function(data) {

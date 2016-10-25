@@ -76,7 +76,7 @@ function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
 function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
 {
     var usersFound = false;
-    CoffeeShop.findAll({
+    CoffeeShopUsers.findAll({
             where: {
                 coffeeShopId: coffeeShopId
             }

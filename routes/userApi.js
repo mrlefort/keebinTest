@@ -9,7 +9,7 @@ var bcrypt = require('bcryptjs');
 router.delete("/user/:email", function(req, res)
 {
     console.log("param: " + req.params.email)
-    facade.userDelete(req.params.email, function(status)
+    facade.deleteUser(req.params.email, function(status)
     {
         if(status !== false)
         {
@@ -36,7 +36,7 @@ router.post("/user/new", function (req, res, next)
             "sex": req.body.sex,
             "password": pw
         }
-        facade.newUser(userToSave, function (status)
+        facade.createUser(userToSave, function (status)
             {
                 if (status === true)
                 {
@@ -54,7 +54,7 @@ router.post("/user/new", function (req, res, next)
 //Get user by email
 router.get("/user/:email", function (req, res, next)
     {
-        facade.userGet(req.params.email, function (data)
+        facade.getUser(req.params.email, function (data)
             {
                 if (data !== false)
                 {
@@ -81,20 +81,25 @@ router.put("/user/:email", function (req, res, next)
             "firstName": req.body.firstName,
             "lastName": req.body.lastName,
             "email": req.body.email,
-            "role": req.body.role,
+            "role": req.body.roleId,
             "birthday": new Date(req.body.birthday),
             "sex": req.body.sex,
             "password" : pw
         }
-        facade.userPut(req.body.email, userToSave, function (status)
+
+
+        console.log(userToSave.role);
+
+        facade.putUser(userToSave.email,userToSave.firstName,userToSave.lastName,userToSave.email,userToSave.role,userToSave.birthday,userToSave.sex,userToSave.password, function (status)
             {
-                if (status === true)
+                console.log("her er status: " + status)
+                if (status !== false)
                 {
                     delete userToSave.password;
                     res.write(JSON.stringify(userToSave));
                     res.status(200).send();
                 }
-                else
+                if(status ===false)
                 {
                     res.status(500).send();
                 }
@@ -118,7 +123,7 @@ router.post("/coffeeshopuser/new", function(req,res,next)
     var coffeeShopUser = req.body.userEmail;
     var coffeeShop = req.body.coffeeShopEmail;
 
-    facade.addCoffeeShopUser(coffeeShopUser, coffeeShop, function(status)
+    facade.createCoffeeShopUser(coffeeShopUser, coffeeShop, function(status)
     {
         if(status !== false)
         {
@@ -145,8 +150,8 @@ var returner  = function(res, returnString)
 //Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!
 router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
 {
-    facade.coffeeShopUserGetAll(req.params.coffeshopid, function(data)
-    {
+    facade.getAllcoffeeShopUser(req.params.coffeshopid, function(data)
+    {us
         if(data !== false)
         {
             var returnString = "";
