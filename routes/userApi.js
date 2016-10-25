@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var facade = require("../JS/DataBaseFacade.js");
+var facade = require('../JS/DataBaseFacade.js');
 var bcrypt = require('bcryptjs');
-
+var token = require('../JS/Token.js');
 
 
 //Deletes a user by email
@@ -168,6 +168,47 @@ router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
         }
     });
 });
+
+
+//Steffen userLogin start
+
+router.post("/user/login", function (req, res)
+    {
+        facade.getUser(req.body.email, function (data)
+        {
+            if (data !== false)
+            {
+                if(bcrypt.compareSync(req.body.password, data.password)){
+                    //steffen lav the shit
+                    token.getToken(data, function(data)
+                    {
+
+                     console.log("Found token - " + data);
+
+                    })
+
+                } else {
+                    res.status(747).send(); //747 skal give brugernavn eller kodeord forkert.
+                }
+
+
+
+            }
+            else
+            {
+                res.status(747).send(); //747 skal give brugernavn eller kodeord forkert.
+            }
+        })
+
+
+    }
+);
+
+
+
+//Steffen userLogin slut
+
+
 
 
 

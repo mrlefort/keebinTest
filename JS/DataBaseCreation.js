@@ -167,6 +167,18 @@ var orderItem = sequelize.define('orderItem', {
 
 }); // orderItem table setup
 
+
+var authentication = sequelize.define('authentication', {
+    secret: {
+        type: Sequelize.STRING,
+        Validate : {notNull : true}
+    }
+}, {
+    freezeTableName: true, // Model tableName will be the same as the model name
+    timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
+
+}); // coffeeBrand table setup
+
 role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
@@ -213,7 +225,12 @@ coffeeKind.sync();
 order.sync();
 coffeeShop.sync();
 coffeeShopUsers.sync();
-orderItem.sync(); // Creating Tables
+orderItem.sync();
+authentication.sync();
+// Creating Tables
+
+
+
 function _Role()
 {
     return role;
@@ -264,8 +281,14 @@ function _connect()
 {
     return sequelize;
 }
+
+function _authentication()
+{
+    return authentication;
+}
+
 // Export Functions // Export Functions
 
 module.exports = {Role : _Role, User : _User, CoffeeBrand : _CoffeeBrand,
     LoyaltyCards : _LoyaltyCards, CoffeeKind : _CoffeeKind, Order : _Order, CoffeeShop : _CoffeeShop,
-    CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect}; // Export Module
+    CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect, Authentication : _authentication}; // Export Module
