@@ -4,14 +4,13 @@ var facade = require("../JS/DataBaseFacade.js");
 var bcrypt = require('bcryptjs');
 
 
-
 //Deletes a user by email
-router.delete("/user/:email", function(req, res)
+router.delete("/user/:email", function (req, res)
 {
     console.log("param: " + req.params.email)
-    facade.deleteUser(req.params.email, function(status)
+    facade.deleteUser(req.params.email, function (status)
     {
-        if(status !== false)
+        if (status !== false)
         {
             res.status(200).send();
         }
@@ -21,6 +20,7 @@ router.delete("/user/:email", function(req, res)
         }
     });
 });
+
 //New User
 router.post("/user/new", function (req, res, next)
     {
@@ -36,7 +36,7 @@ router.post("/user/new", function (req, res, next)
             "sex": req.body.sex,
             "password": pw
         }
-        facade.createUser(userToSave, function (status)
+        facade.createUser(userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status)
             {
                 if (status === true)
                 {
@@ -55,19 +55,18 @@ router.post("/user/new", function (req, res, next)
 router.get("/user/:email", function (req, res, next)
     {
         facade.getUser(req.params.email, function (data)
+        {
+            if (data !== false)
             {
-                if (data !== false)
-                {
-                    res.writeHead(200, {"Content-Type": "application/json"});
+                res.writeHead(200, {"Content-Type": "application/json"});
 
-                    res.end(JSON.stringify(data));
-                }
-                else
-                {
-                    res.status(500).send();
-                }
+                res.end(JSON.stringify(data));
             }
-        );
+            else
+            {
+                res.status(500).send();
+            }
+        });
     }
 );
 
@@ -84,13 +83,13 @@ router.put("/user/:email", function (req, res, next)
             "role": req.body.roleId,
             "birthday": new Date(req.body.birthday),
             "sex": req.body.sex,
-            "password" : pw
+            "password": pw
         }
 
 
         console.log(userToSave.role);
 
-        facade.putUser(userToSave.email,userToSave.firstName,userToSave.lastName,userToSave.email,userToSave.role,userToSave.birthday,userToSave.sex,userToSave.password, function (status)
+        facade.putUser(userToSave.email, userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status)
             {
                 console.log("her er status: " + status)
                 if (status !== false)
@@ -99,7 +98,7 @@ router.put("/user/:email", function (req, res, next)
                     res.write(JSON.stringify(userToSave));
                     res.status(200).send();
                 }
-                if(status ===false)
+                if (status === false)
                 {
                     res.status(500).send();
                 }
@@ -112,20 +111,20 @@ router.put("/user/:email", function (req, res, next)
 //creates a new link between the given customers email and the coffeshops email (can do it with full user
 // and coffeShop objects too, but this info will be available in client, and will save network traffic
 /*
-Example JSON:
+ Example JSON:
  {
-    "userEmail" : "lars1@gmail.com",
-    "coffeeShopEmail" : "a@a.dk"
+ "userEmail" : "lars1@gmail.com",
+ "coffeeShopEmail" : "a@a.dk"
  }
  */
-router.post("/coffeeshopuser/new", function(req,res,next)
+router.post("/coffeeshopuser/new", function (req, res, next)
 {
     var coffeeShopUser = req.body.userEmail;
     var coffeeShop = req.body.coffeeShopEmail;
 
-    facade.createCoffeeShopUser(coffeeShopUser, coffeeShop, function(status)
+    facade.createCoffeeShopUser(coffeeShopUser, coffeeShop, function (status)
     {
-        if(status !== false)
+        if (status !== false)
         {
             res.status(200).send();
         }
@@ -137,34 +136,34 @@ router.post("/coffeeshopuser/new", function(req,res,next)
 });
 
 
-
-var returner  = function(res, returnString)
+var returner = function (res, returnString)
 {
     console.log("her fra returner: " + returnString);
-    res.writeHead(200, {'Content-Type': 'application/json','Content-Length':returnString.length+''});
+    res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': returnString.length + ''});
     res.write(returnString);
     res.end();
 }
 
 
 //Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!
-router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
+router.get("/coffeshopuser/:coffeshopid", function (req, res, next)
 {
-    facade.getAllcoffeeShopUser(req.params.coffeshopid, function(data)
-    {us
-        if(data !== false)
+    facade.getAllcoffeeShopUser(req.params.coffeshopid, function (data)
+    {
+        us
+        if (data !== false)
         {
             var returnString = "";
-            for(var i = 0; i < data.length; i++)
+            for (var i = 0; i < data.length; i++)
             {
                 // console.log("i loop ite number: " + i);
                 returnString += JSON.stringify(data[i]) + ",";
             }
-                // console.log("abekat!!!!!!!!!!!!!!!!!!!!!!!");
-                console.log("final string: " + returnString);
-                // res.writeHead(200, {'Content-Type': 'application/json','Content-Length':returnString.length+''});
-                // res.write(returnString);
-                res.end(JSON.stringify(data));
+            // console.log("abekat!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log("final string: " + returnString);
+            // res.writeHead(200, {'Content-Type': 'application/json','Content-Length':returnString.length+''});
+            // res.write(returnString);
+            res.end(JSON.stringify(data));
         }
         else
         {
@@ -173,7 +172,6 @@ router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
         }
     });
 });
-
 
 
 module.exports = router;
