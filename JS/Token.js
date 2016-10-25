@@ -6,7 +6,7 @@ var db = require('./DataBaseCreation.js');
 var jwt = require('jsonwebtoken');
 var auth = db.Authentication();
 
-var userData = "lars";
+
 
 function _getToken(userData)
 {
@@ -53,7 +53,6 @@ var createClaim = function (userData, secretKey) {
 }
 
 
-_getToken(userData);
 
 
 module.exports = {getToken : _getToken};

@@ -31,12 +31,12 @@ router.post("/user/new", function (req, res, next)
             "firstName": req.body.firstName,
             "lastName": req.body.lastName,
             "email": req.body.email,
-            "role": req.body.role,
+            "role": req.body.roleId,
             "birthday": new Date(req.body.birthday),
             "sex": req.body.sex,
             "password": pw
         }
-        facade.newUser(userToSave, function (status)
+        facade.createUser(userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status)
             {
                 if (status === true)
                 {
@@ -174,8 +174,10 @@ router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
 
 router.post("/user/login", function (req, res)
     {
+        console.log("her er email " + req.body.email)
         facade.getUser(req.body.email, function (data)
         {
+
             if (data !== false)
             {
                 if(bcrypt.compareSync(req.body.password, data.password)){
@@ -184,6 +186,7 @@ router.post("/user/login", function (req, res)
                     {
 
                      console.log("Found token - " + data);
+                     res.status(200).send();
 
                     })
 
