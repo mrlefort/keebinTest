@@ -15,7 +15,7 @@ function _createSecret(secretKey) // this creates a secret. ONLY TO BE RUN ONCE
 {
 
     console.log("_createSecret is running.")
-    Auth.find({where: {id: 1}}).then(function (data) { //we check if the CoffeeShop exists based on it's unique email.
+    Auth.find({where: {id: 1}}).then(function (data) { //check if a secret already exists
         if (data !== null){
             console.log("secret already exists")
 
@@ -44,3 +44,23 @@ function _createSecret(secretKey) // this creates a secret. ONLY TO BE RUN ONCE
 }
 
 //Token creation
+
+function _getSecretKey(callback)
+{
+    Auth.find({where: {id: 1}}).then(function (data, err)
+    {
+        if (data !== null) {
+            console.log(data.secret);
+            secretKey = data.secret;
+            callback(secretKey);
+
+
+        } else {
+            console.log(err);
+            console.log("could not find any secret");
+        }
+    })
+}
+
+
+module.exports = {getSecretKey : _getSecretKey()};

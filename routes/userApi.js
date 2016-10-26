@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var facade = require('../JS/DataBaseFacade.js');
 var bcrypt = require('bcryptjs');
-var token = require('../JS/Token.js');
+var Token = require('../JS/Token.js');
+var jwt = require('jsonwebtoken');
+var Secret = require('../JS/Secret.js');
 
 
 //Deletes a user by email
@@ -174,24 +176,30 @@ router.get("/coffeshopuser/:coffeshopid", function(req, res, next)
 
 router.post("/user/login", function (req, res)
     {
+
+        //her skal vi tjekke om der er en accessToken, eller en refreshToken og sammenligner den med vores secretKey.
+
+
         console.log("her er email " + req.body.email)
         facade.getUser(req.body.email, function (data)
         {
 
             if (data !== false)
             {
+
                 if(bcrypt.compareSync(req.body.password, data.password)){
-                    //steffen lav the shit
-                    token.getToken(data, function(data)
+                    //steffen laver the shit
+                    Token.getToken(data, function(accessToken)
                     {
 
-                     console.log("Found token - " + data);
-                     res.status(200).send(data);
+                     console.log("Found accessToken - " + accessToken);
+                        res.status(200).send(accessToken);
+
 
                     })
 
                 } else {
-                    res.status(747).send(); //747 skal give brugernavn eller kodeord forkert.
+                    res.status(747).send(); //747 returns that the username or password is incorrect.
                 }
 
 
@@ -199,7 +207,7 @@ router.post("/user/login", function (req, res)
             }
             else
             {
-                res.status(747).send(); //747 skal give brugernavn eller kodeord forkert.
+                res.status(747).send(); //747 returns that the username or password is incorrect.
             }
         })
 
@@ -207,6 +215,43 @@ router.post("/user/login", function (req, res)
     }
 );
 
+
+router.use("/user/authentication", function(req, res) {
+    var secretKey;
+
+    var getSecret = Secret.getSecretKey(function (data) {
+       secretKey = data;
+    })
+
+    if (getSecret) {
+        // check header  for Token
+        var token = req.headers['accessToken']; //det er navnet vi skal give token i cookie fra client? - tror jeg.
+
+        // decode Token
+        if (token) {
+
+            // verifies secret and checks exp
+            jwt.verify(token, secretKey, function (err, decoded) {
+                if (err) {
+                    return res.json({success: false, message: 'Failed to authenticate Token.'});
+                } else {
+                    // if everything is good, save to request for use in other routes
+                    req.decoded = decoded;
+                    res.redirect("/home");
+                }
+            });
+
+        } else {
+
+            // if there is no Token
+            // return an error
+            return res.status(403).send({
+                success: false,
+                message: 'No Token provided.'
+            })
+        }
+    }
+});
 
 
 //Steffen userLogin slut

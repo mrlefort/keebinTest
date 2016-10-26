@@ -6,7 +6,8 @@ var db = require('./DataBaseCreation.js');
 var jwt = require('jsonwebtoken');
 var auth = db.Authentication();
 
-var token;
+
+var accessToken;
 
 function _getToken(userData, callback)
 {
@@ -16,7 +17,7 @@ function _getToken(userData, callback)
             console.log(data.secret);
             secretKey = data.secret;
             createClaim(userData, secretKey);
-            callback(token);
+            callback(accessToken);
 
 
         } else {
@@ -27,32 +28,39 @@ function _getToken(userData, callback)
 }
 
 
-function createToken(claims, secretKey)
-{
-
-
-    console.log(secretKey);
-    token = jwt.sign({
-        data: claims
-    }, secretKey, { expiresIn: 3600 });
-
-    console.log("token er blevet lavet: " + token); //this is what our token looks like.
-
-}
-
-var createClaim = function (userData, secretKey) {
+function createClaim(userData, secretKey) {
 
     var claims =
     {
         sub: userData.id,
-        iss: "vores_url",
+        iss: "my server url",
         email: userData.email
 
 
 
     }
-    createToken(claims, secretKey);
+    createAccessToken(claims, secretKey);
 }
+
+
+
+
+function createAccessToken(claims, secretKey)
+{
+
+
+    console.log(secretKey);
+    accessToken = jwt.sign({
+        data: claims
+    }, secretKey, { expiresIn: 3600 });
+
+    console.log("Token has been created: " + accessToken); //this is what our accessToken looks like.
+
+}
+
+
+
+
 
 
 
