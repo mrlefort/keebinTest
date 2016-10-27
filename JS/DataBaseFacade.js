@@ -84,7 +84,7 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
 function _getLoyaltyCard(ID, callback)
 {
 
-LoyaltyCards.getAllloyaltyCards(ID, callback)
+LoyaltyCards.getLoyaltyCard(ID, callback)
 
 }
 
@@ -111,9 +111,29 @@ function _createRole(RoleN, callback) {
 };  //create role if roleN does not exist already.
 
 
+function _deleteRole(RoleId, callback) {
 
+    Role.deleteRole(RoleId, callback)
 
+};  //create role if roleN does not exist already.
 
+function _putRole(RoleId, NewRoleName, callback) {
+
+    Role.putRole(RoleId, NewRoleName, callback)
+
+};  //create role if roleN does not exist already.
+
+function _getRole(RoleId, callback) {
+
+    Role.getRole(RoleId, callback)
+
+};  //create role if roleN does not exist already.
+
+function _getAllRoles(callback) {
+
+    Role.getAllRoles(callback)
+
+};  //create role if roleN does not exist already.
 
 function _createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback) // this creates a user
 {
@@ -270,7 +290,7 @@ getAllUsers : _getAllUsers, createCoffeeShopUser: _createCoffeeShopUser,
 , deleteLoyaltyCard : _deleteLoyaltyCard, createLoyaltyCard : _createLoyaltyCard, getLoyaltyCard : _getLoyaltyCard,
     getAllloyaltyCards : _getAllloyaltyCards, putLoyaltyCard : _putLoyaltyCard,
     createCoffeeBrand : _createCoffeeBrand, putCoffeeBrand : _putCoffeeBrand, getAllCoffeeBrand : _getAllCoffeeBrand,
-    getCoffeeBrand : _getCoffeeBrand, deleteCoffeeBrand : _deleteCoffeeBrand}; // Export Module
+    getCoffeeBrand : _getCoffeeBrand, deleteCoffeeBrand : _deleteCoffeeBrand, deleteRole : _deleteRole, putRole : _putRole, getRole : _getRole, getAllRoles :  _getAllRoles}; // Export Module
 
 
 

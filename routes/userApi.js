@@ -4,6 +4,8 @@ var facade = require("../JS/DataBaseFacade.js");
 var bcrypt = require('bcryptjs');
 
 
+
+
 //Deletes a user by email
 router.delete("/user/:email", function (req, res)
 {
@@ -20,6 +22,8 @@ router.delete("/user/:email", function (req, res)
         }
     });
 });
+
+
 
 //New User
 router.post("/user/new", function (req, res, next)
@@ -51,10 +55,67 @@ router.post("/user/new", function (req, res, next)
     }
 );
 
+router.post("/card/new", function (req, res, next)
+    {
+        var brandID = req.body.brandName;
+        facade.createLoyaltyCard(brandID, req.body.userId, req.body.numberOfCoffeesBought, function (status)
+            {
+                if (status === true)
+                {
+                    res.status(200).send();
+                }
+                else
+                {
+                    res.status(500).send();
+                }
+            }
+        );
+    }
+);
+
+
+//New User
+router.post("/role/new", function (req, res, next)
+    {
+
+        facade.createRole(req.body.roleName, function (status)
+            {
+                if (status === true)
+                {
+                    res.status(200).send();
+                }
+                else
+                {
+                    res.status(500).send();
+                }
+            }
+        );
+    }
+);
+
 //Get user by email
 router.get("/user/:email", function (req, res, next)
     {
         facade.getUser(req.params.email, function (data)
+        {
+            if (data !== false)
+            {
+                res.writeHead(200, {"Content-Type": "application/json"});
+
+                res.end(JSON.stringify(data));
+            }
+            else
+            {
+                res.status(500).send();
+            }
+        });
+    }
+);
+
+
+router.get("/card/:LoyaltyCardId", function (req, res)
+    {
+        facade.getLoyaltyCard(req.params.LoyaltyCardId, function (data)
         {
             if (data !== false)
             {
@@ -108,6 +169,45 @@ router.put("/user/:email", function (req, res, next)
     }
 );
 
+router.put("/role/:roleId", function (req, res, next)
+    {
+        facade.putRole(req.params.roleId, req.body.role, function (status)
+            {
+                if (status !== false)
+                {
+                    res.write(JSON.stringify(status));
+                    res.status(200).send();
+                }
+                if (status === false)
+                {
+                    res.status(500).send();
+                }
+            }
+        );
+
+    }
+);
+
+router.put("/card/:LoyaltyCard", function (req, res, next)
+    {
+        var LoyaltyCardID = req.params.LoyaltyCard;
+        facade.putLoyaltyCard(LoyaltyCardID, req.body.brandName, req.body.userId, req.body.numberOfCoffeesBought, function (status)
+            {
+                if (status !== false)
+                {
+                    res.write(JSON.stringify(status));
+                    res.status(200).send();
+                }
+                if (status === false)
+                {
+                    res.status(500).send();
+                }
+            }
+        );
+
+    }
+);
+
 //creates a new link between the given customers email and the coffeshops email (can do it with full user
 // and coffeShop objects too, but this info will be available in client, and will save network traffic
 /*
@@ -117,23 +217,6 @@ router.put("/user/:email", function (req, res, next)
  "coffeeShopEmail" : "a@a.dk"
  }
  */
-router.post("/coffeeshopuser/new", function (req, res, next)
-{
-    var coffeeShopUser = req.body.userEmail;
-    var coffeeShop = req.body.coffeeShopEmail;
-
-    facade.createCoffeeShopUser(coffeeShopUser, coffeeShop, function (status)
-    {
-        if (status !== false)
-        {
-            res.status(200).send();
-        }
-        else
-        {
-            res.status(500).send();
-        }
-    })
-});
 
 
 var returner = function (res, returnString)
@@ -144,34 +227,46 @@ var returner = function (res, returnString)
     res.end();
 }
 
-
-//Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!
-router.get("/coffeshopuser/:coffeshopid", function (req, res, next)
+// get all roles
+router.get("/role/all", function (req, res, next)
 {
-    facade.getAllcoffeeShopUser(req.params.coffeshopid, function (data)
+
+    facade.getAllRoles( function (status)
     {
-        us
-        if (data !== false)
+        if (status !== false)
         {
-            var returnString = "";
-            for (var i = 0; i < data.length; i++)
-            {
-                // console.log("i loop ite number: " + i);
-                returnString += JSON.stringify(data[i]) + ",";
-            }
-            // console.log("abekat!!!!!!!!!!!!!!!!!!!!!!!");
-            console.log("final string: " + returnString);
-            // res.writeHead(200, {'Content-Type': 'application/json','Content-Length':returnString.length+''});
-            // res.write(returnString);
-            res.end(JSON.stringify(data));
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(status));
         }
         else
         {
-            console.log("i else delen!")
             res.status(500).send();
         }
-    });
+    })
 });
+
+router.get("/allcards/all", function (req, res)
+{
+
+    facade.getAllloyaltyCards( function (status)
+    {
+        if (status !== false)
+        {
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(status));
+        }
+        else
+        {
+            res.status(500).send();
+        }
+    })
+});
+
+
+
+
+
+//Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!
 
 
 module.exports = router;

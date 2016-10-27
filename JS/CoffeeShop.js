@@ -108,7 +108,7 @@ function _getCoffeeShop(coffeeShopEmail, callback) {
     var coffeeShopFound = false;
 
     console.log("_getCoffeeShop is running. Finding coffeeShop with email: " + coffeeShopEmail);
-    CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err) {
+    CoffeeShop.find({where: {email: coffeeShopEmail}}).then(function (data, err) {
         if (data !== null) {
             console.log("CoffeeShop with email: " + data.email + " found.");
             callback(data);
@@ -162,7 +162,7 @@ function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callb
     var coffeeShopUpdated = false;
 
     console.log("_putCoffeeShop is running. Finding: " + coffeeShopEmail);
-    CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err) {
+    CoffeeShop.find({where: {email: coffeeShopEmail}}).then(function (data, err) {
         if (data !== null) {
             console.log("CoffeeShop found - ready to edit");
 

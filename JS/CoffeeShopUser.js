@@ -3,13 +3,14 @@
  */
 //COFFEESHOPUSER STARTS HERE
 
-
 var db = require('./DataBaseCreation.js');
 var sequelize = db.connect();
 var CoffeeShop = db.CoffeeShop();
 var CoffeeShopUsers = db.CoffeeShopUsers();
+var facade = require('./DataBaseFacade.js')
 var user = db.User();
-var fuser = require('./User.js');;
+var fuser = require('./User.js');
+var shop = require('./CoffeeShop.js');
 
 function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
 {
@@ -75,6 +76,7 @@ function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
 
 function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
 {
+
     var usersFound = false;
     CoffeeShopUsers.findAll({
             where: {
@@ -86,11 +88,12 @@ function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
             // console.logId(data.get());
             if (data)
             {
+                console.log("here! " + data);
                 var returnUsersIds = [];
                 var returnUsers = [];
                 var logId = function (inst)
                 {
-
+                    console.log("her fra log ID - " + inst.get().userId);
                     returnUsersIds.push(inst.get().userId);
                 };
                 var logPers = function (inst)
@@ -112,8 +115,9 @@ function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
                 {
                     if(data)
                     {
+                        data.forEach(logPers);
                         console.log("her er find all usrs data: " + data);
-                        callback(data);
+                        callback(returnUsers);
                     }
                     if(err)
                     {

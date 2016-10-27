@@ -5,7 +5,8 @@
 
 var db = require('./DataBaseCreation.js');
 var sequelize = db.connect();
-var Order = db.OrderItem();
+var Order = db.Order();
+var facade = require('./User.js');
 
 var platform;
 
@@ -16,7 +17,7 @@ function _newOrder(coffeeShopId, platform)
 
 }
 
-function _createOrder(currentUser, coffeeShopId, platform, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
+function _createOrder(currentUserId, coffeeShopId, platform, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
     var orderCreated = false;
     console.log("_createOrder is running.")
@@ -24,14 +25,14 @@ function _createOrder(currentUser, coffeeShopId, platform, callback) // This cre
     return sequelize.transaction(function (t) {
         // chain all your queries here. make sure you return them.
         return Order.create({
-            userId: currentUser.id,
+            userId: currentUserId,
             coffeeShopId: coffeeShopId,
             platform: platform
 
         }, {transaction: t})
 
     }).then(function (result) {
-        console.log("Transaction has been committed - Order has been saved to the DB - to user with ID: " + currentUser.id);
+        console.log("Transaction has been committed - Order has been saved to the DB - to user with ID: " + currentUserId);
         orderCreated = true;
         callback(orderCreated);
 
@@ -116,14 +117,17 @@ function _getOrder(orderId, callback) {
 function _getAllOrdersByUser(userEmail, callback) {
     var allOrdersByUser = [];
 
-    _getUser(userEmail, function (data) {
+
+
+
+    facade.getUser(userEmail, function (data) {
+
         var log = function(inst)
         {
             allOrdersByUser.push(inst.get());
         }
 
         console.log("_getAllOrdersByUser is running.");
-        console.log(" her er users email " + data.email + " og her er hans id: " + data.id);
         Order.findAll({where: {userId: data.id}}).then(function (data, err) {
             if (data !== null) {
                 console.log("Orders found - her er orders: " + data);

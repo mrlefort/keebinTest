@@ -5,8 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/userApi');
-var users = require('./routes/users');
+var users = require('./routes/userApi');
+var coffee = require('./routes/coffeeApi');
+var order = require('./routes/orderApi');
+
 
 var app = express();
 
@@ -22,8 +24,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', routes);
-app.use('/users', users);
+app.use('/api/users', users); // User + Role + LoyaltyCard -- Done
+app.use('/api/coffee', coffee); // everything to do with Coffee brand, shop, shopuser... -- Mangler
+app.use('/api/order', order); // order + orderitem --- DONE
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
