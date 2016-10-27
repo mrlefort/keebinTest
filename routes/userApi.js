@@ -5,6 +5,7 @@ var bcrypt = require('bcryptjs');
 var Token = require('../JS/Token.js');
 var jwt = require('jsonwebtoken');
 var Secret = require('../JS/Secret.js');
+var User = require('../JS/User.js');
 
 
 //Deletes a user by email
@@ -186,19 +187,29 @@ router.post("/user/login", function (req, res)
 
             if (data !== false)
             {
+                console.log("req pass: " + req.body.password + "data pass: " + data.password);
 
                 if(bcrypt.compareSync(req.body.password, data.password)){
+                    console.log("vi er logget ind")
                     //steffen laver the shit
+                    var refreshToken = null;
+                    Token.createRefreshToken(data.id, function (newRefreshTokenCreated) {
+                        console.log("vi kører refreshTOken")
+                        refreshToken = newRefreshTokenCreated.refreshToken;
+
                     Token.getToken(data, function(accessToken)
                     {
-
+                        console.log("vi kører accessToken")
                      console.log("Found accessToken - " + accessToken);
-                        res.status(200).send(accessToken);
+                        console.log("Found refreshToken - " + refreshToken);
+                        var tokens = {"accessToken": accessToken, "refreshToken": refreshToken}
+                        res.status(200).send(JSON.stringify(tokens));
 
 
-                    })
-
+                    });
+                });
                 } else {
+                    console.log("vi bliver bare smidt herned")
                     res.status(747).send(); //747 returns that the username or password is incorrect.
                 }
 
@@ -219,27 +230,56 @@ router.post("/user/login", function (req, res)
 router.post("/user/authentication", function(req, res) {
     var secretKey;
 
+    // Her henter vi først secretKey
     var getSecret = Secret.getSecretKey(function (data) {
        secretKey = data;
-        console.log("got secretKey: " + secretKey);
 
 
+    //Hvis vi finder secretKey går vi videre.
     if (getSecret !== null) {
         // check header  for Token
-        console.log("checking if there is a token.")
-        var token = req.body["accessToken"]; //det er navnet vi skal give token i cookie fra client? - tror jeg.
+        console.log("checking if there is a accessToken.")
+        var accessToken = req.body["accessToken"]; //det er navnet vi skal give accessToken i request fra client.
 
         // decode Token
-        if (token) {
-            console.log("Verifying said token.")
-            // verifies secret and checks exp
-            jwt.verify(token, secretKey, function (err, decoded) {
+        if (accessToken) {
+            console.log("Verifying said accessToken.")
+            // verifies Token
+            jwt.verify(accessToken, secretKey, function (err, decoded) {
                 if (err) {
+                    console.log("accessToken blev ikke verified.")
+                    var refreshToken = req.body["refreshToken"];
+                    //hvis vi finder en refreshToken
+                    if (refreshToken)
+                    {
+                        console.log("verifying refreshToken: " + refreshToken);
+
+                        User.getUserByRefreshToken(refreshToken, function (data)
+                        {
+
+                            if (data === false){
+                                console.log("kunne ikke verify refreshToken")
+                                //det virkede ikke vi sender user til Login.
+                                res.redirect(307, '/api/user/login');
+                            } else {
+                                console.log("refreshToken blev verified, laver ny accessToken");
+                                //Hvis vi får lavet en ny accessToken sender vi user til home med en accessToken. Den skal client gemme i sharedPreferences og lave en ny cookie med den i.
+                                //lav ny accessToken
+
+                                Token.getToken(JSON.stringify(data), function (data) {
+                                    console.log("Success vi har fået en ny accessToken")
+                                    newAccessToken = data;
+                                    res.redirect(307, '/home');
+                                });
+
+                            }
+                        });
+                    }
                     //her skal vi tjekke på refreshToken før vi går videre nedenunder.
-                    return res.json({success: false, message: 'Failed to authenticate Token.'});
                 } else {
                     // if everything is good, save to request for use in other routes
                     req.decoded = decoded;
+                    console.log("here is token decoded: " + JSON.stringify(decoded));
                     res.redirect(200, "/home"); //redirect til appens "home" side
                 }
             });

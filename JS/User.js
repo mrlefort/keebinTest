@@ -199,6 +199,31 @@ function _getUser(userEmail, callback) {
 
 }; // this one "gets" a user based on email.
 
+function _getUserByRefreshToken(refreshToken, callback) {
+    var userFound = false;
+
+    console.log("_getUserByRefreshToken is running. Finding: " + refreshToken);
+    User.find({where: {refreshToken: refreshToken}}).then(function (data, err) {
+            if (data !== null) {
+                console.log("user with refreshToken: " + refreshToken + " found. Name is: " + data.firstName);
+                userFound = true;
+                callback(data);
+
+            } else {
+                console.log(err);
+                console.log("could not find: " + refreshToken);
+                callback(userFound);
+
+
+            }
+
+
+        }
+    )
+
+
+}; // this one "gets" a user based on email.
+
 
 function _getAllUsers(callback) {
     var allUsers = [];
@@ -252,7 +277,8 @@ function _getUserById(userId, callback)
     )
 }; //get one user from the DB by ID.
 
-module.exports = {createNewUserObject : _newUser, getUserById : _getUserById, createUser : _createUser, putUser : _putUser, deleteUser : _deleteUser, getUser : _getUser, getAllUsers : _getAllUsers}; // Export Module
+module.exports = {createNewUserObject : _newUser, getUserById : _getUserById, createUser : _createUser, putUser : _putUser, deleteUser : _deleteUser, getUser : _getUser, getAllUsers : _getAllUsers,
+    getUserByRefreshToken : _getUserByRefreshToken}; // Export Module
 
 
 

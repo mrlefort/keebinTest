@@ -112,10 +112,10 @@ var db = require('./DataBaseFacade.js');
 
 
 
-db.createUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345, function(data) {
-    console.log("User created and saved to the DB - " + data);
-
-});
+// db.createUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345, function(data) {
+//     console.log("User created and saved to the DB - " + data);
+//
+// });
 
 
 

@@ -50,6 +50,10 @@ var user = sequelize.define('user', {
     password: {
         type: Sequelize.STRING,
         Validate: {notNull : true}
+    },
+    refreshToken: {
+        type: Sequelize.STRING,
+        Validate: {notNull : false}
     }
 
 }, {
