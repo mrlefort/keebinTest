@@ -63,4 +63,4 @@ function _getSecretKey(callback)
 }
 
 
-module.exports = {getSecretKey : _getSecretKey()};
+module.exports = {getSecretKey : _getSecretKey};

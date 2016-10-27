@@ -216,41 +216,42 @@ router.post("/user/login", function (req, res)
 );
 
 
-router.use("/user/authentication", function(req, res) {
+router.post("/user/authentication", function(req, res) {
     var secretKey;
 
     var getSecret = Secret.getSecretKey(function (data) {
        secretKey = data;
-    })
+        console.log("got secretKey: " + secretKey);
 
-    if (getSecret) {
+
+    if (getSecret !== null) {
         // check header  for Token
+        console.log("checking if there is a token.")
         var token = req.headers['accessToken']; //det er navnet vi skal give token i cookie fra client? - tror jeg.
 
         // decode Token
         if (token) {
-
+            console.log("Verifying said token.")
             // verifies secret and checks exp
             jwt.verify(token, secretKey, function (err, decoded) {
                 if (err) {
+                    //her skal vi tjekke på refreshToken før vi går videre nedenunder.
                     return res.json({success: false, message: 'Failed to authenticate Token.'});
                 } else {
                     // if everything is good, save to request for use in other routes
                     req.decoded = decoded;
-                    res.redirect("/home");
+                    res.redirect(200, "/home"); //redirect til appens "home" side
                 }
             });
 
         } else {
-
+            console.log("No Token found will start redirecting...")
             // if there is no Token
-            // return an error
-            return res.status(403).send({
-                success: false,
-                message: 'No Token provided.'
-            })
+            //redirect user to login page.
+            res.redirect(307, '/api/user/login');
         }
     }
+    })
 });
 
 

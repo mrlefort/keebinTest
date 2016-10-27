@@ -139,16 +139,7 @@ var coffeeShop = sequelize.define('coffeeShop', {
 }); // coffeeShop table setup
 
 var coffeeShopUsers = sequelize.define('coffeeShopUsers', {
-    // userEmail :
-    // {
-    //     type: Sequelize.STRING, // here we decide parameters for this field in the table
-    //     Validate : {notNull : true, isEmail: true}
-    // },
-    // coffeeShopEmail :
-    // {
-    //     type: Sequelize.STRING, // here we decide parameters for this field in the table
-    //     Validate : {notNull : true, isEmail: true}
-    // }
+    //denne tabel tager 2 foreignkeys fra andre tabeller. Den skal ikke indholde "noget af sig selv".
 
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
