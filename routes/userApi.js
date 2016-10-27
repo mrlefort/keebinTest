@@ -227,7 +227,7 @@ router.post("/user/authentication", function(req, res) {
     if (getSecret !== null) {
         // check header  for Token
         console.log("checking if there is a token.")
-        var token = req.headers['accessToken']; //det er navnet vi skal give token i cookie fra client? - tror jeg.
+        var token = req.body["accessToken"]; //det er navnet vi skal give token i cookie fra client? - tror jeg.
 
         // decode Token
         if (token) {
