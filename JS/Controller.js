@@ -3,15 +3,8 @@
  */
 
 
-var userClass = require('./User.js');
+
 var db = require('./DataBaseFacade.js');
-
-var coffeeShopClass = require('./CoffeeShop.js');
-var orderClass = require('./Order.js');
-var orderItemClass = require('./OrderItem.js');
-
-var lc = require('./LoyaltyCard.js');
-
 
 
 // the functions under this needs to be moved to db so calling db.new db.newLoyaltyCard('1', '3', '3') will result the same.
@@ -52,39 +45,60 @@ var lc = require('./LoyaltyCard.js');
 //
 // });
 
-               //test data for users
+//test data for users
 
 
-var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
-var test2 = new userClass.newUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341);
-var test3 = new userClass.newUser("test3", "testEfternavn3", "lars3@gmail.com", 3, "09/09/2010", "male", 12345);
-
-var updateTest = new userClass.newUser("test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345);
-var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.com", 1, "09/09/2010", "male", 12345);
-
-
-
-
-             //test functions for userCRUD - start
+// var test = new userClass.newUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345);
+// var test2 = new userClass.newUser("test2", "testEfternavn2", "lars2@gmail.com", 2, "09/01/2010", "female", 2341);
+// var test3 = new userClass.newUser("test3", "testEfternavn3", "lars3@gmail.com", 3, "09/09/2010", "male", 12345);
+//
+// var updateTest = new userClass.newUser("test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345);
+// var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.com", 1, "09/09/2010", "male", 12345);
+//
 
 
-// db.addCoffeeShopUser("lars3@gmail.com", 1, function(status)
+//test functions for userCRUD - start
+
+
+// db.createCoffeeShopUser("lars2@gmail.com", "coffeeShop1@gmail.com", function(status)
 // {
 //     console.log("her er status: " +status);
 // });
 // var john = [];
-// var log = function(inst)
+// var log = function (inst)
 // {
-//   john.push(inst.get());
+//     john.push(inst.get());
 // };
 //
-// db.coffeeShopUserGetAll(1, function(data)
+// db.getAllcoffeeShopUser(1, function (data)
+// {
+//     if (data)
+//     {
+//         console.log("der er coffeUsers");
+//
+//         data.forEach(log);
+//         // var keys = Object.keys(john);
+//         // console.log("keys: " + keys);
+//         console.log(john);
+//         // for(var i = 0; i< john.length; i++)
+//         // {
+//         //     console.log(john.firstName);
+//         // }
+//     }
+//     else
+//     {
+//         console.log("data er falsk");
+//     }
+// });
+
+
+// db.getAllCoffeeShops( function(data)
 // {
 //     if(data !== false)
 //     {
 //         data.forEach(log);
 //
-//         console.log("her er john: " + john[0].userId)
+//         console.log("her er john: " + john[0].id)
 //         // var keys = Object.keys(data[0]);
 //         // console.log("keys: " +keys);
 //         console.log("data er ikke falsk : " + data);
@@ -112,42 +126,29 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //     console.log("Created role in DB - " + b);
 //
 // });
+//
+//
 
 
-//
-// var c;
-//
-// db.createUser(test, function(data) {
-//     c = data;
-//     console.log("User created and saved to the DB - " + c);
+// db.createUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345, function(data) {
+//     console.log("User created and saved to the DB - " + data);
 //
 // });
 //
-// var d;
 //
-
-// db.createUser(test2, function(data) {
-
-//     d = data;
-//     console.log("User created and saved to the DB - " + d);
+//
+// db.createUser("test3", "testEfternavn3", "lars3@gmail.com", 2, "09/01/2010", "female", 2341, function(data) {
+//
+//     console.log("User created and saved to the DB - " + data);
 //
 // });
 
-// var e;
-//
-// db.putUser("lars1@gmail.com", updateTest, function(data){
-//     e = data;
-//     console.log("User updated - " + e.email);
-//
-// });
 
-// var f;
-//
-// db.putUser("lars2@gmail.com", updateTest2, function(data){
-//     f = data;
-//     console.log("User updated - " + f);
-// });
 
+// db.putUser("lars3@gmail.com", "test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345, function(data){
+//     console.log("User updated - " + data.email);
+
+// });
 
 
 // var g;
@@ -176,23 +177,13 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 // })
 
 
-
-                 //test functions for userCRUD - end
-
-
-                 //test data for CoffeeShop
-// var testCoffeeShop = new coffeeShopClass.newCoffeeShop("coffeeShop2@gmail.com", 1, "Langelandsvej 1", 25417858);
-//
-//
-// //test functions for CoffeeShop
-// var i;
-// db.createCoffeeShop(testCoffeeShop, function (data) {
-//     i = data;
-//     console.log("CoffeeShop created - " + i);
-// });
+//test functions for userCRUD - end
 
 
-                 // test data for Order
+//test data for CoffeeShop
+
+
+// test data for Order
 // var user;
 // var testOrder = new orderClass.newOrder(1, "Android");
 // db.getUser("lars1@gmail.com", function (data) {
@@ -205,13 +196,17 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //     });
 // });
 
-
+// db.createCoffeeBrand("Baresso", 5, function (data) {
+//     console.log("CoffeeBrand created - " + data);
+// });
 
 //test functions for CoffeeShop
 
+// test functions for CoffeeShop
+// db.createCoffeeShop("coffeeShop1@gmail.com", 1, "Langelandsvej 1", 25417858, function (data) {
+//     console.log("CoffeeShop created - " + data);
+// });
 
-
-                 //test data for OrderItem
 // var testOrderItem = new orderItemClass.newOrderItem(2, 1, 3);
 //
 //
@@ -250,4 +245,9 @@ var updateTest2 = new userClass.newUser("test4", "testEfternavn", "lars@gmail.co
 //         console.log(data[i]);
 //     }
 // })
+//
+
+
+
+
 
