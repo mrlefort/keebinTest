@@ -202,6 +202,7 @@ function _getUser(userEmail, callback) {
 function _getUserByRefreshToken(refreshToken, callback) {
     var userFound = false;
 
+    //her tjekker vi om præcis den refreshToken findes hos en user.
     console.log("_getUserByRefreshToken is running. Finding: " + refreshToken);
     User.find({where: {refreshToken: refreshToken}}).then(function (data, err) {
             if (data !== null) {
@@ -277,8 +278,57 @@ function _getUserById(userId, callback)
     )
 }; //get one user from the DB by ID.
 
+
+function _logoutUser(userEmail, callback) {
+
+
+    console.log("_logoutUser is running. Finding: " + userEmail);
+    User.find({where: {Email: userEmail}}).then(function (data, err)
+        {
+            if (data !== null)
+            {
+                console.log("user found - ready to Logout");
+
+                return sequelize.transaction(function (t) {
+
+                    // chain all your queries here. make sure you return them.
+                    return data.updateAttributes({
+
+                        refreshToken: null
+
+
+                    }, {transaction: t})
+
+                }).then(function (result) {
+                    console.log("Transaction has been committed - user with email: " + result.email + ", has been logged out and refreshToken deleted in the DB");
+                    callback(result);
+
+                    // Transaction has been committed
+                    // result is whatever the result of the promise chain returned to the transaction callback
+                }).catch(function (err) {
+                    console.log(err);
+                    callback(false);
+                    // Transaction has been rolled back
+                    // err is whatever rejected the promise chain returned to the transaction callback
+                });
+            } else {
+
+                console.log(err);
+                console.log("could not find: " + editUser.email);
+                callback(false);
+            }
+
+
+        }
+    )
+
+
+}; // this logs out user by deleting refreshToken.
+
+
+
 module.exports = {createNewUserObject : _newUser, getUserById : _getUserById, createUser : _createUser, putUser : _putUser, deleteUser : _deleteUser, getUser : _getUser, getAllUsers : _getAllUsers,
-    getUserByRefreshToken : _getUserByRefreshToken}; // Export Module
+    getUserByRefreshToken : _getUserByRefreshToken, logoutUser : _logoutUser}; // Export Module
 
 
 

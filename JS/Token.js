@@ -57,7 +57,7 @@ function createAccessToken(claims, secretKey)
     //create accessToken
     accessToken = jwt.sign({
         data: claims
-    }, secretKey, { expiresIn: 30 });
+    }, secretKey, { expiresIn: 1800 });
 
 
 
@@ -68,6 +68,7 @@ function createAccessToken(claims, secretKey)
 //create refreshToken - this happens every time a user logs in.
 function _createRefreshToken(userId, callback) {
 
+    //vi putter userId ind forrest sådan så reFreshToken altid vil være unik.
     var refreshToken = userId + uuid.v4();
     console.log("here is a new refreshToken: " + refreshToken)
     console.log("user Id is: " + userId)

@@ -249,6 +249,7 @@ router.post("/user/authentication", function(req, res) {
                 if (err) {
                     console.log("accessToken blev ikke verified.")
                     var refreshToken = req.body["refreshToken"];
+
                     //hvis vi finder en refreshToken
                     if (refreshToken)
                     {
@@ -256,12 +257,13 @@ router.post("/user/authentication", function(req, res) {
 
                         User.getUserByRefreshToken(refreshToken, function (data)
                         {
-
+                            //her skal vi tjekke på refreshToken før vi går videre nedenunder.
                             if (data === false){
                                 console.log("kunne ikke verify refreshToken")
                                 //det virkede ikke vi sender user til Login.
                                 res.redirect(307, '/api/user/login');
                             } else {
+
                                 console.log("refreshToken blev verified, laver ny accessToken");
                                 //Hvis vi får lavet en ny accessToken sender vi user til home med en accessToken. Den skal client gemme i sharedPreferences og lave en ny cookie med den i.
                                 //lav ny accessToken
@@ -275,12 +277,12 @@ router.post("/user/authentication", function(req, res) {
                             }
                         });
                     }
-                    //her skal vi tjekke på refreshToken før vi går videre nedenunder.
+
                 } else {
                     // if everything is good, save to request for use in other routes
                     req.decoded = decoded;
-                    console.log("here is token decoded: " + JSON.stringify(decoded));
-                    res.redirect(200, "/home"); //redirect til appens "home" side
+                    console.log("here is accessToken decoded: " + JSON.stringify(decoded));
+                    res.redirect(307, "/home"); //redirect til appens "home" side - Kan ikke finde ud af hvordan jeg sender decoded med. Skal jeg lave en cookie?
                 }
             });
 
@@ -295,7 +297,24 @@ router.post("/user/authentication", function(req, res) {
 });
 
 
-//Steffen userLogin slut
+router.post("/user/logout", function (req, res)
+{
+    console.log("kører api/logout")
+        User.logoutUser(req.body.email, function (data)
+        {
+            if (data)
+            {
+                res.redirect(200, "/api/user/login");
+            } else {
+                console.log("det gik galt")
+            }
+        })
+});
+
+
+
+
+//Steffen userLogin, userAuth og userLogout slut
 
 
 
