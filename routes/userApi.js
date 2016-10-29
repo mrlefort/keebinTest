@@ -58,8 +58,7 @@ router.post("/user/new", function (req, res, next)
 // WORKS
 router.post("/card/new", function (req, res, next)
     {
-        var brandID = req.body.brandName;
-        facade.createLoyaltyCard(brandID, req.body.userId, req.body.numberOfCoffeesBought, function (status)
+        facade.createLoyaltyCard(req.body.brandID, req.body.userId, req.body.numberOfCoffeesBought, function (status)
             {
                 if (status === true)
                 {
