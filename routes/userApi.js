@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs');
 
 
 
-//Deletes a user by email
+//Deletes a user by email -- WORKS
 router.delete("/user/:email", function (req, res)
 {
     console.log("param: " + req.params.email)
@@ -25,7 +25,7 @@ router.delete("/user/:email", function (req, res)
 
 
 
-//New User
+//New User  -- WORKS
 router.post("/user/new", function (req, res, next)
     {
         var salt = bcrypt.genSaltSync(12);
@@ -55,6 +55,7 @@ router.post("/user/new", function (req, res, next)
     }
 );
 
+// WORKS
 router.post("/card/new", function (req, res, next)
     {
         var brandID = req.body.brandName;
@@ -74,7 +75,7 @@ router.post("/card/new", function (req, res, next)
 );
 
 
-//New User
+//New Role -- WORKS
 router.post("/role/new", function (req, res, next)
     {
 
@@ -93,7 +94,7 @@ router.post("/role/new", function (req, res, next)
     }
 );
 
-//Get user by email
+//Get user by email -- WORKS
 router.get("/user/:email", function (req, res, next)
     {
         facade.getUser(req.params.email, function (data)
@@ -112,7 +113,7 @@ router.get("/user/:email", function (req, res, next)
     }
 );
 
-
+// WORKS
 router.get("/card/:LoyaltyCardId", function (req, res)
     {
         facade.getLoyaltyCard(req.params.LoyaltyCardId, function (data)
@@ -131,7 +132,7 @@ router.get("/card/:LoyaltyCardId", function (req, res)
     }
 );
 
-//Edit a user expects the full input
+//Edit a user expects the full input -- WORKS (Returns the edited user)
 router.put("/user/:email", function (req, res, next)
     {
         var salt = bcrypt.genSaltSync(10);
@@ -141,7 +142,7 @@ router.put("/user/:email", function (req, res, next)
             "firstName": req.body.firstName,
             "lastName": req.body.lastName,
             "email": req.body.email,
-            "role": req.body.roleId,
+            "role": req.body.role,
             "birthday": new Date(req.body.birthday),
             "sex": req.body.sex,
             "password": pw
@@ -169,9 +170,10 @@ router.put("/user/:email", function (req, res, next)
     }
 );
 
+// WORKS
 router.put("/role/:roleId", function (req, res, next)
     {
-        facade.putRole(req.params.roleId, req.body.role, function (status)
+        facade.putRole(req.params.roleId, req.body.roleName, function (status)
             {
                 if (status !== false)
                 {
@@ -188,6 +190,7 @@ router.put("/role/:roleId", function (req, res, next)
     }
 );
 
+// WORKS
 router.put("/card/:LoyaltyCard", function (req, res, next)
     {
         var LoyaltyCardID = req.params.LoyaltyCard;
@@ -227,8 +230,8 @@ var returner = function (res, returnString)
     res.end();
 }
 
-// get all roles
-router.get("/role/all", function (req, res, next)
+// get all roles WORKS
+router.get("/allroles/", function (req, res, next)
 {
 
     facade.getAllRoles( function (status)
@@ -245,7 +248,9 @@ router.get("/role/all", function (req, res, next)
     })
 });
 
-router.get("/allcards/all", function (req, res)
+
+// WORKS
+router.get("/allcards/", function (req, res)
 {
 
     facade.getAllloyaltyCards( function (status)
@@ -262,8 +267,23 @@ router.get("/allcards/all", function (req, res)
     })
 });
 
+// WORKS
+router.get("/allusers/", function (req, res)
+{
 
-
+    facade.getAllUsers( function (status)
+    {
+        if (status !== false)
+        {
+            res.writeHead(200, {"Content-Type": "application/json"});
+            res.end(JSON.stringify(status));
+        }
+        else
+        {
+            res.status(500).send();
+        }
+    })
+});
 
 
 //Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!

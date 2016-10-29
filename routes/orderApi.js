@@ -12,7 +12,7 @@ var facade = require("../JS/DataBaseFacade.js");
 
 
 
-//Deletes a order by OrderId
+//Deletes a order by OrderId -- WORKS
 router.delete("/order/:id", function (req, res)
 {
     facade.deleteOrder(req.params.id, function (status)
@@ -28,7 +28,7 @@ router.delete("/order/:id", function (req, res)
     });
 });
 
-//New Order
+//New Order -- WORKS..
 router.post("/order/new", function (req, res, next)
     {
        console.log("id here! - " + req.body.userId)
@@ -47,7 +47,7 @@ router.post("/order/new", function (req, res, next)
     }
 );
 
-//Get order by OrderId
+//Get order by OrderId -- WORKS
 router.get("/order/:orderId", function (req, res, next)
     {
         facade.getOrder(req.params.orderId, function (data)
@@ -76,6 +76,8 @@ router.get("/order/:orderId", function (req, res, next)
  "coffeeShopEmail" : "a@a.dk"
  }
  */
+
+// WORKS
 router.get("/from/:email", function (req, res, next)
 {
     var email = req.params.email;
@@ -94,7 +96,7 @@ router.get("/from/:email", function (req, res, next)
     })
 });
 
-
+// WORKS -- but needs to allow duplicates on ID's!!! So we can check more itemorders on the same order.
 router.post("/orderitem/new", function (req, res, next)
     {
         console.log("id here! - " + req.body.orderId)
@@ -122,7 +124,6 @@ var returner = function (res, returnString)
     res.write(returnString);
     res.end();
 }
-
 
 
 
