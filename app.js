@@ -24,9 +24,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/users', users); // User + Role + LoyaltyCard -- Done
-app.use('/api/coffee', coffee); // everything to do with Coffee brand, shop, shopuser... -- Mangler
-app.use('/api/order', order); // order + orderitem --- DONE
+app.use('/api/users', users); // User + Role + LoyaltyCard -- Done (testet og alt virker)
+app.use('/api/coffee', coffee); // everything to do with Coffee brand, shop, shopuser... -- Done
+app.use('/api/order', order); // order + orderitem --- DONE (testet og alt virker. manglede get all users func som er added og testet!)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

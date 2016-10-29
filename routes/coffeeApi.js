@@ -7,7 +7,7 @@ var facade = require("../JS/DataBaseFacade.js");
 var bcrypt = require('bcryptjs');
 
 
-//Deletes a CoffeeBrand by ID
+//Deletes a CoffeeBrand by ID -- Works
 router.delete("/brand/:CoffeeBrandID", function (req, res)
 {
     console.log("param: " + req.params.CoffeeBrandID)
@@ -24,7 +24,7 @@ router.delete("/brand/:CoffeeBrandID", function (req, res)
     });
 });
 
-// delete a coffe shop on the email
+// delete a coffe shop on the email -- WOrks
 router.delete("/shop/:CoffeeShopEmail", function (req, res)
 {
     console.log("param: " + req.params.CoffeeShopEmail)
@@ -43,7 +43,7 @@ router.delete("/shop/:CoffeeShopEmail", function (req, res)
 
 
 
-//New User
+//New Brand -- WORKS
 router.post("/brand/new", function (req, res, next)
     {
 
@@ -62,6 +62,7 @@ router.post("/brand/new", function (req, res, next)
     }
 );
 
+// WORKS
 router.post("/shop/new", function (req, res, next)
     {
      var brandID = req.body.brandName;
@@ -80,7 +81,7 @@ router.post("/shop/new", function (req, res, next)
     }
 );
 
-
+// WORKS -- takes the Email of a user and a shop.
 router.post("/shopuser/new", function (req, res, next)
     {
 
@@ -100,7 +101,7 @@ router.post("/shopuser/new", function (req, res, next)
 );
 
 
-//Get brand by brandID
+//Get brand by brandID -- WORKS
 router.get("/brand/:brandID", function (req, res, next)
     {
         facade.getCoffeeBrand(req.params.brandID, function (data)
@@ -119,7 +120,7 @@ router.get("/brand/:brandID", function (req, res, next)
     }
 );
 
-// get a coffeshop by email
+// get a coffeshop by email -- WORKS
 router.get("/shop/:email", function (req, res, next)
     {
         facade.getCoffeeShop(req.params.email, function (data)
@@ -138,7 +139,8 @@ router.get("/shop/:email", function (req, res, next)
     }
 );
 
-router.get("/allshops/all", function (req, res, next)
+// WORKS
+router.get("/allshops/", function (req, res, next)
 {
 
     facade.getAllCoffeeShops( function (status)
@@ -155,7 +157,8 @@ router.get("/allshops/all", function (req, res, next)
     })
 });
 
-router.get("/allbrands/all", function (req, res, next)
+// WORKS
+router.get("/allbrands/", function (req, res, next)
 {
 
     facade.getAllCoffeeBrand( function (status)
@@ -172,6 +175,7 @@ router.get("/allbrands/all", function (req, res, next)
     })
 });
 
+// WORKS
 router.get("/allshopusers/:shopID", function (req, res, next)
 {
    console.log(req.params.shopID);
@@ -189,18 +193,17 @@ router.get("/allshopusers/:shopID", function (req, res, next)
     })
 });
 
-//Edit a brand expects the full input
+//Edit a brand expects the full input -- WORKS
 router.put("/brand/:brandID", function (req, res, next)
     {
 
    var brandID = req.body.brandName;
-        facade.putCoffeeBrand(req.params.brandID, brandID, req.body, req.body.numberOfCoffeeNeeded, function (status)
+        facade.putCoffeeBrand(req.params.brandID, brandID, req.body.numberOfCoffeeNeeded, function (status)
             {
                 console.log("her er status: " + status)
                 if (status !== false)
                 {
-                    delete userToSave.password;
-                    res.write(JSON.stringify(userToSave));
+                    res.write(JSON.stringify(status));
                     res.status(200).send();
                 }
                 if (status === false)
@@ -213,16 +216,16 @@ router.put("/brand/:brandID", function (req, res, next)
     }
 );
 
-router.put("/shop/:shopID", function (req, res, next)
+// Edit a coffeeshop using their email.. -- WORKS
+router.put("/shop/:coffeeShopEmail", function (req, res, next)
     {
 
-        facade.putCoffeeShop(req.body.coffeeShopEmail, req.body.email, req.body.brandName, req.body.address, req.body.phone, function (status)
+        facade.putCoffeeShop(req.params.coffeeShopEmail, req.body.email, req.body.brandName, req.body.address, req.body.phone, function (status)
             {
                 console.log("her er status: " + status)
                 if (status !== false)
                 {
-                    delete userToSave.password;
-                    res.write(JSON.stringify(userToSave));
+                    res.write(JSON.stringify(status));
                     res.status(200).send();
                 }
                 if (status === false)
