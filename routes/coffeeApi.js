@@ -220,7 +220,7 @@ router.put("/brand/:brandID", function (req, res, next)
 router.put("/shop/:coffeeShopEmail", function (req, res, next)
     {
 
-        facade.putCoffeeShop(req.params.coffeeShopEmail, req.body.email, req.body.brandName, req.body.address, req.body.phone, function (status)
+        facade.putCoffeeShop(req.params.coffeeShopEmail, req.body.email, req.body.brandID, req.body.address, req.body.phone, function (status)
             {
                 console.log("her er status: " + status)
                 if (status !== false)
