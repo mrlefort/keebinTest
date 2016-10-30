@@ -6,6 +6,7 @@ var Token = require('../JS/Token.js');
 var jwt = require('jsonwebtoken');
 var Secret = require('../JS/Secret.js');
 var User = require('../JS/User.js');
+var cookie = require('cookie');
 
 
 //Deletes a user by email
@@ -239,7 +240,7 @@ router.post("/user/authentication", function(req, res) {
     if (getSecret !== null) {
         // check header  for Token
         console.log("checking if there is a accessToken.")
-        var accessToken = req.body["accessToken"]; //det er navnet vi skal give accessToken i request fra client.
+        var accessToken = req.body["accessToken"] || req.headers["accessToken"]; //det er navnet vi skal give accessToken i request fra client.
 
         // decode Token
         if (accessToken) {
@@ -281,8 +282,9 @@ router.post("/user/authentication", function(req, res) {
                 } else {
                     // if everything is good, save to request for use in other routes
                     req.decoded = decoded;
-                    console.log("here is accessToken decoded: " + JSON.stringify(decoded));
-                    res.redirect(307, "/home"); //redirect til appens "home" side - Kan ikke finde ud af hvordan jeg sender decoded med. Skal jeg lave en cookie?
+                    console.log(req.decoded)
+                    res.status(200).send(decoded)
+                    // res.redirect(307, "/home"); //redirect til appens "home" side - Kan ikke finde ud af hvordan jeg sender decoded med. Skal jeg lave en cookie?
                 }
             });
 
