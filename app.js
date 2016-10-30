@@ -5,9 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// var auth = require('./routes/authenticate');
-var routes = require('./routes/userApi');
-var users = require('./routes/users');
+
+var users = require('./routes/userApi');
+var coffee = require('./routes/coffeeApi');
+var order = require('./routes/orderApi');
+
+
 
 var app = express();
 
@@ -25,8 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('*', auth);
 
-app.use('/api', routes);
-app.use('/users', users);
+app.use('/api/users', users); // User + Role + LoyaltyCard -- Done (testet og alt virker)
+app.use('/api/coffee', coffee); // everything to do with Coffee brand, shop, shopuser... -- Done
+app.use('/api/order', order); // order + orderitem --- DONE (testet og alt virker. manglede get all users func som er added og testet!)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

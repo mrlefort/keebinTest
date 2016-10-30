@@ -7,7 +7,8 @@ var quantity;
 
 var db = require('./DataBaseCreation.js');
 var sequelize = db.connect();
-var Order = db.OrderItem();
+var Order = db.Order();
+var OrderItem = db.OrderItem();
 
 function _newOrderItem(orderId, coffeeKindId, quantity)
 {
@@ -25,7 +26,7 @@ function _createOrderItem(orderId, coffeeKindId, quantity, callback) // This cre
     var orderItemCreated = false;
 
     console.log("newCoffeeShop is running.")
-    Order.find({where: {id: newOrderItem.orderId}}).then(function (data) { //we check if the order exists based on it's id.
+    Order.find({where: {id: orderId}}).then(function (data) { //we check if the order exists based on it's id.
         if (data == null){
             console.log("Order not found");
             callback(orderItemCreated);

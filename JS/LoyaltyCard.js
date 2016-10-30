@@ -55,7 +55,7 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
 
                 return loyaltyCards.create({
                     numberOfCoffeesBought: numberOfCoffeesBought,
-                    userId: userID, brandName: brandName
+                    userId: userID, brandName: brandName, isValid: true, readyForFreeCoffee : false
 
 
                 }, {transaction: t})
@@ -181,13 +181,13 @@ function _getAllloyaltyCards(callback) {
 
 function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought, callback) {
     loyaltyCards.find({where:{Id:LoyaltyCardID}}).then(function (data, err) {
-        if(err){
+            if(data === null){
 
             console.log("something went wrong with editting " + LoyaltyCardID + " and gave an error - " + err);
             callback(false);
 
         }
-        if(data){
+        else {
             console.log("Trying to update... " + LoyaltyCardID)
             // data.updateatt = update given attributes in the object
             // attribute : attributevalue to edit to.
