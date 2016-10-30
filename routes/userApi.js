@@ -32,7 +32,7 @@ router.delete("/user/:email", function (req, res)
 
 
 //New User  -- WORKS
-router.post("/user/new", function (req, res, next)
+router.post("/authenticate/user/new", function (req, res, next)
     {
         var salt = bcrypt.genSaltSync(12);
         var pw = bcrypt.hashSync(req.body.password, salt);
@@ -350,7 +350,7 @@ router.post("/user/login", function (req, res)
 );
 
 
-router.post("/user/authentication", function(req, res) {
+router.post("/authentication", function(req, res) {
     var secretKey;
 
     // Her henter vi først secretKey
