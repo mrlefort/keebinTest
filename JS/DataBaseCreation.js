@@ -50,6 +50,10 @@ var user = sequelize.define('user', {
     password: {
         type: Sequelize.STRING,
         Validate: {notNull : true}
+    },
+    refreshToken: {
+        type: Sequelize.STRING,
+        Validate: {notNull : false}
     }
 
 }, {
@@ -139,16 +143,7 @@ var coffeeShop = sequelize.define('coffeeShop', {
 }); // coffeeShop table setup
 
 var coffeeShopUsers = sequelize.define('coffeeShopUsers', {
-    // userEmail :
-    // {
-    //     type: Sequelize.STRING, // here we decide parameters for this field in the table
-    //     Validate : {notNull : true, isEmail: true}
-    // },
-    // coffeeShopEmail :
-    // {
-    //     type: Sequelize.STRING, // here we decide parameters for this field in the table
-    //     Validate : {notNull : true, isEmail: true}
-    // }
+    //denne tabel tager 2 foreignkeys fra andre tabeller. Den skal ikke indholde "noget af sig selv".
 
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -166,6 +161,18 @@ var orderItem = sequelize.define('orderItem', {
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
 }); // orderItem table setup
+
+
+var authentication = sequelize.define('authentication', {
+    secret: {
+        type: Sequelize.STRING,
+        Validate : {notNull : true}
+    }
+}, {
+    freezeTableName: true, // Model tableName will be the same as the model name
+    timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
+
+}); // coffeeBrand table setup
 
 role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
@@ -213,7 +220,12 @@ coffeeKind.sync();
 order.sync();
 coffeeShop.sync();
 coffeeShopUsers.sync();
-orderItem.sync(); // Creating Tables
+orderItem.sync();
+authentication.sync();
+// Creating Tables
+
+
+
 function _Role()
 {
     return role;
@@ -264,8 +276,14 @@ function _connect()
 {
     return sequelize;
 }
+
+function _authentication()
+{
+    return authentication;
+}
+
 // Export Functions // Export Functions
 
 module.exports = {Role : _Role, User : _User, CoffeeBrand : _CoffeeBrand,
     LoyaltyCards : _LoyaltyCards, CoffeeKind : _CoffeeKind, Order : _Order, CoffeeShop : _CoffeeShop,
-    CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect}; // Export Module
+    CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect, Authentication : _authentication}; // Export Module
