@@ -135,7 +135,20 @@ function _getLoyaltyCard(ID, callback)
 })
 
 }
+function _getLoyaltyCardByUserAndBrand(userID,brandName,callback){
+    loyaltyCards.find({where: {userId: userID,brandName: brandName}}).then(function (data) { // we have run the callback inside the .then
+        if (data !== null) {
+            console.log("LoyaltyCard found -  " + data.Id)
+            callback(data);
 
+        } else {
+            console.log("Failed to find the LoyaltyCard with ID - " + ID);
+            callback(false);
+        }
+
+
+    })
+}
 
 
 function steffen(data) {
@@ -177,6 +190,28 @@ function _getAllloyaltyCards(callback) {
 };  // this one "gets" all CoffeeShops.
 
 
+function _addToNumberOfCoffeesBought(LoyaltyCardID, numberOfCoffeesBought, callback){
+    loyaltyCards.find({where:{Id:LoyaltyCardID}}).then(function (data, err) {
+        if(data === null){
+
+            console.log("something went wrong with editting " + LoyaltyCardID + " and gave an error - " + err);
+            callback(false);
+
+        }
+        else {
+            console.log("Trying to update... " + LoyaltyCardID)
+            // data.updateatt = update given attributes in the object
+            // attribute : attributevalue to edit to.
+            data.numberOfCoffeesBought += numberOfCoffeesBought;
+            data.updateAttributes({
+                numberOfCoffeesBought: numberOfCoffeesBought
+            }).then(function (result) {
+                console.log("LoyaltyCard " + LoyaltyCardID + " has been updated!");
+                callback(result);
+            })
+        }
+    });
+}
 
 
 function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought, callback) {
@@ -213,7 +248,7 @@ function _a (ID, callback) {
 
 // Export Functions
 
-module.exports = {getAllloyaltyCards : _getAllloyaltyCards, createLoyaltyCard : _createLoyaltyCard, deleteLoyaltyCard : _deleteLoyaltyCard, getLoyaltyCard : _getLoyaltyCard, putLoyaltyCard : _putLoyaltyCard}; // Export Module/**
+module.exports = {getAllloyaltyCards : _getAllloyaltyCards, createLoyaltyCard : _createLoyaltyCard, deleteLoyaltyCard : _deleteLoyaltyCard, getLoyaltyCard : _getLoyaltyCard, putLoyaltyCard : _putLoyaltyCard,getLoyaltyCardByUserAndBrand: _getLoyaltyCardByUserAndBrand, addToNumberOfCoffeesBought: _addToNumberOfCoffeesBought}; // Export Module/**
 
 
 // below is a useage of loyality cards in etc Controller.

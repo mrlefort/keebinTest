@@ -166,7 +166,22 @@ var orderItem = sequelize.define('orderItem', {
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
 }); // orderItem table setup
+// ---------------------------------------CoffeeCode ikke testest helt færdigt-------------------------------------
+// var coffeeCode = sequelize.define('coffeeCode', {
+//     coffeeCode: {
+//         type: Sequelize.INTEGER, // here we decide parameters for this field in the table
+//         Validate : {notNull : true,unique : true}
+//     }
+// }, {
+//     freezeTableName: true, // Model tableName will be the same as the model name
+//     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
+//
+// }); // coffeeCode table setup
 
+// coffeeBrand.hasMany(coffeeCode,{foreignKey: 'brandName',foreignKey: {allowNull: false}, onDelete:'CASCADE'}});
+// coffeeCode.belongsTo(coffeeBrand,{foreignKey:'brandName',foreignKey: {allowNull: false}});
+
+// -------------------------------------------Slut med CoffeeCode -------------------------------
 role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
