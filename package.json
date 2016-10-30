@@ -18,6 +18,8 @@
     "morgan": "~1.7.0",
     "mysql": "^2.11.1",
     "node-uuid": "^1.4.7",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "password-hash-and-salt": "^0.1.4",
     "sequelize": "^3.24.3",
     "serve-favicon": "~2.3.0"

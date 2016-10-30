@@ -9,6 +9,8 @@ var User = require('../JS/User.js');
 var cookie = require('cookie');
 
 
+
+
 //Deletes a user by email
 router.delete("/user/:email", function(req, res)
 {
@@ -56,7 +58,7 @@ router.post("/user/new", function (req, res, next)
 );
 
 //Get user by email
-router.get("/user/:email", function (req, res, next)
+router.get("/user/:email",  function (req, res, next)
     {
         facade.userGet(req.params.email, function (data)
             {
@@ -272,7 +274,7 @@ router.post("/user/authentication", function(req, res) {
                                 Token.getToken(JSON.stringify(data), function (data) {
                                     console.log("Success vi har fået en ny accessToken")
                                     newAccessToken = data;
-                                    res.redirect(307, '/home');
+                                    res.status(200).send(newAccessToken);
                                 });
 
                             }
