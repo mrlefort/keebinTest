@@ -1,8 +1,3 @@
-/**
- * Created by dino on 03-02-2013.
- */
-
-
 var Sequelize = require('sequelize'); // Requires
 
 var sequelize = new Sequelize('keebin', 'keebin', '1234', {
@@ -196,9 +191,10 @@ order.belongsTo(user);
 coffeeShop.hasMany(order);
 order.belongsTo(coffeeShop);
 user.hasMany(order);
-order.belongsTo(coffeeKind);
 
-coffeeShop.belongsTo(coffeeBrand, {foreignKey: 'brandName'})
+
+coffeeBrand.hasMany(coffeeShop, {foreignKey: "brandName"});
+coffeeShop.belongsTo(coffeeBrand, {foreignKey: "brandName"});
 
 
 
@@ -220,12 +216,12 @@ coffeeShopUsers.sync();
 orderItem.sync(); // Creating Tables
 function _Role()
 {
- return role;
+    return role;
 }
 
 function _User()
 {
-return user;
+    return user;
 }
 
 
@@ -271,5 +267,5 @@ function _connect()
 // Export Functions // Export Functions
 
 module.exports = {Role : _Role, User : _User, CoffeeBrand : _CoffeeBrand,
-LoyaltyCards : _LoyaltyCards, CoffeeKind : _CoffeeKind, Order : _Order, CoffeeShop : _CoffeeShop,
-CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect}; // Export Module
+    LoyaltyCards : _LoyaltyCards, CoffeeKind : _CoffeeKind, Order : _Order, CoffeeShop : _CoffeeShop,
+    CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect}; // Export Module
