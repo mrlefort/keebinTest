@@ -9,17 +9,19 @@ var email;
 var address;
 var phone;
 var brandName;
+var coffeeCode
 
-function _newCoffeeShop(email, brandName, address, phone)
+function _newCoffeeShop(email, brandName, address, phone,coffeeCode)
 {
     this.email = email;
     this.brandName = brandName;
     this.address = address;
     this.phone = phone;
+    this.coffeeCode = coffeeCode;
 
 }
 
-function _createCoffeeShop(email, brandName, address, phone, callback) // this creates a new CoffeeShop
+function _createCoffeeShop(email, brandName, address, phone,coffeeCode, callback) // this creates a new CoffeeShop
 {
     var coffeeShopCreated = false;
 
@@ -36,7 +38,8 @@ function _createCoffeeShop(email, brandName, address, phone, callback) // this c
                     email: email,
                     brandName: brandName,
                     address: address,
-                    phone: phone
+                    phone: phone,
+                    coffeeCode: coffeeCode
 
                 }, {transaction: t})
 
@@ -126,7 +129,27 @@ function _getCoffeeShop(coffeeShopEmail, callback) {
 
 };  // this one "gets" a CoffeeSHop based on CoffeeShop Email.
 
+function _getCoffeeShopByCoffeeCode(coffeeCode, callback) {
+    var coffeeShopFound = false;
+    console.log('vi er inde i get coffeeshop by coffeecode')
+    console.log("_getCoffeeShop is running. Finding coffeeShop with coffeeCode: " + coffeeCode);
+    CoffeeShop.find({where: {coffeeCode: coffeeCode}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("CoffeeShop with coffeeCode: " + data.coffeeCode + " found.");
+            callback(data);
 
+        } else {
+            console.log(err);
+            console.log("could not find: " + coffeeShopEmail);
+            callback(coffeeShopFound);
+
+        }
+
+
+    })
+
+
+};  // this one "gets" a CoffeeSHop based on CoffeeShop coffeeCode.
 function _getAllCoffeeShops(callback) {
     var allCoffeeShopsFound = [];
 
@@ -204,4 +227,4 @@ function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callb
 
 // Export Functions
 
-module.exports = {createCoffeeShopObject : _newCoffeeShop, getAllCoffeeShops : _getAllCoffeeShops,  putCoffeeShop : _putCoffeeShop, getCoffeeShop : _getCoffeeShop, deleteCoffeeShop : _deleteCoffeeShop, createCoffeeShop : _createCoffeeShop}; // Export Module
+module.exports = {createCoffeeShopObject : _newCoffeeShop, getAllCoffeeShops : _getAllCoffeeShops,  putCoffeeShop : _putCoffeeShop, getCoffeeShop : _getCoffeeShop, deleteCoffeeShop : _deleteCoffeeShop, createCoffeeShop : _createCoffeeShop, getCoffeeShopByCoffeeCode: _getCoffeeShopByCoffeeCode}; // Export Module
