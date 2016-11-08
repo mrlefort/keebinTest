@@ -184,9 +184,9 @@ function _getUserById(userId, callback)
 
 }; //get one user from the DB by ID.
 
-function _createCoffeeShop(email, brandName, address, phone, callback) // this creates a new CoffeeShop
+function _createCoffeeShop(email, brandName, address, phone, longitude, latitude, callback) // this creates a new CoffeeShop
 {
-    CoffeeShop.createCoffeeShop(email, brandName, address, phone, callback)
+    CoffeeShop.createCoffeeShop(email, brandName, address, phone, longitude, latitude, callback)
 }
 
 function _deleteCoffeeShop(coffeeShopEmail, callback) {
@@ -209,9 +209,9 @@ function _getAllCoffeeShops(callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callback) {
+function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, longitude, latitude, callback) {
 
-    CoffeeShop.putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callback)
+    CoffeeShop.putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, longitude, latitude, callback)
 
 }; // this edits CoffeeShop based on email.
 

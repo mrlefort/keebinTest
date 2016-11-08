@@ -135,6 +135,14 @@ var coffeeShop = sequelize.define('coffeeShop', {
     phone: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true}
+    },
+    longitude: {
+        type: Sequelize.DOUBLE // here we decide parameters for this field in the table
+
+    },
+    latitude: {
+        type: Sequelize.DOUBLE // here we decide parameters for this field in the table
+
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -181,8 +189,8 @@ user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
 user.hasMany(loyaltyCards);
 loyaltyCards.belongsTo(user);
-coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});
-loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
+coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandId'});
+loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandId'});
 
 
 
@@ -200,8 +208,8 @@ order.belongsTo(coffeeShop);
 user.hasMany(order);
 
 
-coffeeBrand.hasMany(coffeeShop, {foreignKey: "brandName"});
-coffeeShop.belongsTo(coffeeBrand, {foreignKey: "brandName"});
+coffeeBrand.hasMany(coffeeShop, {foreignKey: "brandId"});
+coffeeShop.belongsTo(coffeeBrand, {foreignKey: "brandId"});
 
 
 

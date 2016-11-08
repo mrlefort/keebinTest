@@ -19,7 +19,7 @@ function _newCoffeeShop(email, brandName, address, phone)
 
 }
 
-function _createCoffeeShop(email, brandName, address, phone, callback) // this creates a new CoffeeShop
+function _createCoffeeShop(email, brandName, address, phone, longitude, latitude, callback) // this creates a new CoffeeShop
 {
     var coffeeShopCreated = false;
 
@@ -36,7 +36,9 @@ function _createCoffeeShop(email, brandName, address, phone, callback) // this c
                     email: email,
                     brandName: brandName,
                     address: address,
-                    phone: phone
+                    phone: phone,
+                    longitude: longitude,
+                    latitude: latitude
 
                 }, {transaction: t})
 
@@ -158,7 +160,7 @@ function _getAllCoffeeShops(callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callback) {
+function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, longitude, latitude, callback) {
     var coffeeShopUpdated = false;
 
     console.log("_putCoffeeShop is running. Finding: " + coffeeShopEmail);
@@ -174,7 +176,9 @@ function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, callb
                     email: email,
                     brandName: brandName,
                     address: address,
-                    phone: phone
+                    phone: phone,
+                    longitude: longitude,
+                    latitude: latitude
 
                 }, {transaction: t})
 

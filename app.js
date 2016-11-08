@@ -4,6 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var bcrypt = require('bcryptjs');
+var Token = require('./JS/Token.js');
+var jwt = require('jsonwebtoken');
+var Secret = require('./JS/Secret.js');
+var User = require('./JS/User.js');
+var cookie = require('cookie');
+var passport = require('passport');
 
 // var Token = require('./JS/Token.js');
 // var jwt = require('jsonwebtoken');
@@ -11,7 +18,7 @@ var bodyParser = require('body-parser');
 // var passport = require('passport');
 // var Strategy = require('passport-http-bearer').Strategy;
 
-
+var login = require('./routes/login');
 var users = require('./routes/userApi');
 var coffee = require('./routes/coffeeApi');
 var order = require('./routes/orderApi');
@@ -108,6 +115,89 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     }
 //
 // })}));
+
+
+app.use('/login', login);
+
+app.all('/api/*', function (req, res, next) {
+  var secretKey;
+
+  // Her henter vi først secretKey
+  var getSecret = Secret.getSecretKey(function (data) {
+    secretKey = data;
+
+
+    //Hvis vi finder secretKey går vi videre.
+    if (getSecret !== null) {
+      // check header  for Token
+      console.log("her er req: " + req)
+      console.log("checking if there is a accessToken.")
+      var accessToken = req.get('accessToken'); //det er navnet vi skal give accessToken i request fra client.
+      console.log("her er accessToken: " + accessToken)
+      // decode Token
+      if (accessToken !== null) {
+        console.log("Verifying said accessToken.")
+        // verifies Token
+        jwt.verify(accessToken, secretKey, function (err, decoded) {
+          if (err) {
+            console.log("accessToken blev ikke verified.")
+            var refreshToken = req.get('refreshToken');
+
+            //hvis vi finder en refreshToken
+            if (refreshToken !== null)
+            {
+              console.log("verifying refreshToken: " + refreshToken);
+
+              User.getUserByRefreshToken(refreshToken, function (user)
+              {
+                //her skal vi tjekke på refreshToken før vi går videre nedenunder.
+                if (user === false){
+                  console.log("kunne ikke verify refreshToken")
+                  //det virkede ikke vi sender user til Login.
+                  res.status(401).send(false);
+                } else {
+
+                  console.log("refreshToken blev verified, laver ny accessToken");
+                  //Hvis vi får lavet en ny accessToken sender vi user til home med en accessToken. Den skal client gemme i sharedPreferences og lave en ny cookie med den i.
+                  //lav ny accessToken
+                  Token.getToken(user, function (data) {
+                    console.log("hvad er user? " + user)
+                    console.log("Success vi har fået en ny accessToken")
+                    newAccessToken = data;
+                    req.headers.accessToken = newAccessToken;
+                    jwt.verify(newAccessToken, secretKey, function (err, decoded) {
+                      req.decoded = decoded;
+
+                      next();
+                    })
+                  });
+
+                }
+
+
+              });
+            }
+
+          } else {
+            // if everything is good, save to request for use in other routes
+            req.accessToken = accessToken;
+            req.decoded = decoded;
+            console.log("accessToken blev verified")
+            next();
+            // res.redirect(307, "/home"); //redirect til appens "home" side - Kan ikke finde ud af hvordan jeg sender decoded med. Skal jeg lave en cookie?
+          }
+        });
+
+      } else {
+        console.log("No Token found will start redirecting...")
+        // if there is no Token
+        //redirect user to login page.
+        res.status(401).send("Send bruger til login side.");
+      }
+    }
+  })
+});
+
 
 app.use('/api/users', users); // User + Role + LoyaltyCard -- Done (testet og alt virker)
 app.use('/api/coffee', coffee); // everything to do with Coffee brand, shop, shopuser... -- Done
