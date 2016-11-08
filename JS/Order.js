@@ -33,8 +33,8 @@ function _createOrder(currentUserId, coffeeShopId, platform, callback) // This c
 
     }).then(function (result) {
         console.log("Transaction has been committed - Order has been saved to the DB - to user with ID: " + currentUserId);
-        orderCreated = true;
-        callback(orderCreated);
+        // orderCreated = true;
+        callback(result);
 
         // Transaction has been committed
         // result is whatever the result of the promise chain returned to the transaction callback

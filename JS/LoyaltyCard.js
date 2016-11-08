@@ -47,12 +47,12 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
     this.readyForFreeCoffee = false;
 
     var returnstatement;
-
+    console.log('vi er nu i create')
+    console.log(brandName,userID,numberOfCoffeesBought)
     var runIfLoyaltyCardFoundFalse = function (duplicatecheck, callback) {
         // runIfRoleFoundFalse is the second function (the callback) - we feed RoleFound as a parameter and name is doesRoleExist
         if (duplicatecheck == false) {
             return conn.transaction(function (t) {
-
                 return loyaltyCards.create({
                     numberOfCoffeesBought: numberOfCoffeesBought,
                     userId: userID, brandName: brandName, isValid: true, readyForFreeCoffee : false
@@ -73,6 +73,7 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
         } else {
             console.log("couldn't create new Loyalty Card ");
             returnstatement = false;
+            console.log(newLoyalcallback)
             newLoyalcallback(returnstatement);
 
         }
@@ -100,7 +101,7 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
 
 
 
-   checkforduplicates(runIfLoyaltyCardFoundFalse);
+    checkforduplicates(runIfLoyaltyCardFoundFalse);
 
 
 
@@ -132,10 +133,28 @@ function _getLoyaltyCard(ID, callback)
         }
 
 
-})
+    })
 
 }
+function _getLoyaltyCardByUserAndBrand(userID,brandName,callback){
 
+    loyaltyCards.find({where: {userId: userID ,brandName: brandName}}).then(function (data) { // we have run the callback inside the .then
+        console.log('loyaltyCard: ' + data)
+        if (data !== null) {
+            console.log('vi er i done')
+            console.log("LoyaltyCard found -  " + data.Id)
+            callback(data);
+
+        } else {
+            // console.log("Failed to find the LoyaltyCard with ID - " + ID);
+            callback(false);
+        }
+
+
+    },function(data){
+        callback(false);
+    })
+}
 
 
 function steffen(data) {
@@ -177,11 +196,35 @@ function _getAllloyaltyCards(callback) {
 };  // this one "gets" all CoffeeShops.
 
 
+function _addToNumberOfCoffeesBought(LoyaltyCardID, numberOfCoffeesBought, callback){
+    console.log('hej i add')
+    loyaltyCards.find({where:{Id:LoyaltyCardID}}).then(function (data, err) {
+        if(data === null){
+
+            console.log("something went wrong with editting " + LoyaltyCardID + " and gave an error - " + err);
+            callback(false);
+
+        }
+        else {
+            console.log("Trying to update... " + LoyaltyCardID)
+            // data.updateatt = update given attributes in the object
+            // attribute : attributevalue to edit to.
+            console.log('vi er i add og data er:'+ LoyaltyCardID,numberOfCoffeesBought )
+            data.numberOfCoffeesBought += numberOfCoffeesBought;
+            data.updateAttributes({
+                numberOfCoffeesBought: data.numberOfCoffeesBought
+            }).then(function (result) {
+                console.log("LoyaltyCard " + LoyaltyCardID + " has been updated!");
+                callback(true);
+            })
+        }
+    });
+}
 
 
 function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought, callback) {
     loyaltyCards.find({where:{Id:LoyaltyCardID}}).then(function (data, err) {
-            if(data === null){
+        if(data === null){
 
             console.log("something went wrong with editting " + LoyaltyCardID + " and gave an error - " + err);
             callback(false);
@@ -203,17 +246,17 @@ function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought
 }
 
 /*
-function _a (ID, callback) {
-    loyaltyCards.find({where: {Id: ID}}).then(function (data, err) { // we have run the callback inside the .then
-        if (err) throw new Error(err);
-        callback(data);
-    });
-}; */
+ function _a (ID, callback) {
+ loyaltyCards.find({where: {Id: ID}}).then(function (data, err) { // we have run the callback inside the .then
+ if (err) throw new Error(err);
+ callback(data);
+ });
+ }; */
 
 
 // Export Functions
 
-module.exports = {getAllloyaltyCards : _getAllloyaltyCards, createLoyaltyCard : _createLoyaltyCard, deleteLoyaltyCard : _deleteLoyaltyCard, getLoyaltyCard : _getLoyaltyCard, putLoyaltyCard : _putLoyaltyCard}; // Export Module/**
+module.exports = {getAllloyaltyCards : _getAllloyaltyCards, createLoyaltyCard : _createLoyaltyCard, deleteLoyaltyCard : _deleteLoyaltyCard, getLoyaltyCard : _getLoyaltyCard, putLoyaltyCard : _putLoyaltyCard,getLoyaltyCardByUserAndBrand: _getLoyaltyCardByUserAndBrand, addToNumberOfCoffeesBought: _addToNumberOfCoffeesBought}; // Export Module/**
 
 
 // below is a useage of loyality cards in etc Controller.
@@ -230,29 +273,29 @@ module.exports = {getAllloyaltyCards : _getAllloyaltyCards, createLoyaltyCard : 
  });
 
 
-lc.findLoyaltyCard('8', function(models) {
-    if(!models)
-    {
-        console.log("User has not been found");
-    }
-    else {
-        console.log("User has bought - " + models.numberOfCoffeesBought + " coffees with loyal card id - " + models.id);
-    }
-});
+ lc.findLoyaltyCard('8', function(models) {
+ if(!models)
+ {
+ console.log("User has not been found");
+ }
+ else {
+ console.log("User has bought - " + models.numberOfCoffeesBought + " coffees with loyal card id - " + models.id);
+ }
+ });
 
-lc.deleteLoyaltyCard('7', function(models) {
+ lc.deleteLoyaltyCard('7', function(models) {
 
-    console.log("User has been deleted = " + models);
+ console.log("User has been deleted = " + models);
 
-});
+ });
 
-lc.editLoyaltyCard(8, 1, 3, 7, function(models) {
+ lc.editLoyaltyCard(8, 1, 3, 7, function(models) {
 
 
-    console.log("User has been updated = " + models);
+ console.log("User has been updated = " + models);
 
-});
+ });
 
-*/
+ */
 
 
