@@ -38,7 +38,8 @@ function createClaim(userData, secretKey) {
     {
         sub: userData.id,
         iss: "my server url",
-        email: userData.email
+        email: userData.email,
+        roleId: userData.roleId
 
 
 
@@ -57,7 +58,7 @@ function createAccessToken(claims, secretKey)
     //create accessToken
     accessToken = jwt.sign({
         data: claims
-    }, secretKey, { expiresIn: 1800 });
+    }, secretKey, { expiresIn: 600 });
 
 
 

@@ -7,19 +7,23 @@ var jwt = require('jsonwebtoken');
 var Secret = require('../JS/Secret.js');
 var User = require('../JS/User.js');
 var cookie = require('cookie');
+var passport = require('passport');
+
 
 
 
 
 
 //Deletes a user by email -- WORKS
-router.delete("/user/:email", function (req, res)
+router.delete("/user/:email", isAuthenticated, function (req, res)
 {
     console.log("param: " + req.params.email)
     facade.deleteUser(req.params.email, function (status)
     {
+
         if (status !== false)
         {
+            res.writeHead(200, {"accessToken": req.accessToken});
             res.status(200).send();
         }
         else
@@ -32,7 +36,7 @@ router.delete("/user/:email", function (req, res)
 
 
 //New User  -- WORKS
-router.post("/authenticate/user/new", function (req, res, next)
+router.post("/user/new", isAuthenticated, function (req, res, next)
     {
         var salt = bcrypt.genSaltSync(12);
         var pw = bcrypt.hashSync(req.body.password, salt);
@@ -48,8 +52,10 @@ router.post("/authenticate/user/new", function (req, res, next)
         }
         facade.createUser(userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status)
             {
+
                 if (status === true)
                 {
+                    res.writeHead(200, {"accessToken": req.accessToken});
                     res.status(200).send();
                 }
                 else
@@ -63,13 +69,15 @@ router.post("/authenticate/user/new", function (req, res, next)
 
 
 // WORKS
-router.post("/card/new", function (req, res, next)
+router.post("/card/new", isAuthenticated,  function (req, res, next)
 
     {
         facade.createLoyaltyCard(req.body.brandID, req.body.userId, req.body.numberOfCoffeesBought, function (status)
             {
+
                 if (status === true)
                 {
+                    res.writeHead(200, {"accessToken":req.accessToken});
                     res.status(200).send();
                 }
                 else
@@ -83,32 +91,38 @@ router.post("/card/new", function (req, res, next)
 
 
 //New Role -- WORKS
-router.post("/role/new", function (req, res, next)
+router.post("/role/new", isAuthenticated,  function (req, res, next)
     {
 
         facade.createRole(req.body.roleName, function (status)
             {
+                res.writeHead(200, {"accessToken": req.accessToken});
                 if (status === true)
                 {
+
+                    // res.writeHead(200, {"accessToken": req.accessToken});
                     res.status(200).send();
                 }
                 else
                 {
                     res.status(500).send();
                 }
+
             }
         );
     }
 );
 
 //Get user by email -- WORKS
-router.get("/user/:email", function (req, res, next)
+router.get("/user/:email", isAuthenticated,  function (req, res, next)
     {
+
         facade.getUser(req.params.email, function (data)
         {
+
             if (data !== false)
             {
-                res.writeHead(200, {"Content-Type": "application/json"});
+                res.writeHead(200, {"Content-Type": "application/json", "accessToken": req.accessToken});
 
                 res.end(JSON.stringify(data));
             }
@@ -121,10 +135,11 @@ router.get("/user/:email", function (req, res, next)
 );
 
 // WORKS
-router.get("/card/:LoyaltyCardId", function (req, res)
+router.get("/card/:LoyaltyCardId", isAuthenticated, function (req, res)
     {
         facade.getLoyaltyCard(req.params.LoyaltyCardId, function (data)
         {
+            res.writeHead(200, {"accessToken":req.accessToken});
             if (data !== false)
             {
                 res.writeHead(200, {"Content-Type": "application/json"});
@@ -350,7 +365,7 @@ router.post("/user/login", function (req, res)
 );
 
 
-router.post("/authentication", function(req, res) {
+function isAuthenticated(req, res, next) {
     var secretKey;
 
     // Her henter vi først secretKey
@@ -361,51 +376,60 @@ router.post("/authentication", function(req, res) {
     //Hvis vi finder secretKey går vi videre.
     if (getSecret !== null) {
         // check header  for Token
+        console.log("her er req: " + req)
         console.log("checking if there is a accessToken.")
-        var accessToken = req.body["accessToken"] || req.headers["accessToken"]; //det er navnet vi skal give accessToken i request fra client.
-
+        var accessToken = req.get('accessToken'); //det er navnet vi skal give accessToken i request fra client.
+        console.log("her er accessToken: " + accessToken)
         // decode Token
-        if (accessToken) {
+        if (accessToken !== null) {
             console.log("Verifying said accessToken.")
             // verifies Token
             jwt.verify(accessToken, secretKey, function (err, decoded) {
                 if (err) {
                     console.log("accessToken blev ikke verified.")
-                    var refreshToken = req.body["refreshToken"];
+                    var refreshToken = req.get('refreshToken');
 
                     //hvis vi finder en refreshToken
-                    if (refreshToken)
+                    if (refreshToken !== null)
                     {
                         console.log("verifying refreshToken: " + refreshToken);
 
-                        User.getUserByRefreshToken(refreshToken, function (data)
+                        User.getUserByRefreshToken(refreshToken, function (user)
                         {
                             //her skal vi tjekke på refreshToken før vi går videre nedenunder.
-                            if (data === false){
+                            if (user === false){
                                 console.log("kunne ikke verify refreshToken")
                                 //det virkede ikke vi sender user til Login.
-                                res.redirect(307, '/api/user/login');
+                                res.redirect('/api/user/login');
                             } else {
 
                                 console.log("refreshToken blev verified, laver ny accessToken");
                                 //Hvis vi får lavet en ny accessToken sender vi user til home med en accessToken. Den skal client gemme i sharedPreferences og lave en ny cookie med den i.
                                 //lav ny accessToken
-
-                                Token.getToken(JSON.stringify(data), function (data) {
+                                Token.getToken(user, function (data) {
+                                    console.log("hvad er user? " + user)
                                     console.log("Success vi har fået en ny accessToken")
                                     newAccessToken = data;
-                                    res.status(200).send(newAccessToken);
+                                    req.headers.accessToken = newAccessToken;
+                                    jwt.verify(newAccessToken, secretKey, function (err, decoded) {
+                                        req.decoded = decoded;
+
+                                        next();
+                                    })
                                 });
 
                             }
+
+
                         });
                     }
 
                 } else {
                     // if everything is good, save to request for use in other routes
+                    req.accessToken = accessToken;
                     req.decoded = decoded;
-                    console.log(req.decoded)
-                    res.status(200).send(decoded)
+                    console.log("accessToken blev verified")
+                    next();
                     // res.redirect(307, "/home"); //redirect til appens "home" side - Kan ikke finde ud af hvordan jeg sender decoded med. Skal jeg lave en cookie?
                 }
             });
@@ -414,11 +438,15 @@ router.post("/authentication", function(req, res) {
             console.log("No Token found will start redirecting...")
             // if there is no Token
             //redirect user to login page.
-            res.redirect(307, '/api/user/login');
+            res.redirect('/api/users/user/login');
         }
     }
     })
-});
+};
+
+
+
+
 
 
 router.post("/user/logout", function (req, res)

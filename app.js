@@ -5,10 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// var Token = require('./JS/Token.js');
+// var jwt = require('jsonwebtoken');
+// var Secret = require('./JS/Secret.js');
+// var passport = require('passport');
+// var Strategy = require('passport-http-bearer').Strategy;
+
 
 var users = require('./routes/userApi');
 var coffee = require('./routes/coffeeApi');
 var order = require('./routes/orderApi');
+
 
 
 
@@ -26,7 +33,81 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use('*', auth);
+
+// passport.use(new Strategy(
+//     function (accessToken, cb) {
+//
+//
+//
+// var secretKey;
+//
+// // Her henter vi først secretKey
+// var getSecret = Secret.getSecretKey(function (data) {
+//     secretKey = data;
+//
+//
+//
+//     //Hvis vi finder secretKey går vi videre.
+//     if (getSecret !== null) {
+//         // check header  for Token
+//         console.log("checking if there is a accessToken.")
+//         // accessToken = req.body["accessToken"] || req.headers['accessToken']; //det er navnet vi skal give accessToken i request fra client.
+//
+//         // decode Token
+//         if (accessToken) {
+//             console.log("Verifying said accessToken.")
+//             // verifies Token
+//             jwt.verify(accessToken, secretKey, function (err, decoded) {
+//                 if (err) {
+//                 //     console.log("accessToken blev ikke verified.")
+//                 //     var refreshToken = req.body["refreshToken"];
+//                 //
+//                 //     //hvis vi finder en refreshToken
+//                 //     if (refreshToken) {
+//                 //         console.log("verifying refreshToken: " + refreshToken);
+//                 //
+//                 //         User.getUserByRefreshToken(refreshToken, function (data) {
+//                 //             //her skal vi tjekke på refreshToken før vi går videre nedenunder.
+//                 //             if (data === false) {
+//                 //                 console.log("kunne ikke verify refreshToken")
+//                 //                 //det virkede ikke vi sender user til Login.
+//                 //                 res.redirect(307, '/api/user/login');
+//                 //             } else {
+//                 //
+//                 //                 console.log("refreshToken blev verified, laver ny accessToken");
+//                 //                 //Hvis vi får lavet en ny accessToken sender vi user til home med en accessToken. Den skal client gemme i sharedPreferences og lave en ny cookie med den i.
+//                 //                 //lav ny accessToken
+//                 //
+//                 //                 Token.getToken(JSON.stringify(data), function (data) {
+//                 //                     console.log("Success vi har fået en ny accessToken")
+//                 //                     newAccessToken = data;
+//                 //                     res.status(200).send(newAccessToken);
+//                 //                 });
+//                 //
+//                 //             }
+//                 //         });
+//                 //     }
+//                 //
+//                 } else {
+//                     // if everything is good, save to request for use in other routes
+//                     // req.decoded = decoded;
+//                     // console.log(req.decoded)
+//                     console.log("accessToken verified");
+//                     return cb(user);
+//                     // res.status(200).send(decoded)
+//                     // res.redirect(307, "/home"); //redirect til appens "home" side - Kan ikke finde ud af hvordan jeg sender decoded med. Skal jeg lave en cookie?
+//                 }
+//             });
+//
+//         } else {
+//             console.log("No Token found will start redirecting...");
+//             // if there is no Token
+//             //redirect user to login page.
+//             // res.redirect(307, '/api/user/login');
+//         }
+//     }
+//
+// })}));
 
 app.use('/api/users', users); // User + Role + LoyaltyCard -- Done (testet og alt virker)
 app.use('/api/coffee', coffee); // everything to do with Coffee brand, shop, shopuser... -- Done
