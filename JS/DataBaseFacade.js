@@ -12,44 +12,50 @@ var LoyaltyCards = require('./LoyaltyCard.js'); // Requires
 var CoffeeBrand = require('./CoffeeBrand.js'); // Requires
 var Order = require('./Order.js'); // Requires
 var CoffeeShop = require('./CoffeeShop.js'); // Requires
-var CoffeeShopUsers = require('./CoffeeShopUser.js');
-
+var CoffeeShopUsers = require('./CoffeeShopUser.js'); // Requires
+var validate = require('./Validator');
 
 
 var sequelize = db.connect(); // Establishing connection to the MySQL database schema called keebin
 
-sequelize.authenticate().then(function (err)
-    {
-        if (err)
-        {
+sequelize.authenticate().then(function (err) {
+        if (err) {
             console.log('There is connection in ERROR');
-        } else
-        {
+        } else {
             console.log('Connection has been established successfully');
         }
     }
 ); // Authenticating connection to the MySQL database connection above
 
+
+
+
 function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
+    validate.valBrand(CoffeeBrandName, NumbersOfCoffeesNeeded,function(data){
+        if(data) {
+            callback(CoffeeBrand.createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback))
+        }else callback(false)
+    })
 
-    CoffeeBrand.createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback)
 
 }
 
-function _deleteCoffeeBrand(CoffeeBrandID, callback)
-{
-
-    CoffeeBrand.deleteCoffeeBrand(CoffeeBrandID, callback)
+function _deleteCoffeeBrand(CoffeeBrandID, callback) {
+    validate.valID(CoffeeBrandID,function(data){
+        if(data) {
+            callback(CoffeeBrand.deleteCoffeeBrand(CoffeeBrandID, callback))
+        }else callback(false)
+    })
 
 }
 
 
-
-function _getCoffeeBrand(CoffeeBrandID, callback)
-{
-
-    CoffeeBrand.getCoffeeBrand(CoffeeBrandID, callback)
-
+function _getCoffeeBrand(CoffeeBrandID, callback) {
+    validate.valID(CoffeeBrandID,function(data){
+        if(data) {
+            callback(CoffeeBrand.getCoffeeBrand(CoffeeBrandID, callback))
+        }else callback(false)
+    })
 }
 
 
@@ -60,32 +66,43 @@ function _getAllCoffeeBrand(callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-
-function _putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback) {
-
-    CoffeeBrand.putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback)
+function _putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback){
+    validate.valBrand(CoffeeBrandID, CoffeeBrandName, CoffeeBrandName,function(data){
+        if(data) {
+            callback(CoffeeBrand.putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback))
+        }else callback(false)
+    })
 
 }
 
-function _deleteLoyaltyCard(ID, callback)
-{
-
-    LoyaltyCards.deleteLoyaltyCard(ID, callback)
-
+function _deleteLoyaltyCard(ID, callback) {
+    validate.valID(ID,function(data){
+        if(data) {
+            callback(LoyaltyCards.deleteLoyaltyCard(ID, callback))
+        }else callback(false)
+    })
 }
 
 function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalcallback) {
-
-    LoyaltyCards.createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalcallback)
+    validate.valID(userID,function(data){
+        if(data){
+            validate.valBrand(brandName, numberOfCoffeesBought,function(data){
+                if(data) {
+                    callback(LoyaltyCards.createLoyaltyCard(brandName,userID,numberOfCoffeesBought,newLoyalcallback))
+                }else callback(false)
+            })
+        }else callback(false)
+    })
 
 }
 
 
-function _getLoyaltyCard(ID, callback)
-{
-
-LoyaltyCards.getLoyaltyCard(ID, callback)
-
+function _getLoyaltyCard(ID, callback) {
+    validate.valID(ID,function(data){
+        if(data) {
+            callback(LoyaltyCards.getLoyaltyCard(ID, callback))
+        }else callback(false)
+    })
 }
 
 
@@ -96,37 +113,54 @@ function _getAllloyaltyCards(callback) {
 };  // this one "gets" all CoffeeShops.
 
 
-
-
 function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought, callback) {
-
-    LoyaltyCards.putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought, callback)
+    validate.valID(LoyaltyCardID,function(data) {
+        if (data) {
+            validate.valID(userID, function (data) {
+                if (data) {
+                    callback(LoyaltyCards.putLoyaltyCard(LoyaltyCardID,brandName,userID,numberOfCoffeesBought,callback))
+                } else callback(false)
+            })
+        } else callback(false)
+    })
 
 }
 
 function _createRole(RoleN, callback) {
-
-    Role.createRole(RoleN, callback)
-
+    validate.valRole(RoleN,function(data){
+        if(data) {
+            callback(Role.createRole(RoleN, callback))
+        }else callback(false)
+    })
 };  //create role if roleN does not exist already.
 
 
 function _deleteRole(RoleId, callback) {
-
-    Role.deleteRole(RoleId, callback)
-
+    validate.valID(RoleId,function(data){
+        if(data) {
+            callback(Role.deleteRole(RoleId, callback))
+        }else callback(false)
+    })
 };  //create role if roleN does not exist already.
 
 function _putRole(RoleId, NewRoleName, callback) {
-
-    Role.putRole(RoleId, NewRoleName, callback)
-
+    validate.valID(RoleId,function(data){
+        if(data) {
+            validate.valRole(NewRoleName,function(data) {
+                if(data) {
+                    callback(Role.putRole(RoleId, NewRoleName, callback))
+                }else callback(false)
+            })
+        }else callback(false)
+    })
 };  //create role if roleN does not exist already.
 
 function _getRole(RoleId, callback) {
-
-    Role.getRole(RoleId, callback)
-
+    validate.valID(RoleId,function(data){
+        if(data) {
+            callback(Role.getRole(RoleId, callback))
+        }else callback(false)
+    })
 };  //create role if roleN does not exist already.
 
 function _getAllRoles(callback) {
@@ -137,69 +171,81 @@ function _getAllRoles(callback) {
 
 function _createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback) // this creates a user
 {
-
-User.createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback)
-
+    validate.valUser(Email,Role,password,function(data){
+        if(data) {
+            callback(User.createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback))
+        }else callback(false)
+    })
 }
 
 
-
-
-
-
-
 function _putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback) {
-
- User.putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback);
+    validate.valUser(Email,Role,password,function(data){
+        if(data) {
+            callback(User.putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback))
+        }else callback(false)
+    })
 
 }; // this edits user based on email.
 
 
-
 function _deleteUser(userEmail, callback) {
-
-  User.deleteUser(userEmail, callback)
-
+    validate.valEmail(userEmail,function(data){
+        if(data) {
+            callback(User.deleteUser(userEmail, callback))
+        }else callback(false)
+    })
 }; //this one deletes user based on email.
 
 
-
 function _getUser(userEmail, callback) {
-
-User.getUser(userEmail, callback)
-
+    validate.valEmail(userEmail,function(data){
+        if(data) {
+            callback(User.getUser(userEmail, callback))
+        }else callback(false)
+    })
 }; // this one "gets" a user based on email.
 
 
 function _getAllUsers(callback) {
 
-User.getAllUsers(callback)
+    User.getAllUsers(callback)
 
 };  // this one "gets" all CoffeeShops.
 
-function _getUserById(userId, callback)
-{
-
- User.getUserById(userId, callback)
-
+function _getUserById(userId, callback) {
+    validate.valID(userId,function(data){
+        if(data) {
+            callback(User.getUserById(userId, callback))
+        }else callback(false)
+    })
 }; //get one user from the DB by ID.
 
-function _createCoffeeShop(email, brandName, address, phone, longitude, latitude, callback) // this creates a new CoffeeShop
+function _createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, callback) // this creates a new CoffeeShop
 {
-    CoffeeShop.createCoffeeShop(email, brandName, address, phone, longitude, latitude, callback)
+    validate.valCoffeeshop(email, brandId, address, phone,function(data){
+        if(data) {
+            callback(CoffeeShop.createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, callback))
+        }else callback(false)
+    })
+
 }
 
 function _deleteCoffeeShop(coffeeShopEmail, callback) {
-
-    CoffeeShop.deleteCoffeeShop(coffeeShopEmail, callback)
-
+    validate.valEmail(coffeeShopEmail,function(data){
+        if(data) {
+            callback(CoffeeShop.deleteCoffeeShop(coffeeShopEmail, callback))
+        }else callback(false)
+    })
 }; //this one deletes order based on id.
 
 
 function _getCoffeeShop(coffeeShopEmail, callback) {
-
-    CoffeeShop.getCoffeeShop(coffeeShopEmail, callback)
-
+    validate.valEmail(coffeeShopEmail,function(data){
+        if(data) {
+            callback(CoffeeShop.getCoffeeShop(coffeeShopEmail, callback))
+        }else callback(false)
+    })
 };  // this one "gets" a CoffeeSHop based on CoffeeShop Email.
 
 
@@ -209,34 +255,41 @@ function _getAllCoffeeShops(callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, longitude, latitude, callback) {
 
-    CoffeeShop.putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, longitude, latitude, callback)
+function _putCoffeeShop(coffeeShopEmail, email, brandId, address, phone, coffeeCode, longitude, latitude, callback) {
+    validate.valCoffeeshop(coffeeShopEmail, brandId, address, phone, coffeeCode, longitude, latitude, function(data){
+        if(data) {
+            callback(CoffeeShop.putCoffeeShop(coffeeShopEmail, email, brandId, address, phone, coffeeCode, longitude, latitude, callback))
+        }else callback(false)
+    })
+
 
 }; // this edits CoffeeShop based on email.
 
 
-
-
-
-
 function _createOrder(currentUser, coffeeShopId, platform, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
-
-    Order.createOrder(currentUser, coffeeShopId, platform, callback)
-
+    validate.valOrder(currentUser,coffeeShopId,platform,function(data){
+        if(data) {
+            callback(Order.createOrder(currentUser, coffeeShopId, platform, callback))
+        }else callback(false)
+    })
 }
 
 function _deleteOrder(orderId, callback) {
-
-    Order.deleteOrder(orderId, callback)
-
+    validate.valID(orderId,function(data){
+        if(data) {
+            callback(Order.deleteOrder(orderId, callback))
+        }else callback(false)
+    })
 };  //this one deletes order based on id.
 
 function _getOrder(orderId, callback) {
-
-    Order.getOrder(orderId, callback)
-
+    validate.valID(orderId,function(data){
+        if(data) {
+            callback(Order.getOrder(orderId, callback))
+        }else callback(false)
+    })
 }; // this one "gets" an order based on orderId.
 
 function _getAllOrdersByUser(userEmail, callback) {
@@ -248,49 +301,123 @@ function _getAllOrdersByUser(userEmail, callback) {
 
 function _createOrderItem(orderId, coffeeKindId, quantity, callback) // This creates a new order - belonging to a user through the userId and a coffeeShop through CoffeeShopId
 {
-
-    OrderItem.createOrderItem(orderId, coffeeKindId, quantity, callback)
+    validate.valOrderItem(orderId,coffeeKindId,quantity,function(data){
+        if(data) {
+            callback(OrderItem.createOrderItem(orderId, coffeeKindId, quantity, callback))
+        }else callback(false)
+    })
 
 }
 
 
-
 //COFFEESHOPUSER STARTS HERE
-function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
-{
+function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback) {
 
-    CoffeeShopUsers.createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
-
+    validate.valEmail(userEmail,function(data){
+        if(data) {
+            callback(CoffeeShopUsers.createCoffeeShopUser(userEmail, coffeeShopEmail, callback))
+        }else {
+            callback(false)
+        }
+    })
+    // CoffeeShopUsers.createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
+    // }else return false
 };
 
 
-function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
-{
+function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback) {
 
     CoffeeShopUsers.getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
 
 };
 
+function _coffeeBought(userID, coffeeCode, numberOfCoffeesBought, callback) {
+    //Springer steppet med CoffeeCode over. den skal finde Brandname for mig
+    validate.valID(userID, function (d) {
+        if (d) {
+            validate.valNumber(numberOfCoffeesBought, function (data) {
 
+                if (data) {
+                    CoffeeShop.getCoffeeShopByCoffeeCode(coffeeCode,function(coffeeData) {
 
+                        if(coffeeData) {
+                            CoffeeBrand.getCoffeeBrand(coffeeData.brandName,function(brandData){
 
+                                LoyaltyCards.getLoyaltyCardByUserAndBrand(userID, brandData.id, function (data) {
+
+                                    if (!data) {
+
+                                        LoyaltyCards.createLoyaltyCard(coffeeData.brandName, userID, numberOfCoffeesBought, function (createData) {
+                                            _createOrder(userID,coffeeData.id,'android',function(orderData){
+                                                _createOrderItem(orderData.id,null,numberOfCoffeesBought,function(){
+                                                    return callback(createData);
+                                                })
+
+                                            })
+
+                                        })
+                                    } else {
+                                        LoyaltyCards.addToNumberOfCoffeesBought(data.id, numberOfCoffeesBought, function (addData) {
+                                            _createOrder(userID,coffeeData.id,'android',function(orderData){
+                                                _createOrderItem(orderData.id,null,numberOfCoffeesBought,function(){
+                                                    return callback(addData);
+                                                })
+
+                                            })
+                                        })
+                                    }
+                                })
+                            })
+                        }else return callback(data)
+
+                    })
+                }else return callback(data)
+            })
+        }else return callback(d)
+    })
+}
+// _createCoffeeShopUser('test1@test1.dk','test@test.dk',function(data){
+//     if(data){
+//         console.log(data)
+//         console.log('gået godt')
+//     }else console.log('gået skidt')
+// })
 
 //COFFEESHOPUSER ENDS HERE
 
-
-
-module.exports = {createUser : _createUser, createRole : _createRole, putUser : _putUser,
-    deleteUser : _deleteUser, getUser : _getUser, createCoffeeShop: _createCoffeeShop,
-deleteCoffeeShop : _deleteCoffeeShop, createOrder : _createOrder, createOrderItem : _createOrderItem,
-    deleteOrder : _deleteOrder, getOrder: _getOrder,
-getCoffeeShop : _getCoffeeShop, putCoffeeShop : _putCoffeeShop, getAllCoffeeShops : _getAllCoffeeShops,
-    getAllOrdersByUser : _getAllOrdersByUser,
-getAllUsers : _getAllUsers, createCoffeeShopUser: _createCoffeeShopUser,
-    getAllcoffeeShopUser: _getAllCoffeeShopUserByCoffeeShop, getUserById : _getUserById
-, deleteLoyaltyCard : _deleteLoyaltyCard, createLoyaltyCard : _createLoyaltyCard, getLoyaltyCard : _getLoyaltyCard,
-    getAllloyaltyCards : _getAllloyaltyCards, putLoyaltyCard : _putLoyaltyCard,
-    createCoffeeBrand : _createCoffeeBrand, putCoffeeBrand : _putCoffeeBrand, getAllCoffeeBrand : _getAllCoffeeBrand,
-    getCoffeeBrand : _getCoffeeBrand, deleteCoffeeBrand : _deleteCoffeeBrand, deleteRole : _deleteRole, putRole : _putRole, getRole : _getRole, getAllRoles :  _getAllRoles}; // Export Module
-
-
-
+module.exports = {
+    createUser: _createUser,
+    createRole: _createRole,
+    putUser: _putUser,
+    deleteUser: _deleteUser,
+    getUser: _getUser,
+    createCoffeeShop: _createCoffeeShop,
+    deleteCoffeeShop: _deleteCoffeeShop,
+    createOrder: _createOrder,
+    createOrderItem: _createOrderItem,
+    deleteOrder: _deleteOrder,
+    getOrder: _getOrder,
+    getCoffeeShop: _getCoffeeShop,
+    putCoffeeShop: _putCoffeeShop,
+    getAllCoffeeShops: _getAllCoffeeShops,
+    getAllOrdersByUser: _getAllOrdersByUser,
+    getAllUsers: _getAllUsers,
+    createCoffeeShopUser: _createCoffeeShopUser,
+    getAllcoffeeShopUser: _getAllCoffeeShopUserByCoffeeShop,
+    getUserById: _getUserById,
+    deleteLoyaltyCard: _deleteLoyaltyCard,
+    createLoyaltyCard: _createLoyaltyCard,
+    getLoyaltyCard: _getLoyaltyCard,
+    getAllloyaltyCards: _getAllloyaltyCards,
+    putLoyaltyCard: _putLoyaltyCard,
+    createCoffeeBrand: _createCoffeeBrand,
+    putCoffeeBrand: _putCoffeeBrand,
+    getAllCoffeeBrand: _getAllCoffeeBrand,
+    getCoffeeBrand: _getCoffeeBrand,
+    deleteCoffeeBrand: _deleteCoffeeBrand,
+    deleteRole: _deleteRole,
+    putRole: _putRole,
+    getRole: _getRole,
+    getAllRoles: _getAllRoles,
+    coffeeBought: _coffeeBought
+}; // Export Module

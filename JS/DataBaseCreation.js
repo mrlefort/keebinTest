@@ -134,6 +134,11 @@ var coffeeShop = sequelize.define('coffeeShop', {
     },
     phone: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
+        type: Sequelize.STRING, // here we decide parameters for this field in the table
+        Validate : {notNull : true}
+    },
+    coffeeCode: {
+        type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true}
     },
     longitude: {
@@ -171,6 +176,7 @@ var orderItem = sequelize.define('orderItem', {
 }); // orderItem table setup
 
 
+
 var authentication = sequelize.define('authentication', {
     secret: {
         type: Sequelize.STRING,
@@ -181,6 +187,7 @@ var authentication = sequelize.define('authentication', {
     timestamps: false // fjerner timestamps med false denne option skal stå på tabellen
 
 }); // coffeeBrand table setup
+
 
 role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});

@@ -9,17 +9,25 @@ var email;
 var address;
 var phone;
 var brandName;
+var coffeeCode
+var longitude;
+var latitude;
 
-function _newCoffeeShop(email, brandName, address, phone)
+function _newCoffeeShop(email, brandName, address, phone, coffeeCode, longitude, latitude)
 {
     this.email = email;
     this.brandName = brandName;
     this.address = address;
     this.phone = phone;
+    this.coffeeCode = coffeeCode;
+    this.longitude = longitude;
+    this.latitude = latitude;
 
 }
 
-function _createCoffeeShop(email, brandName, address, phone, longitude, latitude, callback) // this creates a new CoffeeShop
+
+function _createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, callback) // this creates a new CoffeeShop
+
 {
     var coffeeShopCreated = false;
 
@@ -34,11 +42,13 @@ function _createCoffeeShop(email, brandName, address, phone, longitude, latitude
                 // chain all your queries here. make sure you return them.
                 return CoffeeShop.create({
                     email: email,
-                    brandName: brandName,
+                    brandId: brandId,
                     address: address,
                     phone: phone,
+                    coffeeCode: coffeeCode,
                     longitude: longitude,
                     latitude: latitude
+
 
                 }, {transaction: t})
 
@@ -128,7 +138,27 @@ function _getCoffeeShop(coffeeShopEmail, callback) {
 
 };  // this one "gets" a CoffeeSHop based on CoffeeShop Email.
 
+function _getCoffeeShopByCoffeeCode(coffeeCode, callback) {
+    var coffeeShopFound = false;
+    console.log('vi er inde i get coffeeshop by coffeecode')
+    console.log("_getCoffeeShop is running. Finding coffeeShop with coffeeCode: " + coffeeCode);
+    CoffeeShop.find({where: {coffeeCode: coffeeCode}}).then(function (data, err) {
+        if (data !== null) {
+            console.log("CoffeeShop with coffeeCode: " + data.coffeeCode + " found.");
+            callback(data);
 
+        } else {
+            console.log(err);
+            console.log("could not find: " + coffeeShopEmail);
+            callback(coffeeShopFound);
+
+        }
+
+
+    })
+
+
+};  // this one "gets" a CoffeeSHop based on CoffeeShop coffeeCode.
 function _getAllCoffeeShops(callback) {
     var allCoffeeShopsFound = [];
 
@@ -160,7 +190,7 @@ function _getAllCoffeeShops(callback) {
 
 };  // this one "gets" all CoffeeShops.
 
-function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, longitude, latitude, callback) {
+function _putCoffeeShop(coffeeShopEmail, email, brandId, address, phone, coffeeCode, longitude, latitude, callback) {
     var coffeeShopUpdated = false;
 
     console.log("_putCoffeeShop is running. Finding: " + coffeeShopEmail);
@@ -174,9 +204,10 @@ function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, longi
                 // chain all your queries here. make sure you return them.
                 return data.updateAttributes({
                     email: email,
-                    brandName: brandName,
+                    brandId: brandId,
                     address: address,
                     phone: phone,
+                    coffeeCode: coffeeCode,
                     longitude: longitude,
                     latitude: latitude
 
@@ -208,4 +239,4 @@ function _putCoffeeShop(coffeeShopEmail, email, brandName, address, phone, longi
 
 // Export Functions
 
-module.exports = {createCoffeeShopObject : _newCoffeeShop, getAllCoffeeShops : _getAllCoffeeShops,  putCoffeeShop : _putCoffeeShop, getCoffeeShop : _getCoffeeShop, deleteCoffeeShop : _deleteCoffeeShop, createCoffeeShop : _createCoffeeShop}; // Export Module
+module.exports = {createCoffeeShopObject : _newCoffeeShop, getAllCoffeeShops : _getAllCoffeeShops,  putCoffeeShop : _putCoffeeShop, getCoffeeShop : _getCoffeeShop, deleteCoffeeShop : _deleteCoffeeShop, createCoffeeShop : _createCoffeeShop, getCoffeeShopByCoffeeCode: _getCoffeeShopByCoffeeCode}; // Export Module
