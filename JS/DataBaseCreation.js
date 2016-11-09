@@ -134,7 +134,6 @@ var coffeeShop = sequelize.define('coffeeShop', {
     },
     phone: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
-        type: Sequelize.STRING, // here we decide parameters for this field in the table
         Validate : {notNull : true}
     },
     coffeeCode: {
