@@ -118,7 +118,7 @@ var db = require('./DataBaseFacade.js');
 //     console.log("Created role in DB - " + a);
 //
 // });
-//
+
 // var b;
 //
 // db.createRole("User", function(data) {
@@ -126,8 +126,8 @@ var db = require('./DataBaseFacade.js');
 //     console.log("Created role in DB - " + b);
 //
 // });
-//
-//
+
+
 
 
 // db.createUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345, function(data) {

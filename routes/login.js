@@ -6,6 +6,8 @@ var router = express.Router();
 var facade = require('../JS/DataBaseFacade.js');
 var bcrypt = require('bcryptjs');
 var Token = require('../JS/Token.js');
+var Secret = require('../JS/Secret.js');
+var jwt = require('jsonwebtoken');
 
 
 
@@ -57,6 +59,39 @@ router.post("/", function (req, res)
         })
 
 
+    }
+);
+
+
+router.post("/user/new", function (req, res, next)
+    {
+        console.log("vi er i new user")
+        var salt = bcrypt.genSaltSync(12);
+        var pw = bcrypt.hashSync(req.body.password, salt);
+        var userToSave =
+        {
+            "firstName": req.body.firstName,
+            "lastName": req.body.lastName,
+            "email": req.body.email,
+            "role": req.body.roleId,
+            "birthday": "2010-09-08 20:00:00",
+            "sex": req.body.sex,
+            "password": pw
+        }
+        facade.createUser(userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status)
+            {
+
+                if (status === true)
+                {
+                    res.writeHead(200, {"accessToken": req.headers.accessToken});
+                    res.status(200).send();
+                }
+                else
+                {
+                    res.status(500).send();
+                }
+            }
+        );
     }
 );
 

@@ -171,8 +171,10 @@ function _getAllRoles(callback) {
 
 function _createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback) // this creates a user
 {
-    validate.valUser(Email,Role,password,function(data){
+    console.log("createUser1")
+    validate.valUser(Email, password, Role,function(data){
         if(data) {
+            console.log("create user 2")
             callback(User.createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback))
         }else callback(false)
     })
@@ -199,9 +201,13 @@ function _deleteUser(userEmail, callback) {
 
 
 function _getUser(userEmail, callback) {
+
     validate.valEmail(userEmail,function(data){
         if(data) {
-            callback(User.getUser(userEmail, callback))
+           User.getUser(userEmail, function (data2) {
+               callback(data2)
+           })
+
         }else callback(false)
     })
 }; // this one "gets" a user based on email.

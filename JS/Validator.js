@@ -11,6 +11,7 @@ function _valRole(role,callback) {
     } else callback(true)
 }
 function _valUser(email,password,role,callback) {
+    console.log("her er val_ " + email + "_" + password + "_" + role)
     if (email == null || email == '') {
         //return user email not defined'
         callback(false)
