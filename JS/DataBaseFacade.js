@@ -33,7 +33,9 @@ sequelize.authenticate().then(function (err) {
 function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
     validate.valBrand(CoffeeBrandName, NumbersOfCoffeesNeeded,function(data){
         if(data) {
-            callback(CoffeeBrand.createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback))
+            CoffeeBrand.createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 
@@ -43,7 +45,9 @@ function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
 function _deleteCoffeeBrand(CoffeeBrandID, callback) {
     validate.valID(CoffeeBrandID,function(data){
         if(data) {
-            callback(CoffeeBrand.deleteCoffeeBrand(CoffeeBrandID, callback))
+            CoffeeBrand.deleteCoffeeBrand(CoffeeBrandID, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 
@@ -53,7 +57,9 @@ function _deleteCoffeeBrand(CoffeeBrandID, callback) {
 function _getCoffeeBrand(CoffeeBrandID, callback) {
     validate.valID(CoffeeBrandID,function(data){
         if(data) {
-            callback(CoffeeBrand.getCoffeeBrand(CoffeeBrandID, callback))
+            CoffeeBrand.getCoffeeBrand(CoffeeBrandID, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }
@@ -61,7 +67,9 @@ function _getCoffeeBrand(CoffeeBrandID, callback) {
 
 function _getAllCoffeeBrand(callback) {
 
-    CoffeeBrand.getAllCoffeeBrands(callback)
+    CoffeeBrand.getAllCoffeeBrands(function (data){
+        return callback(data)
+    })
 
 
 };  // this one "gets" all CoffeeShops.
@@ -69,7 +77,9 @@ function _getAllCoffeeBrand(callback) {
 function _putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback){
     validate.valBrand(CoffeeBrandID, CoffeeBrandName, CoffeeBrandName,function(data){
         if(data) {
-            callback(CoffeeBrand.putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback))
+            CoffeeBrand.putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 
@@ -78,17 +88,21 @@ function _putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, c
 function _deleteLoyaltyCard(ID, callback) {
     validate.valID(ID,function(data){
         if(data) {
-            callback(LoyaltyCards.deleteLoyaltyCard(ID, callback))
+            LoyaltyCards.deleteLoyaltyCard(ID, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }
 
-function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalcallback) {
+function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, callback) {
     validate.valID(userID,function(data){
         if(data){
             validate.valBrand(brandName, numberOfCoffeesBought,function(data){
                 if(data) {
-                    callback(LoyaltyCards.createLoyaltyCard(brandName,userID,numberOfCoffeesBought,newLoyalcallback))
+                    LoyaltyCards.createLoyaltyCard(brandName,userID,numberOfCoffeesBought,function(data2){
+                        callback(data2)
+                    })
                 }else callback(false)
             })
         }else callback(false)
@@ -100,7 +114,9 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
 function _getLoyaltyCard(ID, callback) {
     validate.valID(ID,function(data){
         if(data) {
-            callback(LoyaltyCards.getLoyaltyCard(ID, callback))
+            LoyaltyCards.getLoyaltyCard(ID, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }
@@ -108,7 +124,9 @@ function _getLoyaltyCard(ID, callback) {
 
 function _getAllloyaltyCards(callback) {
 
-    LoyaltyCards.getAllloyaltyCards(callback)
+    LoyaltyCards.getAllloyaltyCards(function(data2){
+        callback(data2)
+    })
 
 };  // this one "gets" all CoffeeShops.
 
@@ -118,7 +136,9 @@ function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought
         if (data) {
             validate.valID(userID, function (data) {
                 if (data) {
-                    callback(LoyaltyCards.putLoyaltyCard(LoyaltyCardID,brandName,userID,numberOfCoffeesBought,callback))
+                    LoyaltyCards.putLoyaltyCard(LoyaltyCardID,brandName,userID,numberOfCoffeesBought,function(data2){
+                        callback(data2)
+                    })
                 } else callback(false)
             })
         } else callback(false)
@@ -129,7 +149,9 @@ function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought
 function _createRole(RoleN, callback) {
     validate.valRole(RoleN,function(data){
         if(data) {
-            callback(Role.createRole(RoleN, callback))
+            Role.createRole(RoleN,function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 };  //create role if roleN does not exist already.
@@ -138,7 +160,9 @@ function _createRole(RoleN, callback) {
 function _deleteRole(RoleId, callback) {
     validate.valID(RoleId,function(data){
         if(data) {
-            callback(Role.deleteRole(RoleId, callback))
+            Role.deleteRole(RoleId, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 };  //create role if roleN does not exist already.
@@ -148,7 +172,9 @@ function _putRole(RoleId, NewRoleName, callback) {
         if(data) {
             validate.valRole(NewRoleName,function(data) {
                 if(data) {
-                    callback(Role.putRole(RoleId, NewRoleName, callback))
+                    Role.putRole(RoleId, NewRoleName, function(data2){
+                        callback(data2)
+                    })
                 }else callback(false)
             })
         }else callback(false)
@@ -158,14 +184,18 @@ function _putRole(RoleId, NewRoleName, callback) {
 function _getRole(RoleId, callback) {
     validate.valID(RoleId,function(data){
         if(data) {
-            callback(Role.getRole(RoleId, callback))
+            Role.getRole(RoleId, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 };  //create role if roleN does not exist already.
 
 function _getAllRoles(callback) {
 
-    Role.getAllRoles(callback)
+    Role.getAllRoles(function(data2){
+        callback(data2)
+    })
 
 };  //create role if roleN does not exist already.
 
@@ -175,7 +205,9 @@ function _createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, 
     validate.valUser(Email, password, Role,function(data){
         if(data) {
             console.log("create user 2")
-            callback(User.createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, callback))
+            User.createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }
@@ -184,7 +216,9 @@ function _createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, 
 function _putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback) {
     validate.valUser(Email,Role,password,function(data){
         if(data) {
-            callback(User.putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback))
+            User.putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 
@@ -194,7 +228,9 @@ function _putUser(userEmail, firstName, lastName, email, role, birthday, sex, pa
 function _deleteUser(userEmail, callback) {
     validate.valEmail(userEmail,function(data){
         if(data) {
-            callback(User.deleteUser(userEmail, callback))
+            User.deleteUser(userEmail, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }; //this one deletes user based on email.
@@ -215,14 +251,18 @@ function _getUser(userEmail, callback) {
 
 function _getAllUsers(callback) {
 
-    User.getAllUsers(callback)
+    User.getAllUsers(function(data2){
+        callback(data2)
+    })
 
 };  // this one "gets" all CoffeeShops.
 
 function _getUserById(userId, callback) {
     validate.valID(userId,function(data){
         if(data) {
-            callback(User.getUserById(userId, callback))
+            User.getUserById(userId, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }; //get one user from the DB by ID.
@@ -231,7 +271,9 @@ function _createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude
 {
     validate.valCoffeeshop(email, brandId, address, phone,function(data){
         if(data) {
-            callback(CoffeeShop.createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, callback))
+            CoffeeShop.createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 
@@ -240,7 +282,9 @@ function _createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude
 function _deleteCoffeeShop(coffeeShopEmail, callback) {
     validate.valEmail(coffeeShopEmail,function(data){
         if(data) {
-            callback(CoffeeShop.deleteCoffeeShop(coffeeShopEmail, callback))
+            CoffeeShop.deleteCoffeeShop(coffeeShopEmail, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }; //this one deletes order based on id.
@@ -249,7 +293,9 @@ function _deleteCoffeeShop(coffeeShopEmail, callback) {
 function _getCoffeeShop(coffeeShopEmail, callback) {
     validate.valEmail(coffeeShopEmail,function(data){
         if(data) {
-            callback(CoffeeShop.getCoffeeShop(coffeeShopEmail, callback))
+            CoffeeShop.getCoffeeShop(coffeeShopEmail, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 };  // this one "gets" a CoffeeSHop based on CoffeeShop Email.
@@ -257,7 +303,9 @@ function _getCoffeeShop(coffeeShopEmail, callback) {
 
 function _getAllCoffeeShops(callback) {
 
-    CoffeeShop.getAllCoffeeShops(callback)
+    CoffeeShop.getAllCoffeeShops(function(data2){
+        callback(data2)
+    })
 
 };  // this one "gets" all CoffeeShops.
 
@@ -265,7 +313,10 @@ function _getAllCoffeeShops(callback) {
 function _putCoffeeShop(coffeeShopEmail, email, brandId, address, phone, coffeeCode, longitude, latitude, callback) {
     validate.valCoffeeshop(coffeeShopEmail, brandId, address, phone, coffeeCode, longitude, latitude, function(data){
         if(data) {
-            callback(CoffeeShop.putCoffeeShop(coffeeShopEmail, email, brandId, address, phone, coffeeCode, longitude, latitude, callback))
+            CoffeeShop.putCoffeeShop(coffeeShopEmail, email, brandId, address, phone,
+                coffeeCode, longitude, latitude, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 
@@ -277,7 +328,9 @@ function _createOrder(currentUser, coffeeShopId, platform, callback) // This cre
 {
     validate.valOrder(currentUser,coffeeShopId,platform,function(data){
         if(data) {
-            callback(Order.createOrder(currentUser, coffeeShopId, platform, callback))
+            Order.createOrder(currentUser, coffeeShopId, platform, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }
@@ -285,7 +338,9 @@ function _createOrder(currentUser, coffeeShopId, platform, callback) // This cre
 function _deleteOrder(orderId, callback) {
     validate.valID(orderId,function(data){
         if(data) {
-            callback(Order.deleteOrder(orderId, callback))
+            Order.deleteOrder(orderId, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 };  //this one deletes order based on id.
@@ -293,14 +348,18 @@ function _deleteOrder(orderId, callback) {
 function _getOrder(orderId, callback) {
     validate.valID(orderId,function(data){
         if(data) {
-            callback(Order.getOrder(orderId, callback))
+            Order.getOrder(orderId, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 }; // this one "gets" an order based on orderId.
 
 function _getAllOrdersByUser(userEmail, callback) {
 
-    Order.getAllOrdersByUser(userEmail, callback)
+    Order.getAllOrdersByUser(userEmail, function(data2){
+        callback(data2)
+    })
 
 
 };  // this one "gets" all CoffeeShops.
@@ -309,7 +368,9 @@ function _createOrderItem(orderId, coffeeKindId, quantity, callback) // This cre
 {
     validate.valOrderItem(orderId,coffeeKindId,quantity,function(data){
         if(data) {
-            callback(OrderItem.createOrderItem(orderId, coffeeKindId, quantity, callback))
+            OrderItem.createOrderItem(orderId, coffeeKindId, quantity, function(data2){
+                callback(data2)
+            })
         }else callback(false)
     })
 
@@ -321,7 +382,9 @@ function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback) {
 
     validate.valEmail(userEmail,function(data){
         if(data) {
-            callback(CoffeeShopUsers.createCoffeeShopUser(userEmail, coffeeShopEmail, callback))
+            CoffeeShopUsers.createCoffeeShopUser(userEmail, coffeeShopEmail, function(data2){
+                callback(data2)
+            })
         }else {
             callback(false)
         }
@@ -333,7 +396,9 @@ function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback) {
 
 function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback) {
 
-    CoffeeShopUsers.getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
+    CoffeeShopUsers.getAllCoffeeShopUserByCoffeeShop(coffeeShopId, function(data2){
+        callback(data2)
+    })
 
 };
 
