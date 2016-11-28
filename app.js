@@ -180,7 +180,7 @@ app.all('/api/*', function (req, res, next) {
 
           } else {
             // if everything is good, save to request for use in other routes
-            req.accessToken = accessToken;
+            req.headers.accessToken = accessToken;
             req.decoded = decoded;
             console.log("accessToken blev verified")
             next();

@@ -55,6 +55,9 @@ router.post("/user/new", function (req, res, next)
 
                 if (status === true)
                 {
+
+
+
                     res.writeHead(200, {"accessToken": req.headers.accessToken});
                     res.status(200).send();
                 }
@@ -133,6 +136,9 @@ router.post("/role/new",  function (req, res, next)
 //Get user by email -- WORKS
 router.get("/user/:email", function (req, res, next)
     {
+
+        //for at få fat på indholdet i req skal man sige req.get("");
+
 
         facade.getUser(req.params.email, function (data)
         {
@@ -240,7 +246,7 @@ router.put("/card/:LoyaltyCard", function (req, res, next)
                 if (status !== false)
                 {
                     res.writeHead(200, {"accessToken": req.headers.accessToken});
-                    res.write(JSON.stringify(status));
+        res.write(JSON.stringify(status));
                     res.status(200).send();
                 }
                 if (status === false)

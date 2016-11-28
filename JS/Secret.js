@@ -50,7 +50,7 @@ function _getSecretKey(callback)
     Auth.find({where: {id: 1}}).then(function (data, err)
     {
         if (data !== null) {
-            console.log(data.secret);
+            console.log("Her er secret " + data.secret);
             secretKey = data.secret;
             callback(secretKey);
 
