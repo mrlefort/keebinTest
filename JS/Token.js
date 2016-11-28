@@ -37,7 +37,7 @@ function createClaim(userData, secretKey) {
     var claims =
     {
         sub: userData.id,
-        iss: "my server url",
+        iss: "www.keebin.dk",
         email: userData.email,
         roleId: userData.roleId
 
@@ -58,7 +58,7 @@ function createAccessToken(claims, secretKey)
     //create accessToken
     accessToken = jwt.sign({
         data: claims
-    }, secretKey, { expiresIn: 600 });
+    }, secretKey, { expiresIn: 2592000  }); //dette er 1 måned i sekunder. Skal self være mindre.
 
 
 
