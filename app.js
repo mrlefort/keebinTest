@@ -162,10 +162,11 @@ app.all('/api/*', function (req, res, next) {
                   //lav ny accessToken
                   Token.getToken(user, function (data) {
                     console.log("hvad er user? " + user)
-                    console.log("Success vi har fået en ny accessToken")
-                    newAccessToken = data;
+                    console.log("Success vi har fået en ny accessToken: " + data)
+                    var newAccessToken = data;
                     req.headers.accessToken = newAccessToken;
                     jwt.verify(newAccessToken, secretKey, function (err, decoded) {
+                      console.log("this is decoded from authenticate in app.ja: " + JSON.stringify(decoded) + " her er info vi skal have " + decoded.data.roleId)
                       req.decoded = decoded;
 
                       next();
