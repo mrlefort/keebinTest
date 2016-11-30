@@ -17,56 +17,63 @@ var passport = require('passport');
 //Deletes a user by email -- WORKS
 router.delete("/user/:email", function (req, res)
 {
-    console.log("param: " + req.params.email)
-    facade.deleteUser(req.params.email, function (status)
+    if (req.decoded.data.roleId !== 1)  //1 = admin
     {
+        console.log("param: " + req.params.email)
+        facade.deleteUser(req.params.email, function (status) {
 
-        if (status !== false)
-        {
-            res.writeHead(200, {"accessToken": req.headers.accessToken});
-            res.status(200).send();
-        }
-        else
-        {
-            res.status(500).send();
-        }
-    });
+            if (status !== false) {
+                res.writeHead(200, {"accessToken": req.headers.accessToken});
+                res.status(200).send();
+            }
+            else {
+                res.status(500).send();
+            }
+        });
+    } else {
+        res.status(401).send();
+    }
 });
 
 
 
 //New User  -- WORKS
-router.post("/user/new", function (req, res, next)
+router.post("/user/new", function (req, res, next) {
+
+    if (req.decoded.data.roleId !== 1) //1 = admin
     {
-        var salt = bcrypt.genSaltSync(12);
-        var pw = bcrypt.hashSync(req.body.password, salt);
-        var userToSave =
-        {
-            "firstName": req.body.firstName,
-            "lastName": req.body.lastName,
-            "email": req.body.email,
-            "role": req.body.roleId,
-            "birthday": new Date(req.body.birthday),
-            "sex": req.body.sex,
-            "password": pw
-        }
-        facade.createUser(userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status)
-            {
-
-                if (status === true)
-                {
 
 
+    var salt = bcrypt.genSaltSync(12);
+    var pw = bcrypt.hashSync(req.body.password, salt);
+    var userToSave =
+    {
+        "firstName": req.body.firstName,
+        "lastName": req.body.lastName,
+        "email": req.body.email,
+        "role": req.body.roleId,
+        "birthday": new Date(req.body.birthday),
+        "sex": req.body.sex,
+        "password": pw
+    }
+    facade.createUser(userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status) {
 
-                    res.writeHead(200, {"accessToken": req.headers.accessToken});
-                    res.status(200).send();
-                }
-                else
-                {
-                    res.status(500).send();
-                }
+            console.log("this is the decoded: " + req.decoded);
+            console.log("this is the headers.accessToken: " + req.headers.accessToken);
+            if (status === true) {
+
+
+                res.writeHead(200, {"accessToken": req.headers.accessToken});
+                res.status(200).send();
             }
-        );
+            else {
+                res.status(500).send();
+            }
+        }
+    );
+    } else {
+        res.status(401).send();
+    }
     }
 );
 
@@ -113,23 +120,25 @@ router.post("/card/coffeeBought", function (req, res, next)
 //New Role -- WORKS
 router.post("/role/new",  function (req, res, next)
     {
+        if (req.decoded.data.roleId !== 1) //1 = admin
+        {
 
-        facade.createRole(req.body.roleName, function (status)
-            {
+            facade.createRole(req.body.roleName, function (status) {
 
-                if (status === true)
-                {
+                    if (status === true) {
 
-                    res.writeHead(200, {"accessToken": req.headers.accessToken});
-                    res.status(200).send();
+                        res.writeHead(200, {"accessToken": req.headers.accessToken});
+                        res.status(200).send();
+                    }
+                    else {
+                        res.status(500).send();
+                    }
+
                 }
-                else
-                {
-                    res.status(500).send();
-                }
-
-            }
-        );
+            );
+        } else {
+            res.status(401).send();
+        }
     }
 );
 
@@ -219,20 +228,22 @@ router.put("/user/:email", function (req, res, next)
 // WORKS
 router.put("/role/:roleId", function (req, res, next)
     {
-        facade.putRole(req.params.roleId, req.body.roleName, function (status)
-            {
-                if (status !== false)
-                {
-                    res.writeHead(200, {"accessToken": req.headers.accessToken});
-                    res.write(JSON.stringify(status));
-                    res.status(200).send();
+        if (req.decoded.data.roleId !== 1) //1 = admin
+        {
+            facade.putRole(req.params.roleId, req.body.roleName, function (status) {
+                    if (status !== false) {
+                        res.writeHead(200, {"accessToken": req.headers.accessToken});
+                        res.write(JSON.stringify(status));
+                        res.status(200).send();
+                    }
+                    if (status === false) {
+                        res.status(500).send();
+                    }
                 }
-                if (status === false)
-                {
-                    res.status(500).send();
-                }
-            }
-        );
+            );
+        } else {
+            res.status(401).send();
+        }
 
     }
 );
@@ -281,19 +292,21 @@ router.put("/card/:LoyaltyCard", function (req, res, next)
 // get all roles WORKS
 router.get("/allroles/",  function (req, res, next)
 {
-
-    facade.getAllRoles( function (status)
+    if (req.decoded.data.roleId !== 1)  //1 = admin
     {
-        if (status !== false)
-        {
-            res.writeHead(200, {"Content-Type": "application/json", "accessToken": req.headers.accessToken});
-            res.end(JSON.stringify(status));
-        }
-        else
-        {
-            res.status(500).send();
-        }
-    })
+
+        facade.getAllRoles(function (status) {
+            if (status !== false) {
+                res.writeHead(200, {"Content-Type": "application/json", "accessToken": req.headers.accessToken});
+                res.end(JSON.stringify(status));
+            }
+            else {
+                res.status(500).send();
+            }
+        })
+    } else {
+        res.status(401).send();
+    }
 });
 
 
@@ -318,78 +331,21 @@ router.get("/allcards/", function (req, res)
 // WORKS
 router.get("/allusers/",  function (req, res)
 {
-
-    facade.getAllUsers( function (status)
+    if (req.decoded.data.roleId !== 1) //1 = admin
     {
-        if (status !== false)
-        {
-            res.writeHead(200, {"Content-Type": "application/json", "accessToken": req.headers.accessToken});
-            res.end(JSON.stringify(status));
-        }
-        else
-        {
-            res.status(500).send();
-        }
-    })
+        facade.getAllUsers(function (status) {
+            if (status !== false) {
+                res.writeHead(200, {"Content-Type": "application/json", "accessToken": req.headers.accessToken});
+                res.end(JSON.stringify(status));
+            }
+            else {
+                res.status(500).send();
+            }
+        })
+    } else {
+        res.status(401).send();
+    }
 });
-
-
-
-//Should return an array of all the coffeeShopUsers, but dosen't work due to asych node shit, needs some callback magic in databaseFacade function: _coffeeShopUserGetAll!
-
-//Steffen userLogin start
-
-// router.post("/user/login", function (req, res)
-//     {
-//
-//         //her skal vi tjekke om der er en accessToken, eller en refreshToken og sammenligner den med vores secretKey.
-//
-//
-//         console.log("her er email " + req.body.email)
-//         facade.getUser(req.body.email, function (data)
-//         {
-//
-//             if (data !== false)
-//             {
-//                 console.log("req pass: " + req.body.password + "data pass: " + data.password);
-//
-//                 if(bcrypt.compareSync(req.body.password, data.password)){
-//                     console.log("vi er logget ind")
-//                     //steffen laver the shit
-//                     var refreshToken = null;
-//                     Token.createRefreshToken(data.id, function (newRefreshTokenCreated) {
-//                         console.log("vi kører refreshTOken")
-//                         refreshToken = newRefreshTokenCreated.refreshToken;
-//
-//                     Token.getToken(data, function(accessToken)
-//                     {
-//                         console.log("vi kører accessToken")
-//                      console.log("Found accessToken - " + accessToken);
-//                         console.log("Found refreshToken - " + refreshToken);
-//                         var tokens = {"accessToken": accessToken, "refreshToken": refreshToken}
-//                         res.status(200).send(JSON.stringify(tokens));
-//
-//
-//                     });
-//                 });
-//                 } else {
-//                     console.log("vi bliver bare smidt herned")
-//                     res.status(747).send(); //747 returns that the username or password is incorrect.
-//                 }
-//
-//
-//
-//             }
-//             else
-//             {
-//                 res.status(747).send(); //747 returns that the username or password is incorrect.
-//             }
-//         })
-//
-//
-//     }
-// );
-
 
 
 
