@@ -47,7 +47,7 @@ router.delete("/shop/:CoffeeShopEmail", function (req, res)
 router.post("/brand/new", function (req, res, next)
     {
 
-        facade.createCoffeeBrand(req.body.brandName, req.body.numberOfCoffeeNeeded, function (status)
+        facade.createCoffeeBrand(req.body.brandId, req.body.numberOfCoffeeNeeded, function (status)
             {
                 if (status === true)
                 {
@@ -65,7 +65,7 @@ router.post("/brand/new", function (req, res, next)
 // WORKS
 router.post("/shop/new", function (req, res, next)
     {
-     var brandID = req.body.brandName;
+     var brandID = req.body.brandId;
         facade.createCoffeeShop(req.body.email, brandID, req.body.address, req.body.phone, function (status)
             {
                 if (status === true)
@@ -197,7 +197,7 @@ router.get("/allshopusers/:shopID", function (req, res, next)
 router.put("/brand/:brandID", function (req, res, next)
     {
 
-   var brandID = req.body.brandName;
+   var brandID = req.body.brandId;
         facade.putCoffeeBrand(req.params.brandID, brandID, req.body.numberOfCoffeeNeeded, function (status)
             {
                 console.log("her er status: " + status)

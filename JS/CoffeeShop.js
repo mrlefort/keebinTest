@@ -16,7 +16,7 @@ var latitude;
 function _newCoffeeShop(email, brandName, address, phone, coffeeCode, longitude, latitude)
 {
     this.email = email;
-    this.brandName = brandName;
+    this.brandId = brandName;
     this.address = address;
     this.phone = phone;
     this.coffeeCode = coffeeCode;

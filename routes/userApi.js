@@ -82,7 +82,7 @@ router.post("/user/new", function (req, res, next) {
 router.post("/card/new", function (req, res, next)
 
     {
-        facade.createLoyaltyCard(req.body.brandID, req.body.userId, req.body.numberOfCoffeesBought, function (status)
+        facade.createLoyaltyCard(req.body.brandId, req.body.userId, req.body.numberOfCoffeesBought, function (status)
             {
 
                 if (status === true)
@@ -252,7 +252,7 @@ router.put("/role/:roleId", function (req, res, next)
 router.put("/card/:LoyaltyCard", function (req, res, next)
     {
         var LoyaltyCardID = req.params.LoyaltyCard;
-        facade.putLoyaltyCard(LoyaltyCardID, req.body.brandName, req.body.userId, req.body.numberOfCoffeesBought, function (status)
+        facade.putLoyaltyCard(LoyaltyCardID, req.body.brandId, req.body.userId, req.body.numberOfCoffeesBought, function (status)
             {
                 if (status !== false)
                 {

@@ -67,14 +67,12 @@ function _valOrderItem(coffeeKindId,orderId,quantity,callback){
         callback(false)
     }else callback(true)
 }
-function _valBrand(coffeeBrandId,CoffeeBrandName, NumbersOfCoffeeNeeded, callback){
-    if (CoffeeBrandName == null || CoffeeBrandName == '') {
+function _valBrand(coffeeBrandId, NumbersOfCoffeeNeeded, callback){
+    if (coffeeBrandId == null || coffeeBrandId == '') {
         //return 'Role not defined'
         callback(false)
     } else if (NumbersOfCoffeeNeeded == null || NumbersOfCoffeeNeeded == '') {
         //return 'Rolename not defined'
-        callback(false)
-    } else if(coffeeBrandId == null || coffeeBrandId == ''){
         callback(false)
     } else callback(true)
 }

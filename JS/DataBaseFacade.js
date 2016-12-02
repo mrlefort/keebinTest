@@ -95,12 +95,12 @@ function _deleteLoyaltyCard(ID, callback) {
     })
 }
 
-function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, callback) {
+function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, callback) {
     validate.valID(userID,function(data){
         if(data){
-            validate.valBrand(brandName, numberOfCoffeesBought,function(data){
+            validate.valBrand(brandId, numberOfCoffeesBought,function(data){
                 if(data) {
-                    LoyaltyCards.createLoyaltyCard(brandName,userID,numberOfCoffeesBought,function(data2){
+                    LoyaltyCards.createLoyaltyCard(brandId,userID,numberOfCoffeesBought,function(data2){
                         callback(data2)
                     })
                 }else callback(false)
@@ -412,13 +412,13 @@ function _coffeeBought(userID, coffeeCode, numberOfCoffeesBought, callback) {
                     CoffeeShop.getCoffeeShopByCoffeeCode(coffeeCode,function(coffeeData) {
 
                         if(coffeeData) {
-                            CoffeeBrand.getCoffeeBrand(coffeeData.brandName,function(brandData){
+                            CoffeeBrand.getCoffeeBrand(coffeeData.brandId,function(brandData){
 
                                 LoyaltyCards.getLoyaltyCardByUserAndBrand(userID, brandData.id, function (data) {
 
                                     if (!data) {
 
-                                        LoyaltyCards.createLoyaltyCard(coffeeData.brandName, userID, numberOfCoffeesBought, function (createData) {
+                                        LoyaltyCards.createLoyaltyCard(coffeeData.brandId, userID, numberOfCoffeesBought, function (createData) {
                                             _createOrder(userID,coffeeData.id,'android',function(orderData){
                                                 _createOrderItem(orderData.id,null,numberOfCoffeesBought,function(){
                                                     return callback(createData);

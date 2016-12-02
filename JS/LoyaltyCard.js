@@ -40,22 +40,22 @@ function _deleteLoyaltyCard(ID, callback)
 
 }
 
-function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalcallback) {
-    this.brandName = brandName;
+function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, newLoyalcallback) {
+    this.brandId = brandId;
     this.numberOfCoffeesBought = numberOfCoffeesBought; //loyaltyCards bliver lavet når man første gang trykker "tilføj kop" til en branch.
     this.userID = userID;
     this.readyForFreeCoffee = false;
 
     var returnstatement;
     console.log('vi er nu i create')
-    console.log(brandName,userID,numberOfCoffeesBought)
+    console.log(brandId,userID,numberOfCoffeesBought)
     var runIfLoyaltyCardFoundFalse = function (duplicatecheck, callback) {
         // runIfRoleFoundFalse is the second function (the callback) - we feed RoleFound as a parameter and name is doesRoleExist
         if (duplicatecheck == false) {
             return conn.transaction(function (t) {
                 return loyaltyCards.create({
                     numberOfCoffeesBought: numberOfCoffeesBought,
-                    userId: userID, brandName: brandName, isValid: true, readyForFreeCoffee : false
+                    userId: userID, brandId: brandId, isValid: true, readyForFreeCoffee : false
 
 
                 }, {transaction: t})
@@ -85,7 +85,7 @@ function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, newLoyalca
 
 
 
-        loyaltyCards.find({where: {brandName: brandName, userId: userID}}).then(function (data) { // we have run the callback inside the .then
+        loyaltyCards.find({where: {brandId: brandId, userId: userID}}).then(function (data) { // we have run the callback inside the .then
             var Found;
             if (data !== null) {
                 console.log("User found -  " + data.userId)
@@ -138,7 +138,7 @@ function _getLoyaltyCard(ID, callback)
 }
 function _getLoyaltyCardByUserAndBrand(userID,brandName,callback){
 
-    loyaltyCards.find({where: {userId: userID ,brandName: brandName}}).then(function (data) { // we have run the callback inside the .then
+    loyaltyCards.find({where: {userId: userID ,brandId: brandName}}).then(function (data) { // we have run the callback inside the .then
         console.log('loyaltyCard: ' + data)
         if (data !== null) {
             console.log('vi er i done')
@@ -236,7 +236,7 @@ function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought
             // attribute : attributevalue to edit to.
             data.updateAttributes({
                 numberOfCoffeesBought: numberOfCoffeesBought,
-                userId: userID, brandName: brandName
+                userId: userID, brandId: brandName
             }).then(function (result) {
                 console.log("LoyaltyCard " + LoyaltyCardID + " has been updated!");
                 callback(result);

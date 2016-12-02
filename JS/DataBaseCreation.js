@@ -64,7 +64,7 @@ var user = sequelize.define('user', {
 }); // user table setup
 
 var coffeeBrand = sequelize.define('coffeeBrand', {
-    brandName: {
+    brandId: {
         type: Sequelize.STRING,
         Validate : {notNull : true}
     },
