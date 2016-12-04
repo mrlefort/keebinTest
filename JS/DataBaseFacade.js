@@ -269,7 +269,7 @@ function _getUserById(userId, callback) {
 
 function _createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, callback) // this creates a new CoffeeShop
 {
-    validate.valCoffeeshop(email, brandId, address, phone,function(data){
+    validate.valCoffeeshop(email, brandId, address, phone, longitude, latitude, function(data){
         if(data) {
             CoffeeShop.createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, function(data2){
                 callback(data2)
@@ -412,13 +412,13 @@ function _coffeeBought(userID, coffeeCode, numberOfCoffeesBought, callback) {
                     CoffeeShop.getCoffeeShopByCoffeeCode(coffeeCode,function(coffeeData) {
 
                         if(coffeeData) {
-                            CoffeeBrand.getCoffeeBrand(coffeeData.brandId,function(brandData){
+                            CoffeeBrand.getCoffeeBrand(coffeeData.brandName,function(brandData){
 
                                 LoyaltyCards.getLoyaltyCardByUserAndBrand(userID, brandData.id, function (data) {
 
                                     if (!data) {
 
-                                        LoyaltyCards.createLoyaltyCard(coffeeData.brandId, userID, numberOfCoffeesBought, function (createData) {
+                                        LoyaltyCards.createLoyaltyCard(coffeeData.brandName, userID, numberOfCoffeesBought, function (createData) {
                                             _createOrder(userID,coffeeData.id,'android',function(orderData){
                                                 _createOrderItem(orderData.id,null,numberOfCoffeesBought,function(){
                                                     return callback(createData);

@@ -16,7 +16,7 @@ var latitude;
 function _newCoffeeShop(email, brandName, address, phone, coffeeCode, longitude, latitude)
 {
     this.email = email;
-    this.brandId = brandName;
+    this.brandName = brandName;
     this.address = address;
     this.phone = phone;
     this.coffeeCode = coffeeCode;
@@ -42,7 +42,7 @@ function _createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude
                 // chain all your queries here. make sure you return them.
                 return CoffeeShop.create({
                     email: email,
-                    brandId: brandId,
+                    brandName: brandId,
                     address: address,
                     phone: phone,
                     coffeeCode: coffeeCode,
@@ -204,7 +204,7 @@ function _putCoffeeShop(coffeeShopEmail, email, brandId, address, phone, coffeeC
                 // chain all your queries here. make sure you return them.
                 return data.updateAttributes({
                     email: email,
-                    brandId: brandId,
+                    brandName: brandId,
                     address: address,
                     phone: phone,
                     coffeeCode: coffeeCode,

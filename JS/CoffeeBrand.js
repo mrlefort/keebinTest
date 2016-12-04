@@ -16,7 +16,7 @@ function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
 
 
                 return CoffeeBrand.create({
-                    brandId: CoffeeBrandName, numberOfCoffeeNeeded : NumbersOfCoffeesNeeded
+                    brandName: CoffeeBrandName, numberOfCoffeeNeeded : NumbersOfCoffeesNeeded
 
 
                 }, {transaction: t})
@@ -42,10 +42,10 @@ function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
 
 
         console.log("setCoffeeBrand is running. ")
-        CoffeeBrand.find({where: {brandId: CoffeeBrandName}}).then(function (data) { // we have run the callback inside the .then
+        CoffeeBrand.find({where: {brandName: CoffeeBrandName}}).then(function (data) { // we have run the callback inside the .then
             var CoffeeBrandFound;
             if (data !== null){
-                console.log("CoffeBrand found " + data.brandId)
+                console.log("CoffeBrand found " + data.brandName)
                 CoffeeBrandFound = true;} else {
                 CoffeeBrandFound = false;
             }
@@ -99,7 +99,7 @@ function _getCoffeeBrand(CoffeeBrandID, callback)
     CoffeeBrand.find({where: {Id: CoffeeBrandID}}).then(function (data) { // we have run the callback inside the .then
         console.log("running loyaltycards");
         if (data !== null) {
-            console.log("CoffeeBrand found -  " + data.brandId)
+            console.log("CoffeeBrand found -  " + data.brandName)
             callback(data);
 
         } else {
@@ -157,7 +157,7 @@ function _putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, c
             console.log("Trying to update " + CoffeeBrandName + "...")
 
             data.updateAttributes({
-                brandId: CoffeeBrandName, numberOfCoffeeNeeded : numberOfCoffeeNeeded
+                brandName: CoffeeBrandName, numberOfCoffeeNeeded : numberOfCoffeeNeeded
             }).then(function (result) {
                 console.log(CoffeeBrandName + " has been updated!");
                 callback(result);
