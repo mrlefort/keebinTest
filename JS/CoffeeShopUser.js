@@ -12,23 +12,17 @@ var user = db.User();
 var fuser = require('./User.js');
 var shop = require('./CoffeeShop.js');
 
-function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
-{
+function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback) {
     var status = false;
     var theCoffeShopUser;
     var theCoffeeShop;
-    fuser.getUser(userEmail, function (data)
-        {
-            if (data !== false)
-            {
+    fuser.getUser(userEmail, function (data) {
+            if (data !== false) {
                 theCoffeShopUser = data;
-                CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err)
-                    {
-                        if (data)
-                        {
+                CoffeeShop.find({where: {Email: coffeeShopEmail}}).then(function (data, err) {
+                        if (data) {
                             theCoffeeShop = data;
-                            return sequelize.transaction(function (t)
-                                {
+                            return sequelize.transaction(function (t) {
 
                                     // chain all your queries here. make sure you return them.
                                     return CoffeeShopUsers.create({
@@ -40,8 +34,7 @@ function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
                                     )
 
                                 }
-                            ).then(function (result)
-                                {
+                            ).then(function (result) {
                                     console.log("Transaction has been committed - coffeeShopUser has been saved to the DB");
                                     status = true;
                                     callback(status);
@@ -49,8 +42,7 @@ function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
                                     // Transaction has been committed
                                     // result is whatever the result of the promise chain returned to the transaction callback
                                 }
-                            ).catch(function (err)
-                                {
+                            ).catch(function (err) {
                                     console.log(err);
                                     callback(status);
                                     // Transaction has been rolled back
@@ -58,15 +50,13 @@ function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
                                 }
                             )
                         }
-                        else
-                        {
+                        else {
                             callback(status);
                         }
                     }
                 );
             }
-            else
-            {
+            else {
                 callback(status);
             }
         }
@@ -74,8 +64,7 @@ function _createCoffeeShopUser(userEmail, coffeeShopEmail, callback)
 };
 
 
-function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
-{
+function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback) {
 
     var usersFound = false;
     CoffeeShopUsers.findAll({
@@ -83,52 +72,43 @@ function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
                 coffeeShopId: coffeeShopId
             }
         }
-    ).then(function (data, err)
-        {
+    ).then(function (data, err) {
             // console.logId(data.get());
-            if (data)
-            {
+            if (data) {
                 console.log("here! " + data);
                 var returnUsersIds = [];
                 var returnUsers = [];
-                var logId = function (inst)
-                {
+                var logId = function (inst) {
                     console.log("her fra log ID - " + inst.get().userId);
                     returnUsersIds.push(inst.get().userId);
                 };
-                var logPers = function (inst)
-                {
+                var logPers = function (inst) {
                     delete inst.get().password;
                     returnUsers.push(inst.get());
                 };
 
                 data.forEach(logId);
 
-                console.log("her er rusrids: "+returnUsersIds);
+                console.log("her er rusrids: " + returnUsersIds);
 
                 user.findAll({
-                    where:
-                    {
+                    where: {
                         id: returnUsersIds
                     }
-                }).then(function(data, err)
-                {
-                    if(data)
-                    {
+                }).then(function (data, err) {
+                    if (data) {
                         data.forEach(logPers);
                         console.log("her er find all usrs data: " + data);
                         callback(returnUsers);
                     }
-                    if(err)
-                    {
+                    if (err) {
                         console.log("her er err: " + err)
                         callback(false);
                     }
                 });
 
             }
-            if (err)
-            {
+            if (err) {
                 console.log("fejl i find all!");
                 callback(usersFound);
             }
@@ -136,4 +116,7 @@ function _getAllCoffeeShopUserByCoffeeShop(coffeeShopId, callback)
     );
 };
 
-module.exports = { getAllCoffeeShopUserByCoffeeShop : _getAllCoffeeShopUserByCoffeeShop, createCoffeeShopUser : _createCoffeeShopUser}; // Export Module
+module.exports = {
+    getAllCoffeeShopUserByCoffeeShop: _getAllCoffeeShopUserByCoffeeShop,
+    createCoffeeShopUser: _createCoffeeShopUser
+}; // Export Module

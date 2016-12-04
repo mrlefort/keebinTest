@@ -15,8 +15,7 @@ var birthday = "";
 var sex = "";
 var password = ""; // Variable Creation
 
-function _newUser(firstName, lastName, email, role, birthday, sex, password)
-{
+function _newUser(firstName, lastName, email, role, birthday, sex, password) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -70,22 +69,14 @@ function _createUser(firstName, lastName, email, role, birthday, sex, password, 
 }
 
 
-
-
-
-
-
 function _putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback) {
 
     var userUpdated = false;
 
     console.log("userPutFind is running. Finding: " + userEmail);
-    User.find({where: {Email: userEmail}}).then(function (data, err)
-        {
-            if (data !== null)
-            {
+    User.find({where: {Email: userEmail}}).then(function (data, err) {
+            if (data !== null) {
                 console.log("user found - ready to edit");
-
 
 
                 return sequelize.transaction(function (t) {
@@ -129,7 +120,6 @@ function _putUser(userEmail, firstName, lastName, email, role, birthday, sex, pa
 }; // this edits user based on email.
 
 
-
 function _deleteUser(userEmail, callback) {
     var userDeleted = false;
 
@@ -147,7 +137,6 @@ function _deleteUser(userEmail, callback) {
                 console.log("Transaction has been committed - user with email: " + userEmail + ", has been DELETED");
                 userDeleted = true;
                 callback(userDeleted);
-
 
 
                 // Transaction has been committed
@@ -172,7 +161,6 @@ function _deleteUser(userEmail, callback) {
 
 
 }; //this one deletes user based on email.
-
 
 
 function _getUser(userEmail, callback) {
@@ -229,8 +217,7 @@ function _getUserByRefreshToken(refreshToken, callback) {
 function _getAllUsers(callback) {
     var allUsers = [];
 
-    var log = function(inst)
-    {
+    var log = function (inst) {
 
         allUsers.push(inst.get());
     }
@@ -256,20 +243,16 @@ function _getAllUsers(callback) {
 };  // this one "gets" all CoffeeShops.
 
 
-function _getUserById(userId, callback)
-{
+function _getUserById(userId, callback) {
     var userFound3 = false;
 
     console.log("_userGet is running. Finding: " + userId);
-    User.find({where: {id: userId}}).then(function (data, err)
-        {
-            if (data !== null)
-            {
+    User.find({where: {id: userId}}).then(function (data, err) {
+            if (data !== null) {
                 console.log("user with email: " + userId + " found. Name is: " + data.firstName);
                 callback(data);
 
-            } else
-            {
+            } else {
                 console.log(err);
                 console.log("could not find: " + userId);
                 callback(userFound3);
@@ -283,10 +266,8 @@ function _logoutUser(userEmail, callback) {
 
 
     console.log("_logoutUser is running. Finding: " + userEmail);
-    User.find({where: {Email: userEmail}}).then(function (data, err)
-        {
-            if (data !== null)
-            {
+    User.find({where: {Email: userEmail}}).then(function (data, err) {
+            if (data !== null) {
                 console.log("user found - ready to Logout");
 
                 return sequelize.transaction(function (t) {
@@ -326,9 +307,17 @@ function _logoutUser(userEmail, callback) {
 }; // this logs out user by deleting refreshToken.
 
 
-
-module.exports = {createNewUserObject : _newUser, getUserById : _getUserById, createUser : _createUser, putUser : _putUser, deleteUser : _deleteUser, getUser : _getUser, getAllUsers : _getAllUsers,
-    getUserByRefreshToken : _getUserByRefreshToken, logoutUser : _logoutUser}; // Export Module
+module.exports = {
+    createNewUserObject: _newUser,
+    getUserById: _getUserById,
+    createUser: _createUser,
+    putUser: _putUser,
+    deleteUser: _deleteUser,
+    getUser: _getUser,
+    getAllUsers: _getAllUsers,
+    getUserByRefreshToken: _getUserByRefreshToken,
+    logoutUser: _logoutUser
+}; // Export Module
 
 
 

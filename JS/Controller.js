@@ -128,8 +128,6 @@ var db = require('./DataBaseFacade.js');
 // });
 
 
-
-
 // db.createUser("test1", "testEfternavn", "lars1@gmail.com", 1, "09/09/2010", "male", 12345, function(data) {
 //     console.log("User created and saved to the DB - " + data);
 //
@@ -142,7 +140,6 @@ var db = require('./DataBaseFacade.js');
 //     console.log("User created and saved to the DB - " + data);
 //
 // });
-
 
 
 // db.putUser("lars3@gmail.com", "test3", "testEfternavn", "lars2@gmail.com", 1, "09/09/2010", "male", 12345, function(data){

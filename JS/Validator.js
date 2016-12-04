@@ -1,7 +1,7 @@
 /**
  * Created by noncowi on 06-11-2016.
  */
-function _valRole(role,callback) {
+function _valRole(role, callback) {
     if (role == null || role == '') {
         //return 'Role not defined'
         callback(false)
@@ -10,7 +10,7 @@ function _valRole(role,callback) {
         callback(false)
     } else callback(true)
 }
-function _valUser(email,password,role,callback) {
+function _valUser(email, password, role, callback) {
     console.log("her er val_ " + email + "_" + password + "_" + role)
     if (email == null || email == '') {
         //return user email not defined'
@@ -23,13 +23,13 @@ function _valUser(email,password,role,callback) {
 
 }
 
-function _valEmail(email,callback) {
+function _valEmail(email, callback) {
     if (email == null) {
         callback(false)
     } else callback(true)
 }
 function _valCoffeeshop(coffeeShopEmail, brandId, address, phone, longitude, latitude, callback) {
-    if ( coffeeShopEmail == null || coffeeShopEmail == '') {
+    if (coffeeShopEmail == null || coffeeShopEmail == '') {
         callback(false)
     } else if (brandId == null || brandId == '') {
         callback(false)
@@ -44,30 +44,30 @@ function _valCoffeeshop(coffeeShopEmail, brandId, address, phone, longitude, lat
     }
     else callback(true)
 }
-function _valID(ID,callback) {
+function _valID(ID, callback) {
     if (ID == null || ID == '') {
         callback(false)
     } else callback(true)
 }
-function _valOrder(currentUser, coffeeShopId,platform,callback) {
+function _valOrder(currentUser, coffeeShopId, platform, callback) {
     if (coffeeShopId == null || coffeeShopId == '') {
         callback(false)
     } else if (platform == null || platform == '') {
         callback(false)
-    }else if(currentUser == null || currentUser == ''){
+    } else if (currentUser == null || currentUser == '') {
         callback(false)
-    }else callback(true)
+    } else callback(true)
 }
-function _valOrderItem(coffeeKindId,orderId,quantity,callback){
-    if (coffeeKindId == null || coffeeKindId == ''){
+function _valOrderItem(coffeeKindId, orderId, quantity, callback) {
+    if (coffeeKindId == null || coffeeKindId == '') {
         callback(false)
-    }else if (orderId == null | orderId == ''){
+    } else if (orderId == null | orderId == '') {
         callback(false)
-    }else if (quantity == null || quantity == '' ){
+    } else if (quantity == null || quantity == '') {
         callback(false)
-    }else callback(true)
+    } else callback(true)
 }
-function _valBrand(coffeeBrandId, NumbersOfCoffeeNeeded, callback){
+function _valBrand(coffeeBrandId, NumbersOfCoffeeNeeded, callback) {
     if (coffeeBrandId == null || coffeeBrandId == '') {
         //return 'Role not defined'
         callback(false)
@@ -76,10 +76,12 @@ function _valBrand(coffeeBrandId, NumbersOfCoffeeNeeded, callback){
         callback(false)
     } else callback(true)
 }
-function _valNumber(number,callback){
-    if(number == null || number == 0){
+function _valNumber(number, callback) {
+    if (number == null || number == 0) {
         callback(false)
-    }else callback(true)
+    } else callback(true)
 }
-module.exports = {valOrderItem: _valOrderItem, valOrder: _valOrder, valID:_valID, valCoffeeshop: _valCoffeeshop,
-    valEmail:_valEmail, valUser: _valUser, valRole: _valRole, valBrand: _valBrand, valNumber: _valNumber}
+module.exports = {
+    valOrderItem: _valOrderItem, valOrder: _valOrder, valID: _valID, valCoffeeshop: _valCoffeeshop,
+    valEmail: _valEmail, valUser: _valUser, valRole: _valRole, valBrand: _valBrand, valNumber: _valNumber
+}

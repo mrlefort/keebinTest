@@ -13,8 +13,7 @@ var coffeeCode
 var longitude;
 var latitude;
 
-function _newCoffeeShop(email, brandName, address, phone, coffeeCode, longitude, latitude)
-{
+function _newCoffeeShop(email, brandName, address, phone, coffeeCode, longitude, latitude) {
     this.email = email;
     this.brandId = brandName;
     this.address = address;
@@ -33,7 +32,7 @@ function _createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude
 
     console.log("newCoffeeShop is running.")
     CoffeeShop.find({where: {Email: email}}).then(function (data) { //we check if the CoffeeShop exists based on it's unique email.
-        if (data !== null){
+        if (data !== null) {
             console.log("CoffeeShop found - email exists already - " + data.email)
             callback(coffeeShopCreated);
         } else {
@@ -88,7 +87,6 @@ function _deleteCoffeeShop(coffeeShopEmail, callback) {
                 callback(coffeeShopDeleted);
 
 
-
                 // Transaction has been committed
                 // result is whatever the result of the promise chain returned to the transaction callback
             }).catch(function (err) {
@@ -111,9 +109,6 @@ function _deleteCoffeeShop(coffeeShopEmail, callback) {
 
 
 }; //this one deletes order based on id.
-
-
-
 
 
 function _getCoffeeShop(coffeeShopEmail, callback) {
@@ -162,8 +157,7 @@ function _getCoffeeShopByCoffeeCode(coffeeCode, callback) {
 function _getAllCoffeeShops(callback) {
     var allCoffeeShopsFound = [];
 
-    var log = function(inst)
-    {
+    var log = function (inst) {
 
         allCoffeeShopsFound.push(inst.get());
     }
@@ -239,4 +233,12 @@ function _putCoffeeShop(coffeeShopEmail, email, brandId, address, phone, coffeeC
 
 // Export Functions
 
-module.exports = {createCoffeeShopObject : _newCoffeeShop, getAllCoffeeShops : _getAllCoffeeShops,  putCoffeeShop : _putCoffeeShop, getCoffeeShop : _getCoffeeShop, deleteCoffeeShop : _deleteCoffeeShop, createCoffeeShop : _createCoffeeShop, getCoffeeShopByCoffeeCode: _getCoffeeShopByCoffeeCode}; // Export Module
+module.exports = {
+    createCoffeeShopObject: _newCoffeeShop,
+    getAllCoffeeShops: _getAllCoffeeShops,
+    putCoffeeShop: _putCoffeeShop,
+    getCoffeeShop: _getCoffeeShop,
+    deleteCoffeeShop: _deleteCoffeeShop,
+    createCoffeeShop: _createCoffeeShop,
+    getCoffeeShopByCoffeeCode: _getCoffeeShopByCoffeeCode
+}; // Export Module

@@ -1,6 +1,3 @@
-
-
-
 var db = require('./DataBaseCreation.js');
 var conn = db.connect();
 
@@ -11,13 +8,10 @@ var readyForFreeCoffee;
 var loyaltyCards = db.LoyaltyCards();
 
 
-
-
-function _deleteLoyaltyCard(ID, callback)
-{
+function _deleteLoyaltyCard(ID, callback) {
     var returnstatement = false;
-    loyaltyCards.find({where: {Id: ID}}).then(function(loyaltyCard) {
-        if(loyaltyCard !== null) {
+    loyaltyCards.find({where: {Id: ID}}).then(function (loyaltyCard) {
+        if (loyaltyCard !== null) {
             loyaltyCard.destroy().then(function (data) {
 
                 if (data !== null) {
@@ -31,8 +25,7 @@ function _deleteLoyaltyCard(ID, callback)
                 }
             })
         }
-        else
-        {
+        else {
             console.log("No LoyaltyCard exists with the ID - " + ID)
             callback(false);
         }
@@ -48,14 +41,14 @@ function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, newLoyalcall
 
     var returnstatement;
     console.log('vi er nu i create')
-    console.log(brandId,userID,numberOfCoffeesBought)
+    console.log(brandId, userID, numberOfCoffeesBought)
     var runIfLoyaltyCardFoundFalse = function (duplicatecheck, callback) {
         // runIfRoleFoundFalse is the second function (the callback) - we feed RoleFound as a parameter and name is doesRoleExist
         if (duplicatecheck == false) {
             return conn.transaction(function (t) {
                 return loyaltyCards.create({
                     numberOfCoffeesBought: numberOfCoffeesBought,
-                    userId: userID, brandId: brandId, isValid: true, readyForFreeCoffee : false
+                    userId: userID, brandId: brandId, isValid: true, readyForFreeCoffee: false
 
 
                 }, {transaction: t})
@@ -84,7 +77,6 @@ function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, newLoyalcall
     var checkforduplicates = function (callback) {
 
 
-
         loyaltyCards.find({where: {brandId: brandId, userId: userID}}).then(function (data) { // we have run the callback inside the .then
             var Found;
             if (data !== null) {
@@ -100,28 +92,13 @@ function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, newLoyalcall
     }
 
 
-
     checkforduplicates(runIfLoyaltyCardFoundFalse);
-
 
 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-function _getLoyaltyCard(ID, callback)
-
-{
+function _getLoyaltyCard(ID, callback) {
     loyaltyCards.find({where: {Id: ID}}).then(function (data) { // we have run the callback inside the .then
         if (data !== null) {
             console.log("LoyaltyCard found -  " + data.Id)
@@ -136,9 +113,9 @@ function _getLoyaltyCard(ID, callback)
     })
 
 }
-function _getLoyaltyCardByUserAndBrand(userID,brandName,callback){
+function _getLoyaltyCardByUserAndBrand(userID, brandName, callback) {
 
-    loyaltyCards.find({where: {userId: userID ,brandId: brandName}}).then(function (data) { // we have run the callback inside the .then
+    loyaltyCards.find({where: {userId: userID, brandId: brandName}}).then(function (data) { // we have run the callback inside the .then
         console.log('loyaltyCard: ' + data)
         if (data !== null) {
             console.log('vi er i done')
@@ -151,7 +128,7 @@ function _getLoyaltyCardByUserAndBrand(userID,brandName,callback){
         }
 
 
-    },function(data){
+    }, function (data) {
         callback(false);
     })
 }
@@ -167,8 +144,7 @@ function steffen(data) {
 function _getAllloyaltyCards(callback) {
     var allloyaltyCards = [];
 
-    var log = function(inst)
-    {
+    var log = function (inst) {
 
         allloyaltyCards.push(inst.get());
     }
@@ -196,10 +172,10 @@ function _getAllloyaltyCards(callback) {
 };  // this one "gets" all CoffeeShops.
 
 
-function _addToNumberOfCoffeesBought(LoyaltyCardID, numberOfCoffeesBought, callback){
+function _addToNumberOfCoffeesBought(LoyaltyCardID, numberOfCoffeesBought, callback) {
     console.log('hej i add')
-    loyaltyCards.find({where:{Id:LoyaltyCardID}}).then(function (data, err) {
-        if(data === null){
+    loyaltyCards.find({where: {Id: LoyaltyCardID}}).then(function (data, err) {
+        if (data === null) {
 
             console.log("something went wrong with editting " + LoyaltyCardID + " and gave an error - " + err);
             callback(false);
@@ -209,7 +185,7 @@ function _addToNumberOfCoffeesBought(LoyaltyCardID, numberOfCoffeesBought, callb
             console.log("Trying to update... " + LoyaltyCardID)
             // data.updateatt = update given attributes in the object
             // attribute : attributevalue to edit to.
-            console.log('vi er i add og data er:'+ LoyaltyCardID,numberOfCoffeesBought )
+            console.log('vi er i add og data er:' + LoyaltyCardID, numberOfCoffeesBought)
             data.numberOfCoffeesBought += numberOfCoffeesBought;
             data.updateAttributes({
                 numberOfCoffeesBought: data.numberOfCoffeesBought
@@ -223,8 +199,8 @@ function _addToNumberOfCoffeesBought(LoyaltyCardID, numberOfCoffeesBought, callb
 
 
 function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought, callback) {
-    loyaltyCards.find({where:{Id:LoyaltyCardID}}).then(function (data, err) {
-        if(data === null){
+    loyaltyCards.find({where: {Id: LoyaltyCardID}}).then(function (data, err) {
+        if (data === null) {
 
             console.log("something went wrong with editting " + LoyaltyCardID + " and gave an error - " + err);
             callback(false);
@@ -256,7 +232,15 @@ function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought
 
 // Export Functions
 
-module.exports = {getAllloyaltyCards : _getAllloyaltyCards, createLoyaltyCard : _createLoyaltyCard, deleteLoyaltyCard : _deleteLoyaltyCard, getLoyaltyCard : _getLoyaltyCard, putLoyaltyCard : _putLoyaltyCard,getLoyaltyCardByUserAndBrand: _getLoyaltyCardByUserAndBrand, addToNumberOfCoffeesBought: _addToNumberOfCoffeesBought}; // Export Module/**
+module.exports = {
+    getAllloyaltyCards: _getAllloyaltyCards,
+    createLoyaltyCard: _createLoyaltyCard,
+    deleteLoyaltyCard: _deleteLoyaltyCard,
+    getLoyaltyCard: _getLoyaltyCard,
+    putLoyaltyCard: _putLoyaltyCard,
+    getLoyaltyCardByUserAndBrand: _getLoyaltyCardByUserAndBrand,
+    addToNumberOfCoffeesBought: _addToNumberOfCoffeesBought
+}; // Export Module/**
 
 
 // below is a useage of loyality cards in etc Controller.
