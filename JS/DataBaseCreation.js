@@ -64,7 +64,7 @@ var user = sequelize.define('user', {
 }); // user table setup
 
 var coffeeBrand = sequelize.define('coffeeBrand', {
-    brandId: {
+    brandName: {
         type: Sequelize.STRING,
         Validate : {notNull : true}
     },
@@ -195,8 +195,8 @@ user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
 user.hasMany(loyaltyCards);
 loyaltyCards.belongsTo(user);
-coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandId'});
-loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandId'});
+coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});
+loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
 
 
 
@@ -214,8 +214,8 @@ order.belongsTo(coffeeShop);
 user.hasMany(order);
 
 
-coffeeBrand.hasMany(coffeeShop, {foreignKey: "brandId"});
-coffeeShop.belongsTo(coffeeBrand, {foreignKey: "brandId"});
+coffeeBrand.hasMany(coffeeShop, {foreignKey: "brandName"});
+coffeeShop.belongsTo(coffeeBrand, {foreignKey: "brandName"});
 
 
 

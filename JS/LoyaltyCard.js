@@ -41,7 +41,7 @@ function _deleteLoyaltyCard(ID, callback)
 }
 
 function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, newLoyalcallback) {
-    this.brandId = brandId;
+    this.brandName = brandId;
     this.numberOfCoffeesBought = numberOfCoffeesBought; //loyaltyCards bliver lavet når man første gang trykker "tilføj kop" til en branch.
     this.userID = userID;
     this.readyForFreeCoffee = false;
@@ -55,7 +55,7 @@ function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, newLoyalcall
             return conn.transaction(function (t) {
                 return loyaltyCards.create({
                     numberOfCoffeesBought: numberOfCoffeesBought,
-                    userId: userID, brandId: brandId, isValid: true, readyForFreeCoffee : false
+                    userId: userID, brandName: brandId, isValid: true, readyForFreeCoffee : false
 
 
                 }, {transaction: t})
@@ -85,7 +85,7 @@ function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, newLoyalcall
 
 
 
-        loyaltyCards.find({where: {brandId: brandId, userId: userID}}).then(function (data) { // we have run the callback inside the .then
+        loyaltyCards.find({where: {brandName: brandId, userId: userID}}).then(function (data) { // we have run the callback inside the .then
             var Found;
             if (data !== null) {
                 console.log("User found -  " + data.userId)
@@ -138,7 +138,7 @@ function _getLoyaltyCard(ID, callback)
 }
 function _getLoyaltyCardByUserAndBrand(userID,brandName,callback){
 
-    loyaltyCards.find({where: {userId: userID ,brandId: brandName}}).then(function (data) { // we have run the callback inside the .then
+    loyaltyCards.find({where: {userId: userID ,brandName: brandName}}).then(function (data) { // we have run the callback inside the .then
         console.log('loyaltyCard: ' + data)
         if (data !== null) {
             console.log('vi er i done')
@@ -236,7 +236,7 @@ function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought
             // attribute : attributevalue to edit to.
             data.updateAttributes({
                 numberOfCoffeesBought: numberOfCoffeesBought,
-                userId: userID, brandId: brandName
+                userId: userID, brandName: brandName
             }).then(function (result) {
                 console.log("LoyaltyCard " + LoyaltyCardID + " has been updated!");
                 callback(result);
