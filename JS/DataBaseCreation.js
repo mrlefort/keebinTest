@@ -193,7 +193,7 @@ user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
 user.hasMany(loyaltyCards);
 loyaltyCards.belongsTo(user);
-coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});
+coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});   //Skal dette her laves om som lige over? Så den hedder brandId?
 loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
 
 

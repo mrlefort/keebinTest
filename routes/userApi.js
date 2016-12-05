@@ -74,7 +74,7 @@ router.post("/user/new", function (req, res, next) {
 
 // WORKS
 router.post("/card/new", function (req, res, next) {
-        facade.createLoyaltyCard(req.body.brandId, req.body.userId, req.body.numberOfCoffeesBought, function (status) {
+        facade.createLoyaltyCard(req.body.brandName, req.body.userId, req.body.numberOfCoffeesBought, function (status) {
 
 
                 if (status === true) {
@@ -283,7 +283,7 @@ router.get("/allroles/", function (req, res, next) {
 // WORKS
 router.get("/allcards/", function (req, res) {
 
-    facade.getAllloyaltyCards(function (status) {
+    facade.getAllloyaltyCardsByUserId(req.decoded.data.sub, function (status) {
         if (status !== false) {
             res.writeHead(200, {"Content-Type": "application/json", "accessToken": req.headers.accessToken});
             res.end(JSON.stringify(status));

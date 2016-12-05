@@ -138,14 +138,9 @@ function _getLoyaltyCardByUserAndBrand(userID, brandName, callback) {
 }
 
 
-function steffen(data) {
-    console.log("vi er nu i steffen")
-    console.log(data.userId);
-    return data;
-}
 
 
-function _getAllloyaltyCards(callback) {
+function _getAllloyaltyCardsByUserId(userId, callback) {
     var allloyaltyCards = [];
 
     var log = function (inst) {
@@ -153,18 +148,18 @@ function _getAllloyaltyCards(callback) {
         allloyaltyCards.push(inst.get());
     }
 
-    console.log("CoffeBrands is running.");
-    loyaltyCards.findAll().then(function (data, err) {
+    console.log("CoffeeCards is running.");
+    loyaltyCards.findAll({where: {userId: userId}}).then(function (data, err) {
         if (data !== null) {
             console.log("her er data: " + data)
-            console.log("CoffeBrands found.");
+            console.log("CoffeeCards found.");
             data.forEach(log);
             callback(allloyaltyCards);
 
         } else {
             console.log(err);
             allloyaltyCards = false;
-            console.log("could not find any CoffeBrands");
+            console.log("could not find any CoffeeCards");
             callback(false);
 
         }
@@ -237,7 +232,7 @@ function _putLoyaltyCard(LoyaltyCardID, brandName, userID, numberOfCoffeesBought
 // Export Functions
 
 module.exports = {
-    getAllloyaltyCards: _getAllloyaltyCards,
+    getAllloyaltyCardsByUserId: _getAllloyaltyCardsByUserId,
     createLoyaltyCard: _createLoyaltyCard,
     deleteLoyaltyCard: _deleteLoyaltyCard,
     getLoyaltyCard: _getLoyaltyCard,

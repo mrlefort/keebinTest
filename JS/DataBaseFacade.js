@@ -93,13 +93,14 @@ function _deleteLoyaltyCard(ID, callback) {
     })
 }
 
-function _createLoyaltyCard(brandId, userID, numberOfCoffeesBought, callback) {
+function _createLoyaltyCard(brandName, userID, numberOfCoffeesBought, callback) {
     validate.valID(userID, function (data) {
         if (data) {
-            validate.valBrand(brandId, numberOfCoffeesBought, function (data) {
+            validate.valBrand(brandName, numberOfCoffeesBought, function (data) {
                 if (data) {
-                    LoyaltyCards.createLoyaltyCard(brandId, userID, numberOfCoffeesBought, function (data2) {
+                    LoyaltyCards.createLoyaltyCard(brandName, userID, numberOfCoffeesBought, function (data2) {
                         callback(data2)
+
                     })
                 } else callback(false)
             })
@@ -120,9 +121,10 @@ function _getLoyaltyCard(ID, callback) {
 }
 
 
-function _getAllloyaltyCards(callback) {
+function _getAllloyaltyCardsByUserId(userId, callback) {
 
-    LoyaltyCards.getAllloyaltyCards(function (data2) {
+    console.log("this is user id: " + userId);
+    LoyaltyCards.getAllloyaltyCardsByUserId(userId, function (data2) {
         callback(data2)
     })
 
@@ -483,7 +485,7 @@ module.exports = {
     deleteLoyaltyCard: _deleteLoyaltyCard,
     createLoyaltyCard: _createLoyaltyCard,
     getLoyaltyCard: _getLoyaltyCard,
-    getAllloyaltyCards: _getAllloyaltyCards,
+    getAllloyaltyCardsByUserId: _getAllloyaltyCardsByUserId,
     putLoyaltyCard: _putLoyaltyCard,
     createCoffeeBrand: _createCoffeeBrand,
     putCoffeeBrand: _putCoffeeBrand,
