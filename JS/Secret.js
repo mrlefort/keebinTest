@@ -16,7 +16,7 @@ function _createSecret(secretKey) // this creates a secret. ONLY TO BE RUN ONCE
 
     console.log("_createSecret is running.")
     Auth.find({where: {id: 1}}).then(function (data) { //check if a secret already exists
-        if (data !== null){
+        if (data !== null) {
             console.log("secret already exists")
 
         } else {
@@ -45,10 +45,8 @@ function _createSecret(secretKey) // this creates a secret. ONLY TO BE RUN ONCE
 
 //Token creation
 
-function _getSecretKey(callback)
-{
-    Auth.find({where: {id: 1}}).then(function (data, err)
-    {
+function _getSecretKey(callback) {
+    Auth.find({where: {id: 1}}).then(function (data, err) {
         if (data !== null) {
             console.log("Her er secret " + data.secret);
             secretKey = data.secret;
@@ -63,4 +61,4 @@ function _getSecretKey(callback)
 }
 
 
-module.exports = {getSecretKey : _getSecretKey};
+module.exports = {getSecretKey: _getSecretKey};

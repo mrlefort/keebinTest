@@ -8,7 +8,6 @@ var CoffeeBrand = db.CoffeeBrand();
 function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
 
 
-
     var runIfCoffeeBrandFoundFalse = function (doesCoffeeBrandExist) {
 
         if (doesCoffeeBrandExist == false) {
@@ -16,7 +15,8 @@ function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
 
 
                 return CoffeeBrand.create({
-                    brandName: CoffeeBrandName, numberOfCoffeeNeeded : NumbersOfCoffeesNeeded
+
+                    brandName: CoffeeBrandName, numberOfCoffeeNeeded: NumbersOfCoffeesNeeded
 
 
                 }, {transaction: t})
@@ -34,7 +34,8 @@ function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
         } else {
             console.log("couldn't create CoffeBrand with the name " + CoffeeBrandName);
             callback(false);
-        };
+        }
+        ;
     }
 
 
@@ -44,19 +45,18 @@ function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
         console.log("setCoffeeBrand is running. ")
         CoffeeBrand.find({where: {brandName: CoffeeBrandName}}).then(function (data) { // we have run the callback inside the .then
             var CoffeeBrandFound;
-            if (data !== null){
+
+            if (data !== null) {
                 console.log("CoffeBrand found " + data.brandName)
-                CoffeeBrandFound = true;} else {
+                CoffeeBrandFound = true;
+            } else {
+
                 CoffeeBrandFound = false;
             }
 
             callback(CoffeeBrandFound);
 
         })
-
-
-
-
 
 
     };
@@ -66,11 +66,10 @@ function _createCoffeeBrand(CoffeeBrandName, NumbersOfCoffeesNeeded, callback) {
 
 }
 
-function _deleteCoffeeBrand(CoffeeBrandID, callback)
-{
+function _deleteCoffeeBrand(CoffeeBrandID, callback) {
 
-    CoffeeBrand.find({where: {Id: CoffeeBrandID}}).then(function(FoundCoffeeBrand) {
-        if(FoundCoffeeBrand !== null) {
+    CoffeeBrand.find({where: {Id: CoffeeBrandID}}).then(function (FoundCoffeeBrand) {
+        if (FoundCoffeeBrand !== null) {
             FoundCoffeeBrand.destroy().then(function (data) {
 
                 if (data !== null) {
@@ -84,8 +83,7 @@ function _deleteCoffeeBrand(CoffeeBrandID, callback)
                 }
             })
         }
-        else
-        {
+        else {
             console.log("No CoffeeBrand exists with the ID - " + CoffeeBrandID)
             callback(false);
         }
@@ -94,8 +92,7 @@ function _deleteCoffeeBrand(CoffeeBrandID, callback)
 }
 
 
-function _getCoffeeBrand(CoffeeBrandID, callback)
-{
+function _getCoffeeBrand(CoffeeBrandID, callback) {
     CoffeeBrand.find({where: {Id: CoffeeBrandID}}).then(function (data) { // we have run the callback inside the .then
         console.log("running loyaltycards");
         if (data !== null) {
@@ -103,7 +100,7 @@ function _getCoffeeBrand(CoffeeBrandID, callback)
             callback(data);
 
         } else {
-            console.log("Failed to find CoffeeBrand with id - " + CoffeeBrandID );
+            console.log("Failed to find CoffeeBrand with id - " + CoffeeBrandID);
             callback(false);
         }
 
@@ -116,8 +113,7 @@ function _getCoffeeBrand(CoffeeBrandID, callback)
 function _getAllCoffeeBrand(callback) {
     var allCoffeeCoffeeBrands = [];
 
-    var log = function(inst)
-    {
+    var log = function (inst) {
 
         allCoffeeCoffeeBrands.push(inst.get());
     }
@@ -146,18 +142,20 @@ function _getAllCoffeeBrand(callback) {
 
 
 function _putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, callback) {
-    CoffeeBrand.find({where:{id:CoffeeBrandID}}).then(function (data, err) {
-        if(err){
+    CoffeeBrand.find({where: {id: CoffeeBrandID}}).then(function (data, err) {
+        if (err) {
 
             console.log("something went wrong while editting " + CoffeeBrandName + " and gave error - " + err);
             callback(false);
 
         }
-        if(data){
+        if (data) {
             console.log("Trying to update " + CoffeeBrandName + "...")
 
             data.updateAttributes({
-                brandName: CoffeeBrandName, numberOfCoffeeNeeded : numberOfCoffeeNeeded
+
+                brandName: CoffeeBrandName, numberOfCoffeeNeeded: numberOfCoffeeNeeded
+
             }).then(function (result) {
                 console.log(CoffeeBrandName + " has been updated!");
                 callback(result);
@@ -166,4 +164,10 @@ function _putCoffeeBrand(CoffeeBrandID, CoffeeBrandName, numberOfCoffeeNeeded, c
     });
 }
 // put delete get create
-module.exports = {getAllCoffeeBrands : _getAllCoffeeBrand, createCoffeeBrand : _createCoffeeBrand, deleteCoffeeBrand: _deleteCoffeeBrand, getCoffeeBrand : _getCoffeeBrand, putCoffeeBrand : _putCoffeeBrand};
+module.exports = {
+    getAllCoffeeBrands: _getAllCoffeeBrand,
+    createCoffeeBrand: _createCoffeeBrand,
+    deleteCoffeeBrand: _deleteCoffeeBrand,
+    getCoffeeBrand: _getCoffeeBrand,
+    putCoffeeBrand: _putCoffeeBrand
+};

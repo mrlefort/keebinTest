@@ -10,8 +10,7 @@ var sequelize = db.connect();
 var Order = db.Order();
 var OrderItem = db.OrderItem();
 
-function _newOrderItem(orderId, coffeeKindId, quantity)
-{
+function _newOrderItem(orderId, coffeeKindId, quantity) {
     this.orderId = orderId;
     this.coffeeKindId = coffeeKindId;
     this.quantity = quantity;
@@ -27,7 +26,7 @@ function _createOrderItem(orderId, coffeeKindId, quantity, callback) // This cre
 
     console.log("newCoffeeShop is running.")
     Order.find({where: {id: orderId}}).then(function (data) { //we check if the order exists based on it's id.
-        if (data == null){
+        if (data == null) {
             console.log("Order not found");
             callback(orderItemCreated);
         } else {
@@ -58,4 +57,4 @@ function _createOrderItem(orderId, coffeeKindId, quantity, callback) // This cre
     })
 }
 
-module.exports = {CreateNewOrderItemObject : _newOrderItem, createOrderItem : _createOrderItem}; // Export Module
+module.exports = {CreateNewOrderItemObject: _newOrderItem, createOrderItem: _createOrderItem}; // Export Module

@@ -17,7 +17,7 @@ sequelize.authenticate().then(function (err) {
 var role = sequelize.define('roles', {
     roleName: {
         type: Sequelize.STRING,
-        Validate : {notNull : true, unique : true}
+        Validate: {notNull: true, unique: true}
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -30,30 +30,30 @@ var user = sequelize.define('user', {
     firstName: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
         field: 'first_name', // Will result in an attribute that is firstName when user facing but first_name in the database
-        Validate : {max : 40}
+        Validate: {max: 40}
     },
     lastName: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
-        Validate : {max : 40}
+        Validate: {max: 40}
     },
     email: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
-        Validate : {notNull : true, isEmail: true, unique : true}
+        Validate: {notNull: true, isEmail: true, unique: true}
     },
     birthday: {
         type: Sequelize.DATE, // here we decide parameters for this field in the table
-        Validate : {isDate : true, notNull : false}
+        Validate: {isDate: true, notNull: false}
     },
     sex: {
         type: Sequelize.STRING // here we decide parameters for this field in the table
     },
     password: {
         type: Sequelize.STRING,
-        Validate: {notNull : true}
+        Validate: {notNull: true}
     },
     refreshToken: {
         type: Sequelize.STRING,
-        Validate: {notNull : false}
+        Validate: {notNull: false}
     }
 
 }, {
@@ -66,11 +66,11 @@ var user = sequelize.define('user', {
 var coffeeBrand = sequelize.define('coffeeBrand', {
     brandName: {
         type: Sequelize.STRING,
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     },
     numberOfCoffeeNeeded: {
         type: Sequelize.INTEGER,
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -81,15 +81,15 @@ var coffeeBrand = sequelize.define('coffeeBrand', {
 var loyaltyCards = sequelize.define('loyaltyCards', {
     numberOfCoffeesBought: {
         type: Sequelize.INTEGER,
-        Validate : {notNull : true},
+        Validate: {notNull: true},
     },
     isValid: {
         type: Sequelize.BOOLEAN,
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     },
     readyForFreeCoffee: {
         type: Sequelize.BOOLEAN,
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -100,11 +100,11 @@ var loyaltyCards = sequelize.define('loyaltyCards', {
 var coffeeKind = sequelize.define('coffeeKind', {
     price: {
         type: Sequelize.DOUBLE,
-        Validate : {notNull : true},
+        Validate: {notNull: true},
     },
     coffeeKindName: {
         type: Sequelize.STRING,
-        Validate : {notNull : true},
+        Validate: {notNull: true},
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -115,7 +115,7 @@ var coffeeKind = sequelize.define('coffeeKind', {
 var order = sequelize.define('order', {
     platform: {
         type: Sequelize.STRING,
-        Validate : {notNull : true},
+        Validate: {notNull: true},
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -126,19 +126,19 @@ var order = sequelize.define('order', {
 var coffeeShop = sequelize.define('coffeeShop', {
     email: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
-        Validate : {notNull : true, isEmail: true, unique : true}
+        Validate: {notNull: true, isEmail: true, unique: true}
     },
     address: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     },
     phone: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     },
     coffeeCode: {
         type: Sequelize.STRING, // here we decide parameters for this field in the table
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     },
     longitude: {
         type: Sequelize.DOUBLE // here we decide parameters for this field in the table
@@ -166,7 +166,7 @@ var coffeeShopUsers = sequelize.define('coffeeShopUsers', {
 var orderItem = sequelize.define('orderItem', {
     quantity: {
         type: Sequelize.INTEGER, // here we decide parameters for this field in the table
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -175,11 +175,10 @@ var orderItem = sequelize.define('orderItem', {
 }); // orderItem table setup
 
 
-
 var authentication = sequelize.define('authentication', {
     secret: {
         type: Sequelize.STRING,
-        Validate : {notNull : true}
+        Validate: {notNull: true}
     }
 }, {
     freezeTableName: true, // Model tableName will be the same as the model name
@@ -192,12 +191,10 @@ role.hasMany(user, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 user.belongsTo(role, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
 
-
 user.hasMany(loyaltyCards);
 loyaltyCards.belongsTo(user);
 coffeeBrand.hasMany(loyaltyCards, {foreignKey: 'brandName'});
 loyaltyCards.belongsTo(coffeeBrand, {foreignKey: 'brandName'});
-
 
 
 coffeeShop.hasMany(coffeeKind);
@@ -216,7 +213,6 @@ user.hasMany(order);
 
 coffeeBrand.hasMany(coffeeShop, {foreignKey: "brandName"});
 coffeeShop.belongsTo(coffeeBrand, {foreignKey: "brandName"});
-
 
 
 order.belongsToMany(coffeeKind, {through: 'orderItem', foreignKey: 'Order_ID'});
@@ -239,65 +235,55 @@ authentication.sync();
 // Creating Tables
 
 
-
-function _Role()
-{
+function _Role() {
     return role;
 }
 
-function _User()
-{
+function _User() {
     return user;
 }
 
 
-function _CoffeeBrand()
-{
+function _CoffeeBrand() {
     return coffeeBrand;
 }
 
-function _LoyaltyCards()
-{
+function _LoyaltyCards() {
     return loyaltyCards;
 }
 
-function _CoffeeKind()
-{
+function _CoffeeKind() {
     return coffeeKind;
 }
 
-function _Order()
-{
+function _Order() {
     return order;
 }
 
-function _CoffeeShop()
-{
+function _CoffeeShop() {
     return coffeeShop;
 }
 
-function _CoffeeShopUsers()
-{
+function _CoffeeShopUsers() {
     return coffeeShopUsers;
 }
 
-function _OrderItem()
-{
+function _OrderItem() {
     return orderItem;
 }
 
-function _connect()
-{
+function _connect() {
     return sequelize;
 }
 
-function _authentication()
-{
+function _authentication() {
     return authentication;
 }
 
 // Export Functions // Export Functions
 
-module.exports = {Role : _Role, User : _User, CoffeeBrand : _CoffeeBrand,
-    LoyaltyCards : _LoyaltyCards, CoffeeKind : _CoffeeKind, Order : _Order, CoffeeShop : _CoffeeShop,
-    CoffeeShopUsers : _CoffeeShopUsers, OrderItem : _OrderItem, connect : _connect, Authentication : _authentication}; // Export Module
+module.exports = {
+    Role: _Role, User: _User, CoffeeBrand: _CoffeeBrand,
+    LoyaltyCards: _LoyaltyCards, CoffeeKind: _CoffeeKind, Order: _Order, CoffeeShop: _CoffeeShop,
+    CoffeeShopUsers: _CoffeeShopUsers, OrderItem: _OrderItem, connect: _connect, Authentication: _authentication
+}; // Export Module

@@ -10,22 +10,18 @@ var Secret = require('../JS/Secret.js');
 var jwt = require('jsonwebtoken');
 
 
-
-router.post("/", function (req, res)
-    {
+router.post("/", function (req, res) {
 
         //her skal vi tjekke om der er en accessToken, eller en refreshToken og sammenligner den med vores secretKey.
 
 
         console.log("her er email " + req.body.email)
-        facade.getUser(req.body.email, function (data)
-        {
+        facade.getUser(req.body.email, function (data) {
 
-            if (data !== false)
-            {
+            if (data !== false) {
                 console.log("req pass: " + req.body.password + "data pass: " + data.password);
 
-                if(bcrypt.compareSync(req.body.password, data.password)){
+                if (bcrypt.compareSync(req.body.password, data.password)) {
                     console.log("vi er logget ind")
                     //steffen laver the shit
                     var refreshToken = null;
@@ -33,8 +29,7 @@ router.post("/", function (req, res)
                         console.log("vi kører refreshTOken")
                         refreshToken = newRefreshTokenCreated.refreshToken;
 
-                        Token.getToken(data, function(accessToken)
-                        {
+                        Token.getToken(data, function (accessToken) {
                             console.log("vi kører accessToken")
                             console.log("Found accessToken - " + accessToken);
                             console.log("Found refreshToken - " + refreshToken);
@@ -50,10 +45,8 @@ router.post("/", function (req, res)
                 }
 
 
-
             }
-            else
-            {
+            else {
                 res.status(747).send(); //747 returns that the username or password is incorrect.
             }
         })
@@ -63,8 +56,7 @@ router.post("/", function (req, res)
 );
 
 
-router.post("/user/new", function (req, res, next)
-    {
+router.post("/user/new", function (req, res, next) {
         console.log("vi er i new user")
         var salt = bcrypt.genSaltSync(12);
         var pw = bcrypt.hashSync(req.body.password, salt);
@@ -78,16 +70,13 @@ router.post("/user/new", function (req, res, next)
             "sex": req.body.sex,
             "password": pw
         }
-        facade.createUser(userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status)
-            {
+        facade.createUser(userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status) {
 
-                if (status === true)
-                {
+                if (status === true) {
                     res.writeHead(200, {"accessToken": req.headers.accessToken});
                     res.status(200).send();
                 }
-                else
-                {
+                else {
                     res.status(500).send();
                 }
             }

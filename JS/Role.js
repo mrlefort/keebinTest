@@ -10,7 +10,6 @@ var Role = db.Role();
 function _createRole(RoleName, callback) {
 
 
-
     var runIfRoleFoundFalse = function (doesRoleExist) {
 
         if (doesRoleExist == false) {
@@ -31,9 +30,10 @@ function _createRole(RoleName, callback) {
                 callback(false);
             });
         } else {
-            console.log("couldn't create Role " + RoleName );
+            console.log("couldn't create Role " + RoleName);
             callback(false);
-        };
+        }
+        ;
     }
 
 
@@ -43,19 +43,16 @@ function _createRole(RoleName, callback) {
 
         Role.find({where: {RoleName: RoleName}}).then(function (data) { // we have run the callback inside the .then
             var RoleFound;
-            if (data !== null){
+            if (data !== null) {
                 console.log("role found " + data.roleName)
-                RoleFound = true;} else {
+                RoleFound = true;
+            } else {
                 RoleFound = false;
             }
             //we give RoleFound to callback
             callback(RoleFound);
 
         })
-
-
-
-
 
 
     };
@@ -65,11 +62,10 @@ function _createRole(RoleName, callback) {
 
 }
 
-function _deleteRole(ID, callback)
-{
+function _deleteRole(ID, callback) {
     var returnstatement = false;
-    Role.find({where: {id: ID}}).then(function(FoundRole) {
-        if(FoundRole !== null) {
+    Role.find({where: {id: ID}}).then(function (FoundRole) {
+        if (FoundRole !== null) {
             FoundRole.destroy().then(function (data) {
 
                 if (data !== null) {
@@ -83,8 +79,7 @@ function _deleteRole(ID, callback)
                 }
             })
         }
-        else
-        {
+        else {
             console.log("No Role exists with the ID - " + ID)
             callback(false);
         }
@@ -93,8 +88,7 @@ function _deleteRole(ID, callback)
 }
 
 
-function _findRole(ID, callback)
-{
+function _findRole(ID, callback) {
     Role.find({where: {id: ID}}).then(function (data) {
 
         if (data !== null) {
@@ -114,8 +108,7 @@ function _findRole(ID, callback)
 function _getAllRoles(callback) {
     var allRoles = [];
 
-    var log = function(inst)
-    {
+    var log = function (inst) {
 
         allRoles.push(inst.get());
     }
@@ -143,14 +136,14 @@ function _getAllRoles(callback) {
 };  // this one "gets" all CoffeeShops.
 
 function _putRole(RoleID, RoleName, callback) {
-    Role.find({where:{Id:RoleID}}).then(function (data, err) {
-        if(err){
+    Role.find({where: {Id: RoleID}}).then(function (data, err) {
+        if (err) {
 
             console.log("error in updating Role " + RoleName + " returned error - " + err);
             callback(false);
 
         }
-        if(data){
+        if (data) {
             console.log("Trying to update Role - " + RoleName)
             data.updateAttributes({
                 roleName: RoleName
@@ -162,4 +155,10 @@ function _putRole(RoleID, RoleName, callback) {
     });
 }
 
-module.exports = {getAllRoles : _getAllRoles, createRole : _createRole, deleteRole: _deleteRole, getRole : _findRole, putRole : _putRole};
+module.exports = {
+    getAllRoles: _getAllRoles,
+    createRole: _createRole,
+    deleteRole: _deleteRole,
+    getRole: _findRole,
+    putRole: _putRole
+};

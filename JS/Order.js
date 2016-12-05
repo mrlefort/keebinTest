@@ -10,8 +10,7 @@ var facade = require('./User.js');
 
 var platform;
 
-function _newOrder(coffeeShopId, platform)
-{
+function _newOrder(coffeeShopId, platform) {
     this.coffeeShopId = coffeeShopId;
     this.platform = platform;
 
@@ -46,7 +45,6 @@ function _createOrder(currentUserId, coffeeShopId, platform, callback) // This c
     })
 
 
-
 }
 
 function _deleteOrder(orderId, callback) {
@@ -66,7 +64,6 @@ function _deleteOrder(orderId, callback) {
                 console.log("Transaction has been committed - order with id: " + orderId + ", has been DELETED");
                 orderDeleted = true;
                 callback(orderDeleted);
-
 
 
                 // Transaction has been committed
@@ -118,12 +115,9 @@ function _getAllOrdersByUser(userEmail, callback) {
     var allOrdersByUser = [];
 
 
-
-
     facade.getUser(userEmail, function (data) {
 
-        var log = function(inst)
-        {
+        var log = function (inst) {
             allOrdersByUser.push(inst.get());
         }
 
@@ -145,14 +139,18 @@ function _getAllOrdersByUser(userEmail, callback) {
         })
 
 
-
     })
 
 
 };  // this one "gets" all CoffeeShops.
 
 
-
 // Export Functions
 
-module.exports = {newOrder : _newOrder, getAllOrdersByUser : _getAllOrdersByUser, getOrder : _getOrder, deleteOrder : _deleteOrder, createOrder : _createOrder}; // Export Module
+module.exports = {
+    newOrder: _newOrder,
+    getAllOrdersByUser: _getAllOrdersByUser,
+    getOrder: _getOrder,
+    deleteOrder: _deleteOrder,
+    createOrder: _createOrder
+}; // Export Module

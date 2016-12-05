@@ -13,10 +13,8 @@ var sequelize = db.connect();
 var accessToken = null;
 var refreshToken = null;
 
-function _getToken(userData, callback)
-{
-    auth.find({where: {id: 1}}).then(function (data, err)
-    {
+function _getToken(userData, callback) {
+    auth.find({where: {id: 1}}).then(function (data, err) {
         if (data !== null) {
             console.log(data.secret);
             secretKey = data.secret;
@@ -42,24 +40,19 @@ function createClaim(userData, secretKey) {
         roleId: userData.roleId
 
 
-
     }
     createAccessToken(claims, secretKey)
 }
 
 
-
-
-function createAccessToken(claims, secretKey)
-{
+function createAccessToken(claims, secretKey) {
 
 
     console.log("running create AccessToken");
     //create accessToken
     accessToken = jwt.sign({
         data: claims
-    }, secretKey, { expiresIn: 2592000  }); //dette er 1 måned i sekunder. Skal self være mindre.
-
+    }, secretKey, {expiresIn: 2592000}); //dette er 1 måned i sekunder. Skal self være mindre.
 
 
     console.log("accessToken has been created: " + accessToken); //this is what our accessToken looks like.
@@ -77,10 +70,8 @@ function _createRefreshToken(userId, callback) {
 
     var userRefreshTokenUpdated = false;
 
-    User.find({where: {id: userId}}).then(function (data, err)
-        {
-            if (data !== null)
-            {
+    User.find({where: {id: userId}}).then(function (data, err) {
+            if (data !== null) {
                 console.log("user found - ready to edit refreshToken");
 
                 return sequelize.transaction(function (t) {
@@ -122,11 +113,9 @@ function _createRefreshToken(userId, callback) {
         }
     )
 
-;
+    ;
 
 }
 
 
-
-
-module.exports = {getToken : _getToken, createRefreshToken : _createRefreshToken};
+module.exports = {getToken: _getToken, createRefreshToken: _createRefreshToken};
