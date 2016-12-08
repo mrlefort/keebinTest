@@ -52,7 +52,7 @@ function createAccessToken(claims, secretKey) {
     //create accessToken
     accessToken = jwt.sign({
         data: claims
-    }, secretKey, {expiresIn: 2592000}); //dette er 1 måned i sekunder. Skal self være mindre.
+    }, secretKey, {expiresIn: 900}); //dette er 1 måned i sekunder. Skal self være mindre.
 
 
     console.log("accessToken has been created: " + accessToken); //this is what our accessToken looks like.
