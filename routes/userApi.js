@@ -34,10 +34,9 @@ router.delete("/user/:email", function (req, res) {
 //New User  -- WORKS
 router.post("/user/new", function (req, res, next) {
 
+
         if (req.decoded.data.roleId === 1) //1 = admin
         {
-
-
             var salt = bcrypt.genSaltSync(12);
             var pw = bcrypt.hashSync(req.body.password, salt);
             var userToSave =
@@ -180,7 +179,6 @@ router.put("/user/:email", function (req, res, next) {
         }
 
 
-        console.log(userToSave.role);
 
         facade.putUser(userToSave.email, userToSave.firstName, userToSave.lastName, userToSave.email, userToSave.role, userToSave.birthday, userToSave.sex, userToSave.password, function (status) {
                 console.log("her er status: " + status)

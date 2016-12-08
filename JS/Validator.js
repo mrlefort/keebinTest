@@ -28,7 +28,7 @@ function _valEmail(email, callback) {
         callback(false)
     } else callback(true)
 }
-function _valCoffeeshop(coffeeShopEmail, brandId, address, phone, longitude, latitude, callback) {
+function _valCoffeeshop(coffeeShopEmail, brandId, address, phone, coffeeCode, longitude, latitude, callback) {
     if (coffeeShopEmail == null || coffeeShopEmail == '') {
         callback(false)
     } else if (brandId == null || brandId == '') {
@@ -40,6 +40,8 @@ function _valCoffeeshop(coffeeShopEmail, brandId, address, phone, longitude, lat
     } else if (longitude == null || longitude == '') {
         callback(false)
     } else if (latitude == null || latitude == '') {
+        callback(false)
+    }else if (coffeeCode == null || coffeeCode == '') {
         callback(false)
     }
     else callback(true)

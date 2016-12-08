@@ -212,7 +212,9 @@ function _createUser(FirstName, LastName, Email, Role, Birthday, Sex, password, 
 
 
 function _putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, callback) {
-    validate.valUser(Email, Role, password, function (data) {
+    console.log("kommer vi ind her? :D")
+    validate.valUser(email, role, password, function (data) {
+        console.log("kommer vi ind i validate?")
         if (data) {
             User.putUser(userEmail, firstName, lastName, email, role, birthday, sex, password, function (data2) {
                 callback(data2)
@@ -268,7 +270,7 @@ function _getUserById(userId, callback) {
 function _createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, callback) // this creates a new CoffeeShop
 {
 
-    validate.valCoffeeshop(email, brandId, address, phone, longitude, latitude, function (data) {
+    validate.valCoffeeshop(email, brandId, address, phone, coffeeCode, longitude, latitude, function (data) {
         if (data) {
             CoffeeShop.createCoffeeShop(email, brandId, address, phone, coffeeCode, longitude, latitude, function (data2) {
 
