@@ -104,14 +104,5 @@ router.post("/orderitem/new", function (req, res, next) {
 );
 
 
-//
-// var returner = function (res, returnString)
-// {
-//     console.log("her fra returner: " + returnString);
-//     res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': returnString.length + ''});
-//     res.write(returnString);
-//     res.end();
-// }
-
 
 module.exports = router;

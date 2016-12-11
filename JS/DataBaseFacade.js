@@ -120,9 +120,9 @@ function _getLoyaltyCard(ID, callback) {
 }
 
 
-function _getAllloyaltyCards(callback) {
+function _getAllloyaltyCards(userId, callback) {
 
-    LoyaltyCards.getAllloyaltyCards(function (data2) {
+    LoyaltyCards.getAllloyaltyCards(userId, function (data2) {
         callback(data2)
     })
 

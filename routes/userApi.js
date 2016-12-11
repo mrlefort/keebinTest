@@ -239,24 +239,6 @@ router.put("/card/:LoyaltyCard", function (req, res, next) {
     }
 );
 
-//creates a new link between the given customers email and the coffeshops email (can do it with full user
-// and coffeShop objects too, but this info will be available in client, and will save network traffic
-/*
- Example JSON:
- {
- "userEmail" : "lars1@gmail.com",
- "coffeeShopEmail" : "a@a.dk"
- }
- */
-
-
-// var returner = function (res, returnString)
-// {
-//     console.log("her fra returner: " + returnString);
-//     res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': returnString.length + ''});
-//     res.write(returnString);
-//     res.end();
-// }
 
 // get all roles WORKS
 router.get("/allroles/", function (req, res, next) {
@@ -280,8 +262,8 @@ router.get("/allroles/", function (req, res, next) {
 
 // WORKS
 router.get("/allcards/", function (req, res) {
-
-    facade.getAllloyaltyCards(function (status) {
+console.log("decodedsub" + req.decoded.data.sub)
+    facade.getAllloyaltyCards(req.decoded.data.sub,  function (status) {
         if (status !== false) {
             res.writeHead(200, {"Content-Type": "application/json", "accessToken": req.headers.accessToken});
             res.end(JSON.stringify(status));

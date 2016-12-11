@@ -145,16 +145,16 @@ function steffen(data) {
 }
 
 
-function _getAllloyaltyCards(callback) {
+function _getAllloyaltyCards(userId, callback) {
     var allloyaltyCards = [];
 
     var log = function (inst) {
 
         allloyaltyCards.push(inst.get());
     }
-
+console.log("fuckdisshit - " + userId);
     console.log("CoffeBrands is running.");
-    loyaltyCards.findAll().then(function (data, err) {
+    loyaltyCards.findAll({where: {userId: userId}}).then(function (data, err) {
         if (data !== null) {
             console.log("her er data: " + data)
             console.log("CoffeBrands found.");

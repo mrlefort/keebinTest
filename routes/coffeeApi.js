@@ -114,7 +114,6 @@ router.get("/brand/:brandName", function (req, res, next) {
         facade.getCoffeeBrand(req.params.brandName, function (data) {
             if (data !== false) {
                 res.writeHead(200, {"Content-Type": "application/json", "accessToken": req.headers.accessToken});
-                res.status(200).send();
 
                 res.end(JSON.stringify(data));
             }
