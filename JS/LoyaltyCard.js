@@ -190,9 +190,9 @@ function _addToNumberOfCoffeesBought(LoyaltyCardID, numberOfCoffeesBought, callb
             // data.updateatt = update given attributes in the object
             // attribute : attributevalue to edit to.
             console.log('vi er i add og data er:' + LoyaltyCardID, numberOfCoffeesBought)
-            data.numberOfCoffeesBought += numberOfCoffeesBought;
+            var temp = parseInt(data.numberOfCoffeesBought) + parseInt(numberOfCoffeesBought);
             data.updateAttributes({
-                numberOfCoffeesBought: data.numberOfCoffeesBought
+                numberOfCoffeesBought: temp
             }).then(function (result) {
                 console.log("LoyaltyCard " + LoyaltyCardID + " has been updated!");
                 callback(true);

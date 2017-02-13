@@ -90,7 +90,7 @@ router.post("/card/new", function (req, res, next) {
 );
 // WORKS
 router.post("/card/coffeeBought", function (req, res, next) {
-        facade.coffeeBought(req.body.userID, req.body.coffeeCode, req.body.numberOfCoffeesBought, function (status) {
+        facade.coffeeBought(req.body.userId, req.body.coffeeCode, req.body.numberOfCoffeesBought, function (status) {
                 if (status === true) {
                     res.status(200).send();
                 }
